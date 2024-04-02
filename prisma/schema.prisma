@@ -1,0 +1,127 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model HomeContent {
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
+  title  String?
+  class  String?
+  header String?
+  icon   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("home_contents")
+}
+
+model Project {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  images        Image[] // Relation to Image model
+  name          String
+  technologies  String[]
+  about         String
+  githubLink    String?
+  gilabLink     String?
+  bitbucketLink String?
+  websiteLink   String?
+  projectType   String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model Image {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String   @db.ObjectId // Foreign Key to Project
+  url       String // URL of the image
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+
+  @@map("images")
+}
+
+model Skill {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl String
+  name     String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("skills")
+}
+
+model Certificate {
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl     String
+  provider     String
+  title        String
+  providerLogo String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("certificates")
+}
+
+model PublicProfile {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl    String?
+  profileLink String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("public_profiles")
+}
+
+model Badge {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl    String
+  profileLink String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("badges")
+}
+
+model SocialMedia {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  link     String
+  platform String
+  logoUrl  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("socialmedia_links")
+}
+
+model Color {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  colors      String
+  sectionName String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("colors")
+}

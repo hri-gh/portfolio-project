@@ -13,12 +13,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id                        String   @id @default(auto()) @map("_id") @db.ObjectId
+  username                  String
+  email                     String
+  password                  String
+  imageUrl                  String?
+  // homecontents              HomeContent[]
+
+  @@map("users")
+}
+
 model HomeContent {
   id     String  @id @default(auto()) @map("_id") @db.ObjectId
   title  String?
   class  String?
   header String?
   icon   String?
+
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -53,7 +65,6 @@ model Image {
   updatedAt DateTime @updatedAt
 
   @@index([projectId])
-
   @@map("images")
 }
 

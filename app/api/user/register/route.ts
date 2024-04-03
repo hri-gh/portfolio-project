@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
         const { username, email, password } = reqBody
         //console.log(email)
 
-        if (email === 'hrithikgh.edu@gmail.com') {
+        // if (email === 'hrithikgh.edu@gmail.com') {
 
             // Check if users already exists
             const existingUser = await prismadb.user.findFirst({
@@ -37,9 +37,9 @@ export async function POST(request: NextRequest) {
                 message: "User created successfully",
                 success: true,
             })
-        } else {
-            return NextResponse.json({ error: "You are not allowed" }, { status: 400 })
-        }
+        // } else {
+            // return NextResponse.json({ error: "You are not allowed" }, { status: 400 })
+        // }
 
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 })

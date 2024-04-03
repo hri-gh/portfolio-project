@@ -19,7 +19,6 @@ model User {
   email                     String
   password                  String
   imageUrl                  String?
-  // homecontents              HomeContent[]
 
   @@map("users")
 }

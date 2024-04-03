@@ -11,7 +11,7 @@ export function middleware(request: NextRequest) {
     // What path we are or Current page path
     const path = request.nextUrl.pathname
 
-    const isPublicPath = path === '/admin/sign-in'
+    const isPublicPath = path === '/admin/login'
 
     // Extracting the token
     const token = request.cookies.get('token')?.value || '' // if the token is there extract the value or provide the empty one
@@ -22,9 +22,9 @@ export function middleware(request: NextRequest) {
     }
 
     if (!isPublicPath && !token) {
-        return NextResponse.redirect(new URL('/admin/sign-in', request.nextUrl))
+        return NextResponse.redirect(new URL('/admin/login', request.nextUrl))
     }
-    console.log(request.nextUrl)
+    // console.log(request.nextUrl)
 }
 
 

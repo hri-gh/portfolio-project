@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 
 import { LoginSchema } from '@/schemas'
 
-import { verifyPassword } from '@/lib/api'
+import { verifyPassword } from '@/helpers/api'
 
 import { Button } from "@/components/ui/button"
 import {
@@ -21,7 +21,11 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
+import useAuthStore from '@/store/auth-store'
+
 const LoginForm = () => {
+
+    const login = useAuthStore((state) => state.login)
 
     // 1. Define your form.
     const form = useForm<z.infer<typeof LoginSchema>>({
@@ -38,9 +42,9 @@ const LoginForm = () => {
     const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
         try {
 
-            await new Promise(resolve => setTimeout(resolve, 5000));
+            await new Promise(resolve => setTimeout(resolve, 1000));
             const data = await verifyPassword(values)
-            console.log(data);
+            login(data.userInitials)
 
         } catch (err) {
             console.log('error', err);
@@ -87,7 +91,7 @@ const LoginForm = () => {
                     )}
                 />
                 <div>
-                {errors.email && <span>{errors.email.message}</span>}
+                    {errors.email && <span>{errors.email.message}</span>}
                 </div>
                 <Button className='w-full' disabled={isSubmitting} type="submit">{isSubmitting ? "Submiting..." : "Submit"}</Button>
             </form>

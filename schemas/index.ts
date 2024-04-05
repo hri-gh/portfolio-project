@@ -20,3 +20,11 @@ export const LoginSchema = z.object({
         message: "Password is required",
     }),
 });
+
+
+export const GridContentFormSchema = z.object({
+    header: z.string().min(1),
+    title: z.string().min(1),
+    classes: z.string().min(1),
+    icon: z.string().min(1)
+})

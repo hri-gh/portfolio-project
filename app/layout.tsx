@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { ThemeProvider } from "@/providers/theme-provider";
-
+import { ToastProvider } from '@/providers/toast-provider'
+import { ModalProvider } from '@/providers/modal-provider'
 // const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,6 +26,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+
+          <ToastProvider />
+          <ModalProvider />
           {children}
         </ThemeProvider>
       </body>

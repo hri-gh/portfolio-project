@@ -9,9 +9,10 @@ interface ApiError {
 
 export const verifyPassword = async (values: z.infer<typeof LoginSchema>) => {
     try {
-        const response = await axios.post("http://localhost:3000/api/user/login", values);
+        const response = await axios.post("/api/user/login", values);
         return response.data;
     } catch (error: unknown) {
+        //--###--//
         if (error instanceof axios.AxiosError && error.response) {
             const apiError: ApiError = {
                 code: error.response.status,
@@ -23,6 +24,8 @@ export const verifyPassword = async (values: z.infer<typeof LoginSchema>) => {
             console.log("Unexpected error:", error);
             throw new Error("An unexpected error occurred");
         }
+        //--###--//
+
         // console.log("ERROR::", error);
         // if(error.response){
         //     throw new Error(error.response.status + ' : '+ error.response.data.message);

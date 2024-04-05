@@ -14,27 +14,26 @@ datasource db {
 }
 
 model User {
-  id                        String   @id @default(auto()) @map("_id") @db.ObjectId
-  username                  String
-  email                     String
-  password                  String
-  imageUrl                  String?
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  username String
+  email    String
+  password String
+  imageUrl String?
 
   @@map("users")
 }
 
-model HomeContent {
-  id     String  @id @default(auto()) @map("_id") @db.ObjectId
-  title  String?
-  class  String?
-  header String?
-  icon   String?
-
+model GridContent {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  title   String
+  classes String
+  header  String
+  icon    String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("home_contents")
+  @@map("grid_contents")
 }
 
 model Project {

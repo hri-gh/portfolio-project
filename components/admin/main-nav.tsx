@@ -19,9 +19,9 @@ function MainNav({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
             active: pathname === `/${hrefString}`,
         },
         {
-            href: `/${hrefString}/home-contents`,
-            label: 'Contents',
-            active: pathname === `/${hrefString}/home-contents`,
+            href: `/${hrefString}/grid-contents`,
+            label: 'GridContents',
+            active: pathname === `/${hrefString}/grid-contents`,
         },
         {
             href: `/${hrefString}/projects`,

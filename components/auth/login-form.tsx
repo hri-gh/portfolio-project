@@ -24,7 +24,6 @@ import { Input } from "@/components/ui/input"
 import useAuthStore from '@/store/auth-store'
 
 const LoginForm = () => {
-
     const login = useAuthStore((state) => state.login)
 
     // 1. Define your form.
@@ -44,7 +43,7 @@ const LoginForm = () => {
 
             await new Promise(resolve => setTimeout(resolve, 1000));
             const data = await verifyPassword(values)
-            login(data.userInitials)
+            login(data.userInitials);
 
         } catch (err) {
             console.log('error', err);

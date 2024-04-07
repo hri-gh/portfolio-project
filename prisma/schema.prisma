@@ -24,7 +24,7 @@ model User {
 }
 
 model GridContent {
-  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
   title   String
   classes String
   header  String

@@ -30,7 +30,6 @@ export async function POST(request: NextRequest) {
         }
 
         const userInitials = user.username[0].toUpperCase();
-        console.log(userInitials);
 
         // Create token
         const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, { expiresIn: "1d" })

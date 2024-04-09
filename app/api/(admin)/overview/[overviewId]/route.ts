@@ -4,22 +4,22 @@ import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(
     request: Request,
-    { params }: { params: { contentId: string } }
+    { params }: { params: { overviewId: string } }
 ) {
     try {
-        if (!params.contentId) {
-            return new NextResponse("Grid Content id is required", { status: 400 });
+        if (!params.overviewId) {
+            return new NextResponse("Overview id is required", { status: 400 });
         }
 
-        const gridContent = await prismadb.gridContent.findUnique({
+        const overview = await prismadb.overview.findUnique({
             where: {
-                id: params.contentId
+                id: params.overviewId
             }
         });
 
-        return NextResponse.json(gridContent);
+        return NextResponse.json(overview);
     } catch (error) {
-        console.log('[GRID-CONTENT_GET]', error);
+        console.log('[OVERVIEW_ID_GET]', error);
         return new NextResponse("Internal error", { status: 500 });
     }
 };
@@ -27,7 +27,7 @@ export async function GET(
 
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { contentId: string } }
+    { params }: { params: { overviewId: string } }
 ) {
     try {
         const userId = await getDataFromToken(request)
@@ -37,28 +37,28 @@ export async function DELETE(
             return new NextResponse("Unauthorized", { status: 405 })
         }
 
-        if (!params.contentId) {
-            return new NextResponse("Grid Content id is required", { status: 400 });
+        if (!params.overviewId) {
+            return new NextResponse("Overview id is required", { status: 400 });
         }
 
-        const gridContent = await prismadb.gridContent.delete({
+        const overview = await prismadb.overview.delete({
             where: {
-                id: params.contentId,
+                id: params.overviewId,
             }
         });
 
-        return NextResponse.json(gridContent);
+        return NextResponse.json(overview);
     } catch (error) {
-        console.log('[GRID-CONTENT_DELETE]', error);
+        console.log('[OVERVIEW_DELETE]', error);
         return new NextResponse("Internal error", { status: 500 });
     }
 }
 export async function PATCH(
     request: NextRequest,
-    { params }: { params: { contentId: string } }
+    { params }: { params: { overviewId: string } }
 ) {
     const reqBody = await request.json()
-    const { title, header, classes, icon } = reqBody
+    const { header, description } = reqBody
 
     try {
         const userId = await getDataFromToken(request)
@@ -68,25 +68,23 @@ export async function PATCH(
             return new NextResponse("Unauthorized", { status: 405 })
         }
 
-        if (!params.contentId) {
-            return new NextResponse("Grid Content id is required", { status: 400 });
+        if (!params.overviewId) {
+            return new NextResponse("Overview id is required", { status: 400 });
         }
 
-        const gridContent = await prismadb.gridContent.update({
+        const overview = await prismadb.overview.update({
             where: {
-                id: params.contentId,
+                id: params.overviewId,
             },
             data: {
-                title,
                 header,
-                classes,
-                icon,
+                description
             }
         });
 
-        return NextResponse.json(gridContent);
+        return NextResponse.json(overview);
     } catch (error) {
-        console.log('[GRID-CONTENT_PATCH]', error);
+        console.log('[OVERVIEW_PATCH]', error);
         return new NextResponse("Internal error", { status: 500 });
     }
 }

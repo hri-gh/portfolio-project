@@ -6,15 +6,18 @@ import { useParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator"
 import { Heading } from "@/components/ui/heading";
-import { DataTable } from "@/components/ui/data-table"
 
-import { GridContentColumn, columns } from "./columns";
+import Cards from "@/components/admin/cards";
 
-interface GridContentClientProps {
-    data: GridContentColumn[]
+import { OverviewCardData } from "../page";
+
+
+interface OverviewClientProps {
+    data: OverviewCardData[]
 }
 
-export const GridContentClient: React.FC<GridContentClientProps> = ({
+
+export const OverviewClient: React.FC<OverviewClientProps> = ({
     data
 }) => {
     const router = useRouter()
@@ -24,18 +27,16 @@ export const GridContentClient: React.FC<GridContentClientProps> = ({
         <>
             <div className="flex items-center justify-between">
                 <Heading
-                    title={`Grid Contents (${data.length})`}
-                    description="Manage Contents of Bento Grids"
+                    title={`Overview (${data.length})`}
+                    description="Manage overview of default page"
                 />
                 <Button
-                    onClick={() => router.push(`/admin/grid-contents/new`)}>
+                    onClick={() => router.push(`/admin/overview/new`)}>
                     <PlusIcon className="mr-2 h-4 w-4" /> Add New
                 </Button>
             </div>
             <Separator />
-            <DataTable columns={columns} data={data} searchKey="header" />
-
-
+            <Cards data={data} deleteApi={"/api/overview"} editApi={"/admin/overview"} />
         </>
     )
 }

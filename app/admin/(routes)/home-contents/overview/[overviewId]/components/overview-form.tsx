@@ -2,7 +2,7 @@
 
 import * as z from "zod"
 import { useState } from "react";
-import { GridContent } from "@prisma/client";
+import { Overview } from "@prisma/client";
 import { Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,16 +18,16 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
 
-import { GridContentFormSchema } from "@/schemas";
+import { OverviewFormSchema } from "@/schemas";
 
-type GridContentFormValues = z.infer<typeof GridContentFormSchema>
+type OverviewFormValues = z.infer<typeof OverviewFormSchema>
 
-interface IGridContentFormProps {
-    initialData: GridContent | null;
+interface IOverviewFormProps {
+    initialData: Overview | null;
 };
 
 
-export const GridContentForm: React.FC<IGridContentFormProps> = ({ initialData }) => {
+export const OverviewForm: React.FC<IOverviewFormProps> = ({ initialData }) => {
     const params = useParams()
     const router = useRouter()
 
@@ -41,27 +41,25 @@ export const GridContentForm: React.FC<IGridContentFormProps> = ({ initialData }
 
 
 
-    const form = useForm<GridContentFormValues>({
-        resolver: zodResolver(GridContentFormSchema),
+    const form = useForm<OverviewFormValues>({
+        resolver: zodResolver(OverviewFormSchema),
         defaultValues: initialData || {
             header: '',
-            title: '',
-            classes: '',
-            icon: '',
+            description:'',
         }
     });
 
 
-    const onSubmit = async (data: GridContentFormValues) => {
+    const onSubmit = async (data: OverviewFormValues) => {
         try {
             setLoading(true);
             if (initialData) {
-                await axios.patch(`/api/grid-contents/${params.contentId}`, data);
+                await axios.patch(`/api/overview/${params.overviewId}`, data);
             } else {
-                await axios.post(`/api/grid-contents`, data);
+                await axios.post(`/api/overview`, data);
             }
-            // router.push(`/${params.storeId}/billboards`)
-            // router.refresh();
+            router.push(`/admin/overview`)
+            router.refresh();
             toast.success(toastMessage);
         } catch (error: any) {
             toast.error('Something went wrong.');
@@ -103,24 +101,6 @@ export const GridContentForm: React.FC<IGridContentFormProps> = ({ initialData }
             <Separator />
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
-                    {/* <FormField
-                        control={form.control}
-                        name="imageUrl"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Backgroud image</FormLabel>
-                                <FormControl>
-                                    <ImageUpload
-                                        value={field.value ? [field.value] : []}
-                                        disabled={loading}
-                                        onChange={(url) => field.onChange(url)}
-                                        onRemove={() => field.onChange("")}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    /> */}
                     <div className="grid grid-cols-3 gap-8">
                         <FormField
                             control={form.control}
@@ -129,7 +109,7 @@ export const GridContentForm: React.FC<IGridContentFormProps> = ({ initialData }
                                 <FormItem>
                                     <FormLabel>Header</FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder="Grid header" {...field} />
+                                        <Input disabled={loading} placeholder="Overview header" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -137,38 +117,12 @@ export const GridContentForm: React.FC<IGridContentFormProps> = ({ initialData }
                         />
                         <FormField
                             control={form.control}
-                            name="title"
+                            name="description"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Title</FormLabel>
+                                    <FormLabel>Description</FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder="Grid title" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="classes"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Tailwind Classes</FormLabel>
-                                    <FormControl>
-                                        <Input disabled={loading} placeholder="Grid classes" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="icon"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Icon</FormLabel>
-                                    <FormControl>
-                                        <Input disabled={loading} placeholder="Grid Icon" {...field} />
+                                        <Input disabled={loading} placeholder="Overview description" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

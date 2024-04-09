@@ -21,22 +21,17 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { Edit, Copy, Delete } from "lucide-react";
-export type GridCardData = {
-    id: string; // unique identifier for column
-    header: string;
-    title: string;
-    createdAt: string;
 
-}
-
-interface GridCardProps {
-    data: GridCardData[]
+interface CardsProps {
+    data: unknown[];
+    deleteApi: string;
+    editApi: string;
 }
 
 import React from 'react'
 import toast from "react-hot-toast";
 
-const GridCards: React.FC<GridCardProps> = ({ data }) => {
+export const Cards: React.FC<CardsProps> = ({ data, deleteApi, editApi }) => {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -46,12 +41,12 @@ const GridCards: React.FC<GridCardProps> = ({ data }) => {
 
     const onCopy = (id: string) => {
         navigator.clipboard.writeText(id);
-        toast.success('Content Id copied to clipboard.');
+        toast.success('Id copied to clipboard.');
     }
 
     return (
         <div className="flex">
-            {data.map((item) => (
+            {data.map((item: any) => (
                 <div key={item.id} className="m-3">
                     <AlertModal
                         isOpen={open}
@@ -59,7 +54,7 @@ const GridCards: React.FC<GridCardProps> = ({ data }) => {
                         onConfirm={async () => {
                             try {
                                 setLoading(true);
-                                await axios.delete(`/api/grid-contents/${item.id}`);
+                                await axios.delete(`/${deleteApi}/${item.id}`);
                                 toast.success('Content deleted.');
                                 router.refresh();
                             } catch (error) {
@@ -72,7 +67,7 @@ const GridCards: React.FC<GridCardProps> = ({ data }) => {
                         loading={loading}
                     />
                     <Card className="w-[350px] cursor-pointer"
-                        onClick={() => router.push(`/admin/grid-contents/${item.id}`)}
+                        onClick={() => router.push(`${editApi}/${item.id}`)}
                     >
                         <CardHeader>
                             <CardTitle>{item.title}</CardTitle>
@@ -84,13 +79,14 @@ const GridCards: React.FC<GridCardProps> = ({ data }) => {
                         </CardContent>
 
                         <CardFooter>
-                            <p>{item.createdAt}</p>
+                            <div>{item.createdAt}</div>
+                            <div>{item.updatedAt}</div>
                         </CardFooter>
                         <div className="flex gap-3 m-1 p-2">
                             <Edit
                                 onClick={(e: React.MouseEvent) => {
                                     e.stopPropagation()
-                                    router.push(`/admin/grid-contents/${item.id}`)
+                                    router.push(`${editApi}/${item.id}`)
                                 }} />
                             <Copy onClick={(e: React.MouseEvent) => {
                                 e.stopPropagation();
@@ -108,4 +104,4 @@ const GridCards: React.FC<GridCardProps> = ({ data }) => {
     )
 }
 
-export default GridCards
+export default Cards

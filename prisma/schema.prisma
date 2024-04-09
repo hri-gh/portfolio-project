@@ -20,20 +20,45 @@ model User {
   password String
   imageUrl String?
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@map("users")
 }
 
-model GridContent {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  title   String
-  classes String
-  header  String
-  icon    String
+model Overview {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  header      String
+  description String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("grid_contents")
+  @@map("overview")
+}
+
+model AboutMe {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  header      String
+  description String
+  schools     String[]
+  collages    String[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("about_me")
+}
+
+model LearningJourney {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  header      String
+  description String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("learning_journey")
 }
 
 model Project {
@@ -42,7 +67,7 @@ model Project {
   name          String
   technologies  String[]
   about         String
-  githubLink    String?
+  githubLink    String
   gilabLink     String?
   bitbucketLink String?
   websiteLink   String?
@@ -55,10 +80,11 @@ model Project {
 }
 
 model Image {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  projectId String   @db.ObjectId // Foreign Key to Project
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String  @db.ObjectId // Foreign Key to Project
   url       String // URL of the image
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -78,11 +104,11 @@ model Skill {
 }
 
 model Certificate {
-  id           String  @id @default(auto()) @map("_id") @db.ObjectId
-  imageUrl     String
-  provider     String
-  title        String
-  providerLogo String?
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl        String
+  provider        String
+  title           String
+  providerLogoUrl String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -91,9 +117,9 @@ model Certificate {
 }
 
 model PublicProfile {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  imageUrl    String?
-  profileLink String
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl          String?
+  publicProfileLink String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -113,10 +139,10 @@ model Badge {
 }
 
 model SocialMedia {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
-  link     String
-  platform String
-  logoUrl  String?
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+  link            String
+  platformName    String
+  platformLogoUrl String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

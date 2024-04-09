@@ -21,10 +21,7 @@ export const LoginSchema = z.object({
     }),
 });
 
-
-export const GridContentFormSchema = z.object({
+export const OverviewFormSchema = z.object({
     header: z.string().min(1),
-    title: z.string().min(1),
-    classes: z.string().min(1),
-    icon: z.string().min(1)
+    description: z.string().min(1),
 })

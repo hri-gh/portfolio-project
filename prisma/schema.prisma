@@ -64,13 +64,14 @@ model LearningJourney {
 model Project {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   images        Image[] // Relation to Image model
-  name          String
+  projectName   String
   technologies  String[]
-  about         String
-  githubLink    String
-  gilabLink     String?
-  bitbucketLink String?
+  aboutProject  String
+  liveDemoLink  String?
   websiteLink   String?
+  githubLink    String
+  gitlabLink    String?
+  bitbucketLink String?
   projectType   String
 
   createdAt DateTime @default(now())

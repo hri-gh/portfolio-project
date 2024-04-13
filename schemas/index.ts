@@ -26,16 +26,23 @@ export const OverviewFormSchema = z.object({
     description: z.string().min(1),
 })
 
+export const AboutmeFormSchema = z.object({
+    header: z.string().min(1),
+    description: z.string().min(1),
+    schools: z.string().optional().nullable(),
+    collages: z.string().optional().nullable(),
+})
+
 
 export const ProjectFormSchema = z.object({
     images: z.object({ url: z.string() }).array().min(1),
     projectName: z.string().min(1),
-    technologies: z.object({ url: z.string() }).array().min(1),
+    technologies: z.string().min(1),
     aboutProject: z.string().min(1),
-    liveDemoLink: z.string().url("Live demo link must be a valid URL").optional(),
-    websiteLink: z.string().url("Website link must be a valid URL").optional(),
-    githubLink: z.string().url("Github link must be a valid URL"),
-    gitlabLink: z.string().url("Gitlab link must be a valid URL").optional(),
-    bitbucketLink: z.string().url("BitBucket link must be a valid URL").optional(),
+    liveDemoLink: z.string().url().optional().nullable(),
+    websiteLink: z.string().url().optional().nullable(),
+    githubLink: z.string().url(),
+    gitlabLink: z.string().url().optional().nullable(),
+    bitbucketLink: z.string().url().optional().nullable(),
     projectType: z.string().min(1),
 })

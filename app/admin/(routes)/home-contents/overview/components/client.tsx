@@ -7,9 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator"
 import { Heading } from "@/components/ui/heading";
 
-import Cards from "@/components/admin/cards";
+import OverviewCard from "./cards";
 
 import { OverviewCardData } from "../page";
+import Link from "next/link";
 
 
 interface OverviewClientProps {
@@ -26,17 +27,19 @@ export const OverviewClient: React.FC<OverviewClientProps> = ({
 
         <>
             <div className="flex items-center justify-between">
+                <Link href={"/admin/home-contents/overview"}>
                 <Heading
                     title={`Overview (${data.length})`}
                     description="Manage overview of default page"
                 />
+                </Link>
                 <Button
-                    onClick={() => router.push(`/admin/overview/new`)}>
+                    onClick={() => router.push(`/admin/home-contents/overview/new`)}>
                     <PlusIcon className="mr-2 h-4 w-4" /> Add New
                 </Button>
             </div>
             <Separator />
-            <Cards data={data} deleteApi={"/api/overview"} editApi={"/admin/overview"} />
+            <OverviewCard data={data}/>
         </>
     )
 }

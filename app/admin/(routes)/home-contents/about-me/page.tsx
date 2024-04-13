@@ -2,9 +2,9 @@ import { format } from "date-fns";
 import React from 'react'
 
 import prismadb from '@/lib/prismadb'
-import { OverviewClient } from "./components/client";
+import { AboutmeClient } from "./components/client";
 
-export type OverviewCardData = {
+export type AboutmeCardData = {
   id: string;
   header: string;
   description: string;
@@ -12,10 +12,10 @@ export type OverviewCardData = {
   createdAt: string;
 }
 
-const OverviewsPage = async () => {
-  const overview = await prismadb.overview.findMany()
+const AboutmePage = async () => {
+  const aboutMe = await prismadb.aboutMe.findMany()
 
-  const formattedOverview: OverviewCardData[] = overview.map((item) => ({
+  const formattedAboutMe: AboutmeCardData[] = aboutMe.map((item) => ({
     id: item.id,
     header: item.header,
     description: item.description,
@@ -26,11 +26,11 @@ const OverviewsPage = async () => {
     <>
       <div className="flex-col">
         <div className="flex-1 space-y-4 p-8 pt-6">
-          <OverviewClient data={formattedOverview} />
+          <AboutmeClient data={formattedAboutMe} />
         </div>
       </div>
     </>
   )
 }
 
-export default OverviewsPage
+export default AboutmePage

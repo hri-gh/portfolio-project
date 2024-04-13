@@ -1,24 +1,24 @@
 "use client"
 
+import { PlusIcon } from "lucide-react";
 import { useParams, useRouter } from "next/navigation"
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator"
 import { Heading } from "@/components/ui/heading";
 
-import {ProjectCard} from "./project-card";
+import { AboutmeCard } from "./cards";
 
-import { PlusIcon } from "lucide-react";
+import { AboutmeCardData } from "../page";
+import Link from "next/link";
 
 
-import { ProjectCardData } from "../page";
-
-interface ProjectClientProps {
-    data: ProjectCardData[]
+interface AboutmeClientProps {
+    data: AboutmeCardData[]
 }
 
 
-export const ProjectClient: React.FC<ProjectClientProps> = ({
+export const AboutmeClient: React.FC<AboutmeClientProps> = ({
     data
 }) => {
     const router = useRouter()
@@ -27,17 +27,19 @@ export const ProjectClient: React.FC<ProjectClientProps> = ({
 
         <>
             <div className="flex items-center justify-between">
+                <Link href={"/admin/home-contents/about-me"}>
                 <Heading
-                    title={`Projects (${data.length})`}
-                    description="Manage Project's data"
+                    title={`About Me (${data.length})`}
+                    description="Manage AboutMe of default page"
                 />
+                </Link>
                 <Button
-                    onClick={() => router.push(`/admin/projects/new`)}>
+                    onClick={() => router.push(`/admin/home-contents/about-me/new`)}>
                     <PlusIcon className="mr-2 h-4 w-4" /> Add New
                 </Button>
             </div>
             <Separator />
-            <ProjectCard data={data} />
+            <AboutmeCard data={data}/>
         </>
     )
 }

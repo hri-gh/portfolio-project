@@ -2,7 +2,7 @@ import prismadb from "@/lib/prismadb";
 
 import { OverviewForm } from './components/overview-form'
 
-const GridContentPage = async ({
+const OverviewPage = async ({
     params
 }: {
     params: { overviewId: string }
@@ -15,9 +15,6 @@ const GridContentPage = async ({
         }
     })
 
-    console.log('ID::', params.overviewId);
-
-
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
@@ -27,4 +24,4 @@ const GridContentPage = async ({
     )
 }
 
-export default GridContentPage
+export default OverviewPage

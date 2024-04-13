@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { OverviewForm } from '../[overviewId]/components/overview-form'
+import { AboutmeForm } from '../[aboutmeId]/components/aboutMe-form'
 
 const AddNewOverview = () => {
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <OverviewForm initialData={null} />
+                <AboutmeForm initialData={null} />
             </div>
         </div>
     )

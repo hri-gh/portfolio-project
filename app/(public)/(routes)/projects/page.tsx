@@ -7,22 +7,26 @@ import axios from 'axios';
 import React from 'react'
 import toast from 'react-hot-toast';
 import { Badge } from '@/components/ui/badge';
+
+import ProjectCard from '@/components/project/project-card';
+
 const ProjectsPage = () => {
 
   const [data, error, loading] = UseQuery('/api/projects')
 
   const tech = data.map((item: any) => item.technologies.split(','))
-  console.log(tech);
-
-
-
+  // console.log('PROJECT-PAGE.TSX::',data);
 
   return (
     <>
-      {tech[0].map((item:any)=>(
+      {/* {tech[0].map((item:any)=>(
         <Badge key={item}>{item}</Badge>
-      ))}
-
+      ))} */}
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+        {data.map((item: any) => (
+          <ProjectCard key={item.id} item={item} />
+        ))}
+      </div>
     </>
   )
 }
@@ -44,7 +48,6 @@ const UseQuery = (urlPath: any) => {
         setError(false)
 
         const response = await axios.get(urlPath)
-        console.log(response.data)
         setData(response.data)
 
         setLoading(false)

@@ -2,17 +2,18 @@ import React from 'react'
 
 import { Separator } from '@/components/ui/separator'
 
-import OverviewPage from './overview/page'
+import OverviewsPage from './overview/page'
 import AboutmePage from './about-me/page'
+import LearningJourneysPage from './learning-journey/page'
 
 const HomeContents = () => {
     return (
         <>
-            <OverviewPage/>
-            <Separator className='bg-red-500 p-1 rounded-md'/>
+            <OverviewsPage/>
+            <Separator className='bg-gray-500 p-1 rounded-md'/>
             <AboutmePage/>
-            <Separator/>
-            <h1 className='text-3xl m-3'>Learning Journey</h1>
+            <Separator className='bg-gray-500 p-1 rounded-md'/>
+            <LearningJourneysPage/>
 
         </>
     )

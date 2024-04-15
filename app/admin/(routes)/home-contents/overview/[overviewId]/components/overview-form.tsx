@@ -4,7 +4,7 @@ import * as z from "zod"
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams, useRouter } from "next/navigation";
 
@@ -50,7 +50,7 @@ export const OverviewForm: React.FC<IOverviewFormProps> = ({ initialData }) => {
         resolver: zodResolver(OverviewFormSchema),
         defaultValues: initialData || {
             header: '',
-            description:'',
+            description: '',
         }
     });
 
@@ -73,9 +73,19 @@ export const OverviewForm: React.FC<IOverviewFormProps> = ({ initialData }) => {
         }
     };
 
-    const onDelete  = async () => {
-        console.log('Delete Content');
-
+    const onDelete = async () => {
+        try {
+            setLoading(true);
+            await axios.delete(`/api/overview/${params.overviewId}`);
+            router.push(`/admin/home-contents/overview`)
+            router.refresh();
+            toast.success('Content deleted.');
+        } catch (error) {
+            toast.error('Something went wrong');
+        } finally {
+            setOpen(false);
+            setLoading(false);
+        }
     }
 
     return (

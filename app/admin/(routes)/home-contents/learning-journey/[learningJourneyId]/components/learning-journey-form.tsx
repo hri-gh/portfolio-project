@@ -20,19 +20,19 @@ import { AlertModal } from "@/components/modals/alert-modal";
 import { Trash } from "lucide-react";
 
 // PRISMA
-import { AboutMe } from "@prisma/client";
+import { LearningJourney } from "@prisma/client";
 
 // SCHEMA
-import { AboutmeFormSchema } from "@/schemas";
+import { LearningJourneyFormSchema } from "@/schemas";
 
-type AboutmeFormValues = z.infer<typeof AboutmeFormSchema>
+type LearningJourneyFormValues = z.infer<typeof LearningJourneyFormSchema>
 
-interface IAboutmeFormProps {
-    initialData: AboutMe | null;
+interface ILearningJourneyFormProps {
+    initialData: LearningJourney | null;
 };
 
 
-export const AboutmeForm: React.FC<IAboutmeFormProps> = ({ initialData }) => {
+export const LearningJourneyForm: React.FC<ILearningJourneyFormProps> = ({ initialData }) => {
     const params = useParams()
     const router = useRouter()
 
@@ -46,26 +46,24 @@ export const AboutmeForm: React.FC<IAboutmeFormProps> = ({ initialData }) => {
 
 
 
-    const form = useForm<AboutmeFormValues>({
-        resolver: zodResolver(AboutmeFormSchema),
+    const form = useForm<LearningJourneyFormValues>({
+        resolver: zodResolver(LearningJourneyFormSchema),
         defaultValues: initialData || {
             header: '',
             description: '',
-            schools: '',
-            collages: '',
         }
     });
 
 
-    const onSubmit = async (data: AboutmeFormValues) => {
+    const onSubmit = async (data: LearningJourneyFormValues) => {
         try {
             setLoading(true);
             if (initialData) {
-                await axios.patch(`/api/about-me/${params.aboutmeId}`, data);
+                await axios.patch(`/api/learning-journey/${params.learningJourneyId}`, data);
             } else {
-                await axios.post(`/api/about-me`, data);
+                await axios.post(`/api/learning-journey`, data);
             }
-            router.push(`/admin/home-contents/about-me`)
+            router.push(`/admin/home-contents/learning-journey`)
             router.refresh();
             toast.success(toastMessage);
         } catch (error: any) {
@@ -78,8 +76,8 @@ export const AboutmeForm: React.FC<IAboutmeFormProps> = ({ initialData }) => {
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/about-me/${params.aboutmeId}`);
-            router.push(`/admin/home-contents/about-me`)
+            await axios.delete(`/api/learning-journey/${params.learningJourneyId}`);
+            router.push(`/admin/home-contents/learning-journey`)
             router.refresh();
             toast.success('Content deleted.');
         } catch (error) {
@@ -88,7 +86,6 @@ export const AboutmeForm: React.FC<IAboutmeFormProps> = ({ initialData }) => {
             setOpen(false);
             setLoading(false);
         }
-
     }
 
     return (
@@ -120,8 +117,6 @@ export const AboutmeForm: React.FC<IAboutmeFormProps> = ({ initialData }) => {
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
                     <div className="grid grid-cols-3 gap-8">
-
-                        {/* HEADER FILED */}
                         <FormField
                             control={form.control}
                             name="header"
@@ -129,14 +124,12 @@ export const AboutmeForm: React.FC<IAboutmeFormProps> = ({ initialData }) => {
                                 <FormItem>
                                     <FormLabel>Header</FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder="AboutMe header" {...field} />
+                                        <Input disabled={loading} placeholder="Learning journey header" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-
-                        {/* DESCRIPTION FILED */}
                         <FormField
                             control={form.control}
                             name="description"
@@ -144,37 +137,7 @@ export const AboutmeForm: React.FC<IAboutmeFormProps> = ({ initialData }) => {
                                 <FormItem>
                                     <FormLabel>Description</FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder="AboutMe description" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        {/* SCHOOLS FILED OPTIONAL */}
-                        <FormField
-                            control={form.control}
-                            name="schools"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Schools (Optional)</FormLabel>
-                                    <FormControl>
-                                        <Input disabled={loading} placeholder="Abc, Xyz..." {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        {/* COLLAGES FILED OPTIONAL */}
-                        <FormField
-                            control={form.control}
-                            name="collages"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Collages (Optional)</FormLabel>
-                                    <FormControl>
-                                        <Input disabled={loading} placeholder="Abc, Xyz..." {...field} />
+                                        <Input disabled={loading} placeholder="Learning journey description" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

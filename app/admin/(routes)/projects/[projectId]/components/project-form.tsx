@@ -4,7 +4,7 @@ import * as z from "zod"
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams, useRouter } from "next/navigation";
 
@@ -87,7 +87,18 @@ export const ProjectForm: React.FC<IProjectFormProps> = ({ initialData }) => {
     };
 
     const onDelete = async () => {
-        console.log('Delete Content');
+        try {
+            setLoading(true);
+            await axios.delete(`/api/projects/${params.projectId}`);
+            router.push(`/admin/projects`)
+            router.refresh();
+            toast.success('Content deleted.');
+        } catch (error) {
+            toast.error('Something went wrong');
+        } finally {
+            setOpen(false);
+            setLoading(false);
+        }
 
     }
 

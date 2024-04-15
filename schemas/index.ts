@@ -33,6 +33,11 @@ export const AboutmeFormSchema = z.object({
     collages: z.string().optional().nullable(),
 })
 
+export const LearningJourneyFormSchema = z.object({
+    header: z.string().min(1),
+    description: z.string().min(1),
+})
+
 
 export const ProjectFormSchema = z.object({
     images: z.object({ url: z.string() }).array().min(1),

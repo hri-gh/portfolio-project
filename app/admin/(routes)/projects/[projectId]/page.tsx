@@ -2,7 +2,7 @@ import prismadb from "@/lib/prismadb";
 
 import { ProjectForm } from './components/project-form'
 
-const GridContentPage = async ({
+const ProjectPage = async ({
     params
 }: {
     params: { projectId: string }
@@ -30,4 +30,4 @@ const GridContentPage = async ({
     )
 }
 
-export default GridContentPage
+export default ProjectPage

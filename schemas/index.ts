@@ -51,3 +51,9 @@ export const ProjectFormSchema = z.object({
     bitbucketLink: z.string().url().optional().nullable(),
     projectType: z.string().min(1),
 })
+
+
+export const SkillFormSchema = z.object({
+    name: z.string().min(1),
+    imageUrl: z.string().min(1),
+})

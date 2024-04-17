@@ -21,14 +21,14 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 
 // DATA TYPE
-import { ProjectCardData } from "../page";
+import { SkillCardData } from "../page";
 
-interface ProjectCardProps {
-    data: ProjectCardData[];
+interface SkillCardProps {
+    data: SkillCardData[];
 }
 
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ data }) => {
+export const SkillCard: React.FC<SkillCardProps> = ({ data }) => {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -42,7 +42,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ data }) => {
     }
 
     return (
-        <div className="flex">
+        <div className="flex flex-wrap justify-evenly">
             {data.map((item: any) => (
                 <div key={item.id} className="m-3">
                     <AlertModal
@@ -51,8 +51,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ data }) => {
                         onConfirm={async () => {
                             try {
                                 setLoading(true);
-                                await axios.delete(`/api/projects/${item.id}`);
-                                toast.success('Content deleted.');
+                                await axios.delete(`/api/skills/${item.id}`);
+                                toast.success('Skill deleted.');
                                 router.refresh();
                             } catch (error) {
                                 toast.error('Something went wrong');
@@ -66,35 +66,24 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ data }) => {
                     <Card className="w-[350px] rounded-lg cursor-pointer bg-gray-700 hover:bg-gray-600"
                     // onClick={() => router.push(`/admin/projects/${item.id}`)}
                     >
-                        <CardHeader>
-                            <CardTitle>{item?.projectName}</CardTitle>
-                            <CardDescription>{item?.aboutProject}</CardDescription>
-                        </CardHeader>
-
-                        <CardContent>
+                        <CardContent className=''>
                             {item?.image && (
                                 <Image
                                     alt="project_image"
-                                    src={item?.image.url}
-                                    width={480}
+                                    src={item?.image}
+                                    width={100}
                                     height={100}
-                                    className="aspect-video object-cover rounded-md mb-2 "
+                                    className="aspect-auto my-2 mx-auto"
                                     priority
                                 />
                             )}
 
-                            {item?.technologies?.split(',').map((technologiesItem: any, index: number) => (
-                                <Badge className="mr-1" key={index}>{technologiesItem}</Badge>
-                            ))}
+                            <CardHeader className=''>
+                                <Badge className='mx-auto'>
+                                    <CardTitle className='font-bold text-2xl text-center'>{item?.name}</CardTitle>
+                                </Badge>
+                            </CardHeader>
                         </CardContent>
-
-                        <CardFooter className="m-1">
-                            {item?.githubLink && (
-                                <Link href={item.githubLink} target='_blank'>
-                                    <GitHubLogoIcon />
-                                </Link>
-                            )}
-                        </CardFooter>
 
                         <div className="m-1 space-y-1 text-black font-normal">
                             <div className="bg-stone-400 rounded-full pl-1 ">
@@ -106,12 +95,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ data }) => {
                                 {item.updatedAt}
                             </div>
                         </div>
+
                         <div className="flex gap-3 m-1 p-2 bg-gray-800 rounded-md">
                             <Edit
                                 className="hover:bg-gray-700 hover:rounded-sm hover:p-1"
                                 onClick={(e: React.MouseEvent) => {
                                     e.stopPropagation()
-                                    router.push(`/admin/projects/${item.id}`)
+                                    router.push(`/admin/skills/${item.id}`)
                                 }} />
                             <Copy
                                 className="hover:bg-gray-700 hover:rounded-sm hover:p-1"

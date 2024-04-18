@@ -57,3 +57,17 @@ export const SkillFormSchema = z.object({
     name: z.string().min(1),
     imageUrl: z.string().min(1),
 })
+
+export const CertificateFormSchema = z.object({
+    provider: z.string().min(1),
+    title: z.string().min(1),
+    imageUrl: z.string().min(1),
+    providerLogoUrl: z.string().min(1).optional().nullable(),
+})
+
+export const PublicProfileFormSchema = z.object({
+    imageUrl: z.string().min(1),
+    publicProfileName: z.string().min(1),
+    publicProfileLink: z.string().min(1),
+
+})

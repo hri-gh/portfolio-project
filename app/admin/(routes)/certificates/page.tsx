@@ -1,9 +1,43 @@
+import { format } from "date-fns";
 import React from 'react'
 
-const CertificatesPage = () => {
+import prismadb from '@/lib/prismadb'
+
+import { CertificateClient } from "./components/client";
+
+
+export type CertificateCardData = {
+  id: string;
+  title: string;
+  provider: string;
+  image: string;
+  providerLogo: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+
+const SkillsPage = async () => {
+  const certificates = await prismadb.certificate.findMany()
+
+  const formattedCertificates: CertificateCardData[] = certificates.map((item) => ({
+    id: item.id,
+    provider:item.provider,
+    title: item.title,
+    image: item.imageUrl,
+    providerLogo: item.providerLogoUrl,
+    updatedAt: format(item.updatedAt, 'MMMM do, yyyy'),
+    createdAt: format(item.createdAt, 'MMMM do, yyyy'),
+  }))
+
   return (
-    <div>CertificatesPage</div>
+    <>
+      <div className="flex-col">
+        <div className="flex-1 space-y-4 p-8 pt-6">
+          <CertificateClient data={formattedCertificates} />
+        </div>
+      </div>
+    </>
   )
 }
 
-export default CertificatesPage
+export default SkillsPage

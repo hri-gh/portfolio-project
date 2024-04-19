@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import { GitHubLogoIcon } from "@radix-ui/react-icons"
-import { GalleryModal } from "../modals/gallery-modal"
+import { GalleryModal } from "../../modals/gallery-modal"
 import { useState } from "react"
 
 

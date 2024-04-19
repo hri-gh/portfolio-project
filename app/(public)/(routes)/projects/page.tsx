@@ -8,7 +8,7 @@ import React from 'react'
 import toast from 'react-hot-toast';
 import { Badge } from '@/components/ui/badge';
 
-import ProjectCard from '@/components/project/project-card';
+import ProjectCard from '@/components/public/project/project-card';
 
 const ProjectsPage = () => {
 

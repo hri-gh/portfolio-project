@@ -48,16 +48,16 @@ function MainNav({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
             label: 'PublicProfiles',
             active: pathname === `/${hrefString}/public-profiles`,
         },
-        {
-            href: `/${hrefString}/element-colors`,
-            label: 'Colors',
-            active: pathname === `/${hrefString}/element-colors`,
-        },
-        {
-            href: `/${hrefString}/social-medias`,
-            label: 'Socials',
-            active: pathname === `/${hrefString}/social-medias`,
-        },
+        // {
+        //     href: `/${hrefString}/element-colors`,
+        //     label: 'Colors',
+        //     active: pathname === `/${hrefString}/element-colors`,
+        // },
+        // {
+        //     href: `/${hrefString}/social-medias`,
+        //     label: 'Socials',
+        //     active: pathname === `/${hrefString}/social-medias`,
+        // },
     ]
 
     return (
@@ -70,7 +70,7 @@ function MainNav({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
                     key={route.href}
                     href={route.href}
                     className={cn(
-                        'text-sm font-medium transition-colors hover:text-primary',
+                        'bg-gray-700 rounded-full p-2 text-sm font-medium transition-colors hover:text-primary',
                         route.active ? 'text-black dark:text-white' : 'text-muted-foreground'
                     )}
                 >

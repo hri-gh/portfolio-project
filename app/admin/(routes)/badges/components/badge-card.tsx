@@ -20,15 +20,15 @@ import { Edit, Copy, Delete } from "lucide-react";
 
 
 // DATA TYPE
-import { PublicProfileCardData } from "../page";
+import { BadgeCardData } from "../page";
 import { Separator } from '@/components/ui/separator';
 
-interface PublicProfileCardProps {
-    data: PublicProfileCardData[];
+interface BadgeCardProps {
+    data: BadgeCardData[];
 }
 
 
-export const PublicProfileCard: React.FC<PublicProfileCardProps> = ({ data }) => {
+export const BadgeCard: React.FC<BadgeCardProps> = ({ data }) => {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -54,8 +54,8 @@ export const PublicProfileCard: React.FC<PublicProfileCardProps> = ({ data }) =>
                         onConfirm={async () => {
                             try {
                                 setLoading(true);
-                                await axios.delete(`/api/public-profiles/${item.id}`);
-                                toast.success('Public profile deleted.');
+                                await axios.delete(`/api/badges/${item.id}`);
+                                toast.success('Badge deleted.');
                                 router.refresh();
                             } catch (error) {
                                 toast.error('Something went wrong');
@@ -81,11 +81,11 @@ export const PublicProfileCard: React.FC<PublicProfileCardProps> = ({ data }) =>
                                 />
                             )}
 
-                            <CardTitle className='font-bold text-2xl mb-3'>{item?.publicProfileName}</CardTitle>
+                            <CardTitle className='font-bold text-2xl mb-3'>{item?.platformName}</CardTitle>
                             <Separator />
                             <CardTitle className='mt-2 text-blue-500'>
-                                {/* <Link href={item?.publicProfileLink} target='_blank' >
-                                    {item?.publicProfileLink}
+                                {/* <Link href={item?.platformLink} target='_blank' >
+                                    {item?.platformLink}
                                 </Link> */}
                             </CardTitle>
                         </CardContent>
@@ -106,7 +106,7 @@ export const PublicProfileCard: React.FC<PublicProfileCardProps> = ({ data }) =>
                                 className="hover:bg-gray-700 hover:rounded-sm hover:p-1"
                                 onClick={(e: React.MouseEvent) => {
                                     e.stopPropagation()
-                                    router.push(`/admin/public-profiles/${item.id}`)
+                                    router.push(`/admin/badges/${item.id}`)
                                 }} />
                             <Copy
                                 className="hover:bg-gray-700 hover:rounded-sm hover:p-1"

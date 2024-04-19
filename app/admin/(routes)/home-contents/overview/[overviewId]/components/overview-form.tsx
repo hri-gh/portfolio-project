@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
+import { Textarea } from "@/components/ui/textarea";
 
 // ICONS
 import { Trash } from "lucide-react";
@@ -137,7 +138,7 @@ export const OverviewForm: React.FC<IOverviewFormProps> = ({ initialData }) => {
                                 <FormItem>
                                     <FormLabel>Description</FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder="Overview description" {...field} />
+                                        <Textarea disabled={loading} placeholder="Overview description" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

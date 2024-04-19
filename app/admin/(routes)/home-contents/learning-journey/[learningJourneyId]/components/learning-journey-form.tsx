@@ -15,6 +15,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
+import { Textarea } from "@/components/ui/textarea";
+
 
 // ICONS
 import { Trash } from "lucide-react";
@@ -137,7 +139,7 @@ export const LearningJourneyForm: React.FC<ILearningJourneyFormProps> = ({ initi
                                 <FormItem>
                                     <FormLabel>Description</FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder="Learning journey description" {...field} />
+                                        <Textarea disabled={loading} placeholder="Learning journey description" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

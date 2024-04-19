@@ -71,3 +71,10 @@ export const PublicProfileFormSchema = z.object({
     publicProfileLink: z.string().min(1),
 
 })
+
+export const BadgeFormSchema = z.object({
+    imageUrl: z.string().min(1),
+    platformName: z.string().min(1),
+    platformLink: z.string().min(1),
+
+})

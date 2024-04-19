@@ -15,59 +15,58 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { Textarea } from "@/components/ui/textarea";
+import ImageUpload from "@/components/image-upload";
 
-
-// ICONS
+// ICON
 import { Trash } from "lucide-react";
 
 // PRISMA
-import { AboutMe } from "@prisma/client";
+import { Badge } from "@prisma/client";
 
 // SCHEMA
-import { AboutmeFormSchema } from "@/schemas";
+import { BadgeFormSchema } from "@/schemas";
 
-type AboutmeFormValues = z.infer<typeof AboutmeFormSchema>
 
-interface IAboutmeFormProps {
-    initialData: AboutMe | null;
+type BadgeFormValues = z.infer<typeof BadgeFormSchema>
+
+interface IBadgeFormProps {
+    initialData: Badge | null;
 };
 
 
-export const AboutmeForm: React.FC<IAboutmeFormProps> = ({ initialData }) => {
+export const BadgeForm: React.FC<IBadgeFormProps> = ({ initialData }) => {
     const params = useParams()
     const router = useRouter()
 
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const title = initialData ? "Edit Content" : "Create Content"
-    const description = initialData ? "Edit a content" : "Add a new content"
-    const toastMessage = initialData ? "Content updated" : "Content created"
+    const title = initialData ? "Edit badge" : "Create badge"
+    const description = initialData ? "Edit a badge" : "Add a new badge"
+    const toastMessage = initialData ? "Badge updated" : "Badge created"
     const action = initialData ? "Save changes" : "Create"
 
 
 
-    const form = useForm<AboutmeFormValues>({
-        resolver: zodResolver(AboutmeFormSchema),
+    const form = useForm<BadgeFormValues>({
+        resolver: zodResolver(BadgeFormSchema),
         defaultValues: initialData || {
-            header: '',
-            description: '',
-            schools: '',
-            collages: '',
-        }
+            imageUrl: '',
+            platformName: '',
+            platformLink: ''
+        },
     });
 
+    const onSubmit = async (data: BadgeFormValues) => {
 
-    const onSubmit = async (data: AboutmeFormValues) => {
         try {
             setLoading(true);
             if (initialData) {
-                await axios.patch(`/api/about-me/${params.aboutmeId}`, data);
+                await axios.patch(`/api/badges/${params.badgeId}`, data);
             } else {
-                await axios.post(`/api/about-me`, data);
+                await axios.post(`/api/badges`, data);
             }
-            router.push(`/admin/home-contents/about-me`)
+            router.push(`/admin/badges`)
             router.refresh();
             toast.success(toastMessage);
         } catch (error: any) {
@@ -80,10 +79,10 @@ export const AboutmeForm: React.FC<IAboutmeFormProps> = ({ initialData }) => {
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/about-me/${params.aboutmeId}`);
-            router.push(`/admin/home-contents/about-me`)
+            await axios.delete(`/api/badges/${params.badgeId}`);
+            router.push(`/admin/badges`)
             router.refresh();
-            toast.success('Content deleted.');
+            toast.success('Badge deleted.');
         } catch (error) {
             toast.error('Something went wrong');
         } finally {
@@ -123,66 +122,56 @@ export const AboutmeForm: React.FC<IAboutmeFormProps> = ({ initialData }) => {
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
                     <div className="grid grid-cols-3 gap-8">
 
-                        {/* HEADER FILED */}
+                        {/*BADGE IMAGE FIELD */}
                         <FormField
                             control={form.control}
-                            name="header"
+                            name="imageUrl"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Header</FormLabel>
+                                    <FormLabel>Public Profile Image</FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder="AboutMe header" {...field} />
+                                        <ImageUpload
+                                            value={field.value ? [field.value] : []}
+                                            disabled={loading}
+                                            onChange={(url) => field.onChange(url)}
+                                            onRemove={() => field.onChange("")}
+                                        />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
 
-                        {/* SCHOOLS FILED OPTIONAL */}
+
+                        {/* BADGE'S PLATFORM NAME FIELD */}
                         <FormField
                             control={form.control}
-                            name="schools"
+                            name="platformName"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Schools (Optional)</FormLabel>
+                                    <FormLabel>Platform Name</FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder="Abc, Xyz..." {...field} />
+                                        <Input disabled={loading} placeholder="" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
 
-                        {/* COLLAGES FILED OPTIONAL */}
+                        {/* BADGE'S PLATFORM LINK FIELD  */}
                         <FormField
                             control={form.control}
-                            name="collages"
+                            name="platformLink"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Collages (Optional)</FormLabel>
+                                    <FormLabel>Platform Link</FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder="Abc, Xyz..." {...field} />
+                                        <Input disabled={loading} placeholder="Public profile link" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-
-                        {/* DESCRIPTION FILED */}
-                        <FormField
-                            control={form.control}
-                            name="description"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Description</FormLabel>
-                                    <FormControl>
-                                        <Textarea disabled={loading} placeholder="AboutMe description" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
                     </div>
                     <Button
                         disabled={loading}
@@ -191,7 +180,6 @@ export const AboutmeForm: React.FC<IAboutmeFormProps> = ({ initialData }) => {
                     </Button>
                 </form>
             </Form>
-            {/* <Separator /> */}
         </>
     )
 }

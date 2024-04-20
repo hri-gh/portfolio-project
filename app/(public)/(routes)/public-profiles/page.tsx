@@ -1,9 +1,37 @@
 import React from 'react'
 
-const PublicProfilesPage = () => {
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs"
+
+
+import PublicProfilesPage from './(public-profiles-page)/public-profiles-page'
+import BadgesPage from './(badges)/badges-page'
+
+const PublicProfilesAndBadgesPage = () => {
+
   return (
-    <div>PublicProfilesPage</div>
+    <>
+      <Tabs defaultValue="public-profiles" className="bg-yellow-500 p-5 rounded-md">
+
+        <TabsList className=" grid w-full grid-cols-2 items-center h-10">
+          <TabsTrigger value="public-profiles" className="hover:bg-gray-200">Public Profiles</TabsTrigger>
+          <TabsTrigger value="badges" className="hover:bg-gray-200">Badges</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="public-profiles">
+          <PublicProfilesPage />
+        </TabsContent>
+
+        <TabsContent value="badges">
+          <BadgesPage />
+        </TabsContent>
+      </Tabs>
+    </>
   )
 }
 
-export default PublicProfilesPage
+export default PublicProfilesAndBadgesPage

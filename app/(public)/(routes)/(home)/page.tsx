@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <>
-      <Tabs defaultValue="default" className="bg-yellow-500 p-5 rounded-md">
+      <Tabs defaultValue="overview" className="bg-yellow-500 p-5 rounded-md">
 
         <TabsList className=" grid w-full grid-cols-2 items-center h-10">
           <TabsTrigger value="overview" className="hover:bg-gray-200">Overview</TabsTrigger>

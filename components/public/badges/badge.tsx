@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { BentoGrid, BentoGridItem } from "@/components/custom-ui/bento-grid";
 import { GalleryModal } from "@/components/modals/gallery-modal";
+import { Button } from "@/components/ui/button";
 
 
 export function Badge({ item }: any) {
@@ -42,7 +43,7 @@ export function Badge({ item }: any) {
                         />
                     </div>}
                 icon={[]}
-            // className={i === 3 || i === 6 ? "md:col-span-2" : ""}
+                // className={i === 3 || i === 6 ? "md:col-span-2" : ""}
             />
         </>
     );

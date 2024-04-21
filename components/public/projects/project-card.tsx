@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { GitHubLogoIcon } from "@radix-ui/react-icons"
 import { GalleryModal } from "../../modals/gallery-modal"
 import { useState } from "react"
-
+import Link from "next/link"
 
 export default function ProjectCard({ item }: any) {
     const [open, setOpen] = useState(false);
@@ -38,7 +38,7 @@ export default function ProjectCard({ item }: any) {
                 alt="In-flight shopping"
                 className="aspect-video object-fill overflow-hidden rounded-xl bg-gray-600 p-2 object-center"
                 height={200}
-                src={item.images[0].url}
+                src={item.images[0]?.url}
                 width={400}
                 onClick={onImageView}
                 priority
@@ -60,9 +60,13 @@ export default function ProjectCard({ item }: any) {
                 </p>
             </CardContent>
             <CardFooter className="flex gap-2 p-4">
-                <Button variant="outline">Browse</Button>
+                <Button variant="outline">
+                    <Link href={item.liveDemoLink} target="_blank">Browse</Link>
+                </Button>
                 <Button >
-                    <GitHubLogoIcon />
+                    <Link href={item.githubLink} target="_blank">
+                        <GitHubLogoIcon />
+                    </Link>
                 </Button>
             </CardFooter>
         </Card>

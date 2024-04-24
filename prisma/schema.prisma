@@ -41,8 +41,8 @@ model AboutMe {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   header      String
   description String
-  schools     String?
-  collages    String?
+  schools     String
+  collages    String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -67,11 +67,11 @@ model Project {
   projectName   String
   technologies  String
   aboutProject  String
-  liveDemoLink  String?
-  websiteLink   String?
+  liveDemoLink  String
+  websiteLink   String
   githubLink    String
-  gitlabLink    String?
-  bitbucketLink String?
+  gitlabLink    String
+  bitbucketLink String
   projectType   String
 
   createdAt DateTime @default(now())

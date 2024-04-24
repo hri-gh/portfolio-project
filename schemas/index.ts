@@ -29,8 +29,8 @@ export const OverviewFormSchema = z.object({
 export const AboutmeFormSchema = z.object({
     header: z.string().min(1),
     description: z.string().min(1),
-    schools: z.string().optional().nullable(),
-    collages: z.string().optional().nullable(),
+    schools: z.string().optional(),
+    collages: z.string().optional()
 })
 
 export const LearningJourneyFormSchema = z.object({
@@ -44,11 +44,11 @@ export const ProjectFormSchema = z.object({
     projectName: z.string().min(1),
     technologies: z.string().min(1),
     aboutProject: z.string().min(1),
-    liveDemoLink: z.string().url().optional().nullable(),
-    websiteLink: z.string().url().optional().nullable(),
+    liveDemoLink: z.string().url().optional(),
+    websiteLink: z.string().url().optional(),
     githubLink: z.string().url(),
-    gitlabLink: z.string().url().optional().nullable(),
-    bitbucketLink: z.string().url().optional().nullable(),
+    gitlabLink: z.string().url().optional(),
+    bitbucketLink: z.string().url().optional(),
     projectType: z.string().min(1),
 })
 

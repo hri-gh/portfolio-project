@@ -1,11 +1,12 @@
 import React from 'react'
-import ImageGalleryModal from '@/components/modals/gallery-modal'
-
+import OverviewSkeleton from '../(public)/(routes)/(home)/(overview-page)/components/overview/overview-skeleton'
+import { GridCardSkeleton } from '../(public)/(routes)/(home)/(overview-page)/components/grid-card/grid-card-skeleton'
 
 const TestPage = () => {
   return (
     <>
-    <ImageGalleryModal/>
+    <OverviewSkeleton/>
+    <GridCardSkeleton/>
     </>
   )
 }

@@ -2,6 +2,7 @@
 
 import { Separator } from "@/components/ui/separator";
 import { useLearningJourney } from "@/hooks/get-learning-journey"
+import { GridCardSkeleton } from "./grid-card-skeleton";
 
 
 export const LearningJourneyCard = () => {
@@ -14,10 +15,11 @@ export const LearningJourneyCard = () => {
                     <span className="sr-only">View</span>
                 </Link> */}
                 <div className="flex-1 [grid-area:stack] bg-gray-900 group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
+                    {loading && (<GridCardSkeleton />)}
                     <h3 className="font-semibold tracking-tight">{data[0]?.header}</h3>
                     <Separator />
                     <p className="leading-none">
-                       {loading ? 'Loading...' : data[0]?.description}
+                        {data[0]?.description}
                     </p>
                     {/* <h4 className="font-semibold">$19.99</h4> */}
                 </div>

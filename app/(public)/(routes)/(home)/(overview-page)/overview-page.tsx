@@ -2,12 +2,12 @@ import React from 'react'
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 import { Separator } from '@/components/ui/separator'
-import { InfiniteCertificateMovingCards } from './components/infinite-certificate-moving-cards'
+import { InfiniteCertificateMovingCards } from './components/infinite-moving-cards/infinite-certificate-moving-cards'
 
-import GridCard from './components/grid-card'
+import GridCard from './components/grid-card/grid-card'
 import { SkillList } from '@/components/public/skills/skill-list'
 
-import { OverviewScrollarea } from './components/overview-scrollarea'
+import { OverviewScrollarea } from './components/overview/overview-scrollarea'
 
 const OverviewPage = () => {
   return (

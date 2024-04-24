@@ -11,8 +11,23 @@ import { Button } from '@/components/ui/button';
 import { FaSquarePhoneFlip } from "react-icons/fa6"
 import { FaPhone } from "react-icons/fa";
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react';
 
 export default function ProfileCard() {
+    const [isMounted, setIsMounted] = useState(false);
+
+    const router = useRouter();
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) {
+        return null;
+    }
+
+
     return (
         <div
             className={`${lusitana.className}flex flex-col justify-center items-center leading-none text-white`}
@@ -46,8 +61,10 @@ export default function ProfileCard() {
             {/* <p className='text-sm'><strong>Mail:</strong>hrithikgh.edu@gmail.com</p>
       <p className='text-sm'><strong>Phone:</strong>9382020441</p> */}
             <div className='p-1 flex justify-center gap-2'>
-                <Button size="sm">
+                <Button size={'sm'}>
+                    <Link href={'https://github.com/hri-gh'}>
                     <FaGithubSquare />
+                    </Link>
                 </Button>
                 <Button size="sm">
                     <FaLinkedin />

@@ -7,6 +7,7 @@ import prismadb from '@/lib/prismadb'
 
 import { SkillClient } from "./components/client";
 import { useSkills } from "@/hooks/get-skills";
+import { Skill } from "@prisma/client";
 
 export type SkillCardData = {
   id: string;
@@ -21,7 +22,7 @@ const SkillsPage = () => {
 
   // const skills = await prismadb.skill.findMany()
 
-  const formattedSkills: SkillCardData[] = data.map((item:any) => ({
+  const formattedSkills: SkillCardData[] = data.map((item:Skill) => ({
     id: item.id,
     name: item.name,
     image: item.imageUrl,

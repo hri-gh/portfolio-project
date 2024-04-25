@@ -62,18 +62,24 @@ export default function ProfileCard() {
       <p className='text-sm'><strong>Phone:</strong>9382020441</p> */}
             <div className='p-1 flex justify-center gap-2'>
                 <Button size={'sm'}>
-                    <Link href={'https://github.com/hri-gh'}>
-                    <FaGithubSquare />
+                    <Link href='https://github.com/hri-gh' target='_blank'>
+                        <FaGithubSquare />
                     </Link>
                 </Button>
                 <Button size="sm">
-                    <FaLinkedin />
+                    <Link href="www.linkedin.com/in/hri-gh" target='_blank'>
+                        <FaLinkedin />
+                    </Link>
                 </Button>
                 <Button size="sm">
-                    <MdMail />
+                    <Link href='mailto:hrithikgh.edu@gmail.com'>
+                        <MdMail />
+                    </Link>
                 </Button>
                 <Button size="sm">
+                    <Link href="tel:+919382020441">
                     <FaPhone />
+                    </Link>
                 </Button>
             </div>
             <p className='text-sm text-center mx-auto mt-1'>

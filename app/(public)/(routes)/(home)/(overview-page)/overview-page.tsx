@@ -21,7 +21,7 @@ const OverviewPage = () => {
           <SkillList />
         </ScrollArea>
 
-        <InfiniteCertificateMovingCards/>
+        {/* <InfiniteCertificateMovingCards/> */}
 
         {/* <ScrollArea className='bg-gray-500 rounded-xl border p-4 my-2'> */}
         {/* <ProjectsList /> */}

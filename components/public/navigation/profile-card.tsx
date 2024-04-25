@@ -1,31 +1,33 @@
-"use client"
+// "use client"
 
-import { HiGlobeAlt } from 'react-icons/hi';
-import { lusitana } from '@/components/fonts/fonts';
+import Link from 'next/link';
 import Image from 'next/image';
+
+// Fonts Import
+import { lusitana } from '@/components/fonts/fonts';
+
+// Icons Import
 import { FaGithubSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
-import { IoIosMail } from "react-icons/io";
 import { MdMail } from "react-icons/md";
 import { Button } from '@/components/ui/button';
-import { FaSquarePhoneFlip } from "react-icons/fa6"
 import { FaPhone } from "react-icons/fa";
-import Link from 'next/link';
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react';
+
+
 
 export default function ProfileCard() {
-    const [isMounted, setIsMounted] = useState(false);
+    // For hydration error
+    // const [isMounted, setIsMounted] = useState(false);
 
-    const router = useRouter();
+    // const router = useRouter();
 
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
+    // useEffect(() => {
+    //     setIsMounted(true);
+    // }, []);
 
-    if (!isMounted) {
-        return null;
-    }
+    // if (!isMounted) {
+    //     return null;
+    // }
 
 
     return (
@@ -36,7 +38,6 @@ export default function ProfileCard() {
                 alt="Profile Picture"
                 className="rounded-full mx-auto object-cover"
                 height="96"
-                // src="/placeholder.svg"
                 src="/pp-pic.jpeg"
                 style={{
                     aspectRatio: "96/96",
@@ -62,12 +63,12 @@ export default function ProfileCard() {
       <p className='text-sm'><strong>Phone:</strong>9382020441</p> */}
             <div className='p-1 flex justify-center gap-2'>
                 <Button size={'sm'}>
-                    <Link href='https://github.com/hri-gh' target='_blank'>
+                    <Link href={'https://github.com/hri-gh'} target='_blank'>
                         <FaGithubSquare />
                     </Link>
                 </Button>
                 <Button size="sm">
-                    <Link href="www.linkedin.com/in/hri-gh" target='_blank'>
+                    <Link href="https://www.linkedin.com/in/hri-gh" target='_blank'>
                         <FaLinkedin />
                     </Link>
                 </Button>

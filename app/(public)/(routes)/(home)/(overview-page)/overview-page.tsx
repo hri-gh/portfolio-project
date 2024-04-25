@@ -18,10 +18,13 @@ const OverviewPage = () => {
         <GridCard />
 
         <ScrollArea className='bg-black rounded-xl border p-4 my-2'>
+          <h1 className='text-2xl font-bold'>Skills</h1>
+          <Separator className='my-4' />
           <SkillList />
         </ScrollArea>
 
-        {/* <InfiniteCertificateMovingCards/> */}
+
+        <InfiniteCertificateMovingCards/>
 
         {/* <ScrollArea className='bg-gray-500 rounded-xl border p-4 my-2'> */}
         {/* <ProjectsList /> */}

@@ -11,10 +11,11 @@ export function InfiniteCertificateMovingCards() {
 
   return (
     <div className="rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+
       <InfiniteMovingCards
         items={data}
         direction="right"
-        speed="fast"
+        speed="normal"
       />
     </div>
   );

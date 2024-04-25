@@ -22,14 +22,14 @@ export default function SideNav() {
       {/* <div className={`${blue500}`}>Hello</div> */}
       <div className="flex h-full flex-col px-3 py-4 md:px-2 ">
 
-        <Link
+        <div
           className="mb-2 p-2 flex h-auto items-center justify-center rounded-md bg-yellow-500 " // removed md:h-40
-          href="/"
+
         >
           <div className="w-32 text-white md:w-40">
             <ProfileCard />
           </div>
-        </Link>
+        </div>
 
         <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
           <NavLinks />

@@ -5,7 +5,6 @@ import { ImagePlus, Trash } from "lucide-react";
 import Image from "next/image";
 import { CldUploadWidget } from 'next-cloudinary'
 
-
 import { Button } from "@/components/ui/button";
 
 interface ImageUploadProps {
@@ -54,7 +53,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                     </div>
                 ))}
             </div>
-            <CldUploadWidget onUpload={onUpload} uploadPreset={process.env.CLOUDINARY_UPLOAD_PRESET_NAME}>
+            <CldUploadWidget onUpload={onUpload} uploadPreset={'ip8x4qie'}>
                 {({ open }) => {
                     const onClick = () => {
                         open();

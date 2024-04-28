@@ -1,13 +1,15 @@
 "use client"
 import React from 'react'
 
+import { useState } from 'react'
 import { z } from "zod"
 import { useForm, } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 import { LoginSchema } from '@/schemas'
-
-import { verifyPassword } from '@/helpers/api'
 
 import { Button } from "@/components/ui/button"
 import {
@@ -21,10 +23,15 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
+import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
+import { TriangleAlert } from 'lucide-react'
+
 import useAuthStore from '@/store/auth-store'
 
 const LoginForm = () => {
+    const router = useRouter();
     const login = useAuthStore((state) => state.login)
+    const [error, setError] = useState("")
 
     // 1. Define your form.
     const form = useForm<z.infer<typeof LoginSchema>>({
@@ -37,23 +44,24 @@ const LoginForm = () => {
 
     const { formState: { isSubmitting, errors } } = form
 
-    // 2.
+    // 2. Define onSubmit handle.
     const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
         try {
-
             await new Promise(resolve => setTimeout(resolve, 1000));
-            const data = await verifyPassword(values)
-            login(data.userInitials);
-
-        } catch (err) {
-            console.log('error', err);
+            const response = await axios.post("/api/user/login", values);
+            const data = response.data
+            toast.success("Login success")
+            login(data.userInitials); // Update the useAuthstate with user initials and isLoggedIn true
+            router.push("/admin")
+        } catch (err: any) {
+            // toast.error("Something went wrong");
+            setError('Something went wrong')
         }
     }
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-80 border-2 p-4 rounded-md bg-gray-800">
                 <FormField
                     control={form.control}
                     name="email"
@@ -65,6 +73,7 @@ const LoginForm = () => {
                                     {...field}
                                     placeholder="john.doe@example.com"
                                     type="email"
+                                    // className='bg-gray-600'
                                 />
                             </FormControl>
                             <FormMessage />
@@ -83,6 +92,7 @@ const LoginForm = () => {
                                     {...field}
                                     placeholder="*****"
                                     type='password'
+                                    // className='bg-gray-600'
                                 />
                             </FormControl>
                             <FormMessage />
@@ -90,9 +100,16 @@ const LoginForm = () => {
                     )}
                 />
                 <div>
-                    {errors.email && <span>{errors.email.message}</span>}
+                    {error && (
+                    <span className='bg-red-400 p-1 rounded-md flex justify-center text-red-700'>
+                        <TriangleAlert className='p-1'/>
+                        {error}
+                        </span>
+                    )}
+                    {/* {errors.email && <span>{errors.email.message}</span>}
+                    {errors.password && <span>{errors.password.message}</span>} */}
                 </div>
-                <Button className='w-full' disabled={isSubmitting} type="submit">{isSubmitting ? "Submiting..." : "Submit"}</Button>
+                <Button className='w-full' disabled={isSubmitting} type="submit">{isSubmitting ? "Logining..." : "Login"}</Button>
             </form>
         </Form>
     )

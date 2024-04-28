@@ -8,20 +8,8 @@ import {
 } from "@/components/ui/avatar"
 
 export const UserButton = () => {
-    const logout = useAuthStore((state) => state.logout)
     const { isLoggedIn, userInitials } = useAuthStore((state: any) => state.auth)
 
-    const onLogout = () => {
-        if (window.confirm('Are you sure?')) {
-            logout()
-        }
-    }
-
-    // const handleClick = () => {
-    //     // ACTION REQUIRED
-    //     alert('CLICK');
-
-    // }
 
     if (isLoggedIn) {
         return (

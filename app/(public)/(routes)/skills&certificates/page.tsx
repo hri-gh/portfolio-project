@@ -15,7 +15,7 @@ const SkillsCertificatesPage = () => {
 
   return (
     <>
-      <Tabs defaultValue="certificates" className="bg-yellow-500 p-5 rounded-md">
+      <Tabs defaultValue="certificates" className="bg-[#003554] p-5 rounded-md">
 
         <TabsList className=" grid w-full grid-cols-2 items-center h-10">
           <TabsTrigger value="certificates" className="hover:bg-gray-200">Certificates</TabsTrigger>

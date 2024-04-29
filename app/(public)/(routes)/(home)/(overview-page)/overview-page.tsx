@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import { ScrollArea } from "@/components/ui/scroll-area"
 
@@ -8,8 +9,11 @@ import GridCard from './components/grid-card/grid-card'
 import { SkillList } from '@/components/public/skills/skill-list'
 
 import { OverviewScrollarea } from './components/overview/overview-scrollarea'
+import { useSkills } from '@/hooks/get-skills'
 
+import { Skeleton } from '@/components/ui/skeleton'
 const OverviewPage = () => {
+  const [loading] = useSkills()
   return (
     <>
       <div className=''>
@@ -18,13 +22,14 @@ const OverviewPage = () => {
         <GridCard />
 
         <ScrollArea className='bg-black rounded-xl border p-4 my-2'>
-          <h1 className='text-2xl font-bold'>Skills</h1>
+          {/* {loading ? (<Skeleton /> ): (<h1 className='text-2xl font-bold'>Skill</h1>)}
+          {loading && (<Skeleton className="w-[100px] h-[20px] rounded-full" />)} */}
           <Separator className='my-4' />
           <SkillList />
         </ScrollArea>
 
 
-        <InfiniteCertificateMovingCards/>
+        <InfiniteCertificateMovingCards />
 
         {/* <ScrollArea className='bg-gray-500 rounded-xl border p-4 my-2'> */}
         {/* <ProjectsList /> */}

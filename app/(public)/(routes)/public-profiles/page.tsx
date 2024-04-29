@@ -15,7 +15,7 @@ const PublicProfilesAndBadgesPage = () => {
 
   return (
     <>
-      <Tabs defaultValue="public-profiles" className="bg-yellow-500 p-5 rounded-md">
+      <Tabs defaultValue="public-profiles" className="bg-gray-800 p-5 rounded-md">
 
         <TabsList className=" grid w-full grid-cols-2 items-center h-10">
           <TabsTrigger value="public-profiles" className="hover:bg-gray-200">Public Profiles</TabsTrigger>

@@ -1,8 +1,13 @@
+
+
 import React from 'react'
 
+import { Resume } from '@/components/public/resume/resume'
 const ResumePage = () => {
   return (
-    <div>ResumePage</div>
+    <>
+      <Resume />
+    </>
   )
 }
 

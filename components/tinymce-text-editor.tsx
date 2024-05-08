@@ -8,7 +8,7 @@ export const TinymceTextEditor = ({defaultValues}:any) => {
         <>
         <div>
             <Editor
-                apiKey='bz9o1cknoa3q2zhisqr8eoub3o463yz7aid0lk0lz4i5nvxq'
+                apiKey={process.env.TINY_MCE_API_KEY}
                 //onInit={(_evt, editor) => editorRef.current = editor}
                 initialValue={defaultValues}
                 init={{

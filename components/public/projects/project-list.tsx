@@ -14,10 +14,18 @@ export const ProjectsList = () => {
 
     const tech = data.map((item: any) => item.technologies.split(','))
     // console.log('PROJECT-LIST.TSX::',data);
+    const arr = [1, 2, 3, 4, 5, 6]
 
     return (
         <>
-            {loading && (<ProjectCardSkeleton />)}
+            {loading && (
+                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                    {arr.map((item: any) => (
+                        <ProjectCardSkeleton key={item} />
+                    ))}
+                </div>
+            )}
+
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {error && (<p>{error}</p>)}
                 {data.map((item: any) => (

@@ -27,7 +27,7 @@ export default function ProjectCard({ item }: any) {
         setLoading(false)
     }
     return (
-        <Card className="cursor-pointer w-full p-2 max-w-sm m-2 border-2 border-indigo-500 hover:shadow-indigo-500 transition duration-300 ease-in-out">
+        <Card className="cursor-pointer w-full p-2 max-w-sm m-2 border-2  hover:shadow-indigo-500 transition duration-300 ease-in-out">
             <GalleryModal
                 isOpen={open}
                 onClose={() => setOpen(false)}
@@ -36,7 +36,7 @@ export default function ProjectCard({ item }: any) {
             />
             <Image
                 alt="In-flight shopping"
-                className="aspect-video object-fill overflow-hidden rounded-xl bg-gray-600 p-2 object-center"
+                className="aspect-video object-fill overflow-hidden rounded-xl bg-gray-600 p-1 object-center"
                 height={200}
                 src={item.images[0]?.url}
                 width={400}

@@ -10,15 +10,15 @@ import PublicProfileSkeleton from '@/components/public/public-profiles/public-pr
 const TestPage = () => {
   return (
     <>
-      <OverviewSkeleton />
+      {/* <OverviewSkeleton />
       <GridCardSkeleton />
       <SkillSkeleton />
       <Skeleton className="w-[100px] h-[20px] rounded-full" />
-      <Separator/>
+      <Separator/> */}
 
-      {/* <ProjectCardSkeleton /> */}
+      <ProjectCardSkeleton />
       {/* <CertificateCardSkeleton /> */}
-      <PublicProfileSkeleton />
+      {/* <PublicProfileSkeleton /> */}
     </>
   )
 }

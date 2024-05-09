@@ -44,7 +44,7 @@ export const GalleryModal: React.FC<IGalleryModalProps> = ({
             {loading && (
                 <h1>Loading...</h1>
             )}
-            <ImageCarousel images={images} />
+            <ImageCarousel isCarouselButton={true} images={images} />
         </Modal>
     )
 }

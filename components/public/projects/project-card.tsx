@@ -8,6 +8,7 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons"
 import { GalleryModal } from "../../modals/gallery-modal"
 import { useState } from "react"
 import Link from "next/link"
+import { ImageCarousel } from "@/components/image-carousel"
 
 export default function ProjectCard({ item }: any) {
     const [open, setOpen] = useState(false);
@@ -34,7 +35,11 @@ export default function ProjectCard({ item }: any) {
                 images={allImages}
                 loading={loading}
             />
-            <Image
+
+            <ImageCarousel className={"aspect-video object-fill overflow-hidden rounded-xl bg-gray-600 p-1 object-center"} onImageView={onImageView} images={allImages} />
+
+            {/* Single image */}
+            {/* <Image
                 alt="In-flight shopping"
                 className="aspect-video object-fill overflow-hidden rounded-xl bg-gray-600 p-1 object-center"
                 height={200}
@@ -43,7 +48,8 @@ export default function ProjectCard({ item }: any) {
                 onClick={onImageView}
                 priority
 
-            />
+            /> */}
+
             <CardContent className="grid gap-4 p-6">
                 <p className="hover:underline uppercase tracking-wide text-sm text-indigo-500 font-semibold">
                     {item.projectName}

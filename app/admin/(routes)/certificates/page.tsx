@@ -1,11 +1,9 @@
-"use client"
 
 import { format } from "date-fns";
 import React from 'react'
 
 import prismadb from '@/lib/prismadb'
 
-import { useCertificates } from "@/hooks/get-certificates";
 import { CertificateClient } from "./components/client";
 import { Certificate } from "@prisma/client";
 
@@ -19,11 +17,10 @@ export type CertificateCardData = {
   createdAt: string;
 }
 
-const CertificatesPage = () => {
-  const [data, loading, error] = useCertificates()
-  // const certificates = await prismadb.certificate.findMany()
+const CertificatesPage = async () => {
+  const certificates = await prismadb.certificate.findMany()
 
-  const formattedCertificates: CertificateCardData[] = data.map((item: Certificate) => ({
+  const formattedCertificates: CertificateCardData[] = certificates.map((item: Certificate) => ({
     id: item.id,
     provider: item.provider,
     title: item.title,
@@ -37,8 +34,6 @@ const CertificatesPage = () => {
     <>
       <div className="flex-col">
         <div className="flex-1 space-y-4 p-8 pt-6">
-          {loading && (<p>Loading...</p>)}
-          {error && (<p>{error}</p>)}
           <CertificateClient data={formattedCertificates} />
         </div>
       </div>

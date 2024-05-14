@@ -5,45 +5,32 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from '@/components/ui/separator'
 import { InfiniteCertificateMovingCards } from './components/infinite-moving-cards/infinite-certificate-moving-cards'
 
-import GridCard from './components/grid-card/grid-card'
-import { SkillList } from '@/components/public/skills/skill-list'
+// import GridCard from './components/grid-card/grid-card'
+import FirstGridLayout from './components/grid-layouts/first-grid-layout'
+import SecondGridLayout from './components/grid-layouts/second-grid-layout'
 
-import { OverviewScrollarea } from './components/overview/overview-scrollarea'
-import { useSkills } from '@/hooks/get-skills'
+import { OverviewHeader } from './components/overview-header/overview-header'
 
-import { Skeleton } from '@/components/ui/skeleton'
+import { CertificaatesCarousel } from './components/certificates/certificates-carousel'
+
+
 const OverviewPage = () => {
-  const [loading] = useSkills()
+
   return (
     <>
       <div className=''>
-        <OverviewScrollarea />
+        {/* Section One */}
+        <OverviewHeader />
 
-        <GridCard />
+        {/* Section Two */}
+        <FirstGridLayout />
 
-        <ScrollArea className='bg-black rounded-xl border p-4 my-2'>
-          {/* {loading ? (<Skeleton /> ): (<h1 className='text-2xl font-bold'>Skill</h1>)}
-          {loading && (<Skeleton className="w-[100px] h-[20px] rounded-full" />)} */}
-          <Separator className='my-4' />
-          <SkillList />
-        </ScrollArea>
+        {/* Section Three */}
+        <CertificaatesCarousel />
 
-
-        <InfiniteCertificateMovingCards />
-
-        {/* <ScrollArea className='bg-gray-500 rounded-xl border p-4 my-2'> */}
-        {/* <ProjectsList /> */}
-        {/* </ScrollArea> */}
-        {/* <ProjectCarousel /> */}
-
-        {/* <SecondGridCard/> */}
-
-        {/* <CardStackDemo/> */}
-
-        {/* <ScrollAreaHorizontalDemo/> */}
-
-        {/* <div className='mb-2'></div> */}
-
+        {/* Section Four */}
+        <SecondGridLayout />
+        {/* <InfiniteCertificateMovingCards /> */}
       </div>
     </>
   )

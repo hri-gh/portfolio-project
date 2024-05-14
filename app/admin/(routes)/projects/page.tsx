@@ -1,4 +1,3 @@
-"use client"
 
 import { format } from "date-fns";
 import React from 'react'
@@ -7,36 +6,35 @@ import prismadb from '@/lib/prismadb'
 
 import { ProjectClient } from "./components/client";
 
-import { useProjects } from "@/hooks/get-projects";
 import { Project } from "@prisma/client";
 export type ProjectCardData = {
   id: string;
   projectName: string;
   technologies: string;
   aboutProject: string;
-  liveDemoLink: string  | null;
+  liveDemoLink: string | null;
   githubLink: string;
   updatedAt: string;
   createdAt: string;
 }
 
-const ProjectsPage = () => {
-  const [data, loading, error] = useProjects()
+const ProjectsPage = async() => {
 
-  // const projects = await prismadb.project.findMany({
-  //   include:{
-  //     images:true
-  //   }
-  // })
+  const projects = await prismadb.project.findMany({
+    include:{
+      images:true
+    }
+  })
 
-  const formattedProject: ProjectCardData[] = data.map((item:Project) => ({
+
+  const formattedProject: ProjectCardData[] = projects.map((item) => ({
     id: item.id,
     projectName: item.projectName,
     technologies: item.technologies,
     aboutProject: item.aboutProject,
     liveDemoLink: item.liveDemoLink,
     githubLink: item.githubLink,
-    // image: item.images[0],
+    image: item.images[0],
     updatedAt: format(item.updatedAt, 'MMMM do, yyyy'),
     createdAt: format(item.createdAt, 'MMMM do, yyyy'),
   }))

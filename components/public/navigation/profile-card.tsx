@@ -1,4 +1,4 @@
-// "use client"
+"use client"
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -13,6 +13,10 @@ import { MdMail } from "react-icons/md";
 import { Button } from '@/components/ui/button';
 import { FaPhone } from "react-icons/fa";
 
+import { Badge } from '@/components/ui/badge';
+
+import { ContactModal } from '@/components/modals/contact-modal'
+import { useState } from 'react';
 
 
 export default function ProfileCard() {
@@ -29,11 +33,25 @@ export default function ProfileCard() {
     //     return null;
     // }
 
+    const [open, setOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const onHandleContact = (e: React.MouseEvent) => {
+        e.stopPropagation()
+        setLoading(true)
+        setOpen(true)
+        setLoading(false)
+    }
 
     return (
         <div
             className={`${lusitana.className}flex flex-col justify-center items-center leading-none text-white`}
         >
+            <ContactModal
+                isOpen={open}
+                onClose={() => setOpen(false)}
+                loading={loading}
+            />
             <Image
                 alt="Profile Picture"
                 className="rounded-full mx-auto object-cover"
@@ -79,15 +97,24 @@ export default function ProfileCard() {
                 </Button>
                 <Button size="sm">
                     <Link href="tel:+919382020441">
-                    <FaPhone />
+                        <FaPhone />
                     </Link>
                 </Button>
             </div>
-            <p className='text-sm text-center mx-auto mt-1'>
-                <strong>
+            <div className='flex justify-center'>
+                {/* <Badge className='text-sm  mt-1 cursor-pointer'>
                     Contact
-                </strong>
-            </p>
+                </Badge> */}
+                <Button
+                    variant={"secondary"}
+                    size={"sm"}
+                    onClick={onHandleContact}
+                    className='mt-1 rounded-full'>
+                    <strong>
+                        Contact
+                    </strong>
+                </Button>
+            </div>
         </div>
     );
 }

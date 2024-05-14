@@ -7,6 +7,7 @@ import ProfileCard from './profile-card';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { MobileSideNav } from './mobile-side-nav';
 import { Button } from '@/components/ui/button';
+import { ContactInfo } from '../contacts/contact-info';
 
 export default function SideNav() {
 
@@ -35,10 +36,7 @@ export default function SideNav() {
           <NavLinks />
           <div className="hidden h-auto w-full grow rounded-md bg-gray-50 text-black md:block">
             <header className='text-center'>Contact</header>
-
-            {/* <div className='bg-gray-500 rounded-sm p-2 m-1'>Email...</div>
-            <div className='bg-gray-500 rounded-sm p-2 m-1'>Message...</div>
-            <Button variant="secondary"  className='rounded-full m-1'>Send Message</Button> */}
+            <ContactInfo />
           </div>
 
           <div className='hidden md:flex h-[48px] items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3'>

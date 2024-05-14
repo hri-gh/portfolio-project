@@ -44,14 +44,32 @@ export const BadgeCard: React.FC<BadgeCardProps> = ({ data }) => {
         toast.success('Id copied to clipboard.');
     }
 
+    const onDelete = async (id: string) => {
+        console.log(id);
+        if (window.confirm('Are you sure?')) {
+            try {
+                setLoading(true);
+                await axios.delete(`/api/badges/${id}`);
+                toast.success('Badge deleted.');
+                router.refresh();
+            } catch (error: any) {
+                toast.error('Something went wrong');
+            } finally {
+                setLoading(false);
+            }
+
+        }
+    }
+
     return (
         <div className="flex flex-wrap justify-evenly">
             {data.map((item: any) => (
                 <div key={item.id} className="m-3">
-                    <AlertModal
+                    {/* <AlertModal
                         isOpen={open}
                         onClose={() => setOpen(false)}
                         onConfirm={async () => {
+                            console.log(item.id);
                             try {
                                 setLoading(true);
                                 await axios.delete(`/api/badges/${item.id}`);
@@ -65,7 +83,7 @@ export const BadgeCard: React.FC<BadgeCardProps> = ({ data }) => {
                             }
                         }}
                         loading={loading}
-                    />
+                    /> */}
                     <Card className="w-[350px] rounded-lg cursor-pointer bg-gray-700 hover:bg-gray-600"
                     // onClick={() => router.push(`/admin/projects/${item.id}`)}
                     >
@@ -118,7 +136,8 @@ export const BadgeCard: React.FC<BadgeCardProps> = ({ data }) => {
                                 className="hover:bg-gray-700 hover:rounded-sm hover:p-1"
                                 onClick={(e: React.MouseEvent) => {
                                     e.stopPropagation()
-                                    setOpen(true)
+                                    onDelete(item.id)
+                                    // setOpen(true)
                                 }} />
                         </div>
                     </Card>

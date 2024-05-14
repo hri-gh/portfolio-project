@@ -42,7 +42,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ data }) => {
     }
 
     return (
-        <div className="flex">
+        <div className="flex flex-wrap justify-center">
             {data.map((item: any) => (
                 <div key={item.id} className="m-3">
                     <AlertModal
@@ -76,9 +76,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ data }) => {
                                 <Image
                                     alt="project_image"
                                     src={item?.image.url}
+                                    // src={item?.images[0]?.url}
                                     width={480}
                                     height={100}
-                                    className="aspect-video object-cover rounded-md mb-2 "
+                                    //className="aspect-video object-cover bg-gray-500 p-1 rounded-md mb-2 "
                                     priority
                                 />
                             )}

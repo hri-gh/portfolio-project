@@ -36,7 +36,11 @@ export default function ProjectCard({ item }: any) {
                 loading={loading}
             />
 
-            <ImageCarousel className={"aspect-video object-fill overflow-hidden rounded-xl bg-gray-600 p-1 object-center"} onImageView={onImageView} images={allImages} />
+            <ImageCarousel
+                className={"aspect-video object-fill overflow-hidden rounded-xl bg-gray-600 p-1 object-center"}
+                onImageView={onImageView}
+                images={allImages}
+            />
 
             {/* Single image */}
             {/* <Image

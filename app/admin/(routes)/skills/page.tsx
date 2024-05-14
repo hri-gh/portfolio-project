@@ -1,4 +1,3 @@
-"use client"
 
 import { format } from "date-fns";
 import React from 'react'
@@ -17,12 +16,11 @@ export type SkillCardData = {
   createdAt: string;
 }
 
-const SkillsPage = () => {
-  const [data, loading, error] = useSkills()
+const SkillsPage = async () => {
 
-  // const skills = await prismadb.skill.findMany()
+  const skills = await prismadb.skill.findMany()
 
-  const formattedSkills: SkillCardData[] = data.map((item:Skill) => ({
+  const formattedSkills: SkillCardData[] = skills.map((item:Skill) => ({
     id: item.id,
     name: item.name,
     image: item.imageUrl,
@@ -34,8 +32,6 @@ const SkillsPage = () => {
     <>
       <div className="flex-col">
         <div className="flex-1 space-y-4 p-8 pt-6">
-          {loading && (<p>Loading...</p>)}
-          {error && (<p>{error}</p>)}
           <SkillClient data={formattedSkills} />
         </div>
       </div>

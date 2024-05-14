@@ -1,6 +1,6 @@
 import React from 'react'
-import OverviewSkeleton from '../(public)/(routes)/(home)/(overview-page)/components/overview/overview-skeleton'
-import { GridCardSkeleton } from '../(public)/(routes)/(home)/(overview-page)/components/grid-card/grid-card-skeleton'
+import OverviewSkeleton from '../(public)/(routes)/(home)/(overview-page)/components/overview-header/overview-skeleton'
+import { GridCardSkeleton } from '../(public)/(routes)/(home)/(overview-page)/components/grid-card-skeleton'
 import SkillSkeleton from '@/components/public/skills/skill-skeleton'
 import { Skeleton } from '@/components/ui/skeleton'
 import ProjectCardSkeleton from '@/components/public/projects/project-card-skeleton'

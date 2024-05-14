@@ -44,11 +44,11 @@ export const ProjectFormSchema = z.object({
     projectName: z.string().min(1),
     technologies: z.string().min(1),
     aboutProject: z.string().min(1),
-    liveDemoLink: z.string().url().optional(),
-    websiteLink: z.string().url().optional(),
+    liveDemoLink: z.string().optional(),
+    websiteLink: z.string().optional(),
     githubLink: z.string().url(),
-    gitlabLink: z.string().url().optional(),
-    bitbucketLink: z.string().url().optional(),
+    gitlabLink: z.string().optional(),
+    bitbucketLink: z.string().optional(),
     projectType: z.string().min(1),
 })
 

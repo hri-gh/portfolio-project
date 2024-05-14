@@ -51,9 +51,11 @@ export const SkillCard: React.FC<SkillCardProps> = ({ data }) => {
                         onConfirm={async () => {
                             try {
                                 setLoading(true);
+                                console.log("SKILL_CARD_DELETE::",item.id);
+
                                 await axios.delete(`/api/skills/${item.id}`);
-                                toast.success('Skill deleted.');
                                 router.refresh();
+                                toast.success('Skill deleted.');
                             } catch (error) {
                                 toast.error('Something went wrong');
                             } finally {

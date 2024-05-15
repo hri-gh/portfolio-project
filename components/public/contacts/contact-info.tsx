@@ -24,21 +24,17 @@ export const ContactInfo = () => {
         <>
             <TooltipProvider delayDuration={100}>
                 <Tooltip>
-                    <TooltipTrigger>
+                    <TooltipTrigger className='flex '>
                         <Badge
                             onClick={() => {
                                 navigator.clipboard.writeText("hrithikgh.edu@gmail.com")
                                 toast.success('Email copied to clipboard.');
                             }}
-                            className='bg-gray-500 gap-1 m-1 cursor-pointer'>
-                            {/* <div className=' flex my-1 gap-2  bg-gray-500 rounded-md p-1 text-sm mx-1'> */}
+                            className='bg-sky-400 rounded-md gap-1 m-0.5 cursor-pointer'>
                             <Mail /> hrithikgh.edu@gmail.com
-                            {/* </div> */}
-                            {/* <div> */}
-                            <Copy className='h-4 w-4' />
-                            {/* <MdCopyAll className='my-auto bg-white rounded-lg float-end p-0.5 w-8 h-5' /> */}
-                            {/* </div> */}
+                            {/* <Copy className='h-4 w-4' /> */}
                         </Badge>
+                        <MdCopyAll className='hover:p-1 my-auto bg-gray-400 rounded-md float-end p-0.5 w-8 h-7' />
                     </TooltipTrigger>
                     <TooltipContent className='bg-black text-white'>
                         <p>Click to copy</p>
@@ -47,9 +43,46 @@ export const ContactInfo = () => {
             </TooltipProvider>
 
 
-            <div
+            <div className='flex items-center gap-4'>
+                <Mail className="h-6 w-6 text-gray-500 dark:text-gray-400"/>
+                <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                        <div className="text-gray-500 dark:text-gray-400">example@acme.com</div>
+                        <Button
+                            className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                            size="icon"
+                            variant="ghost"
+                        >
+                            <Copy className="h-4 w-4" />
+                            <span className="sr-only">Copy email</span>
+                        </Button>
+                    </div>
+                </div>
+            </div>
+            <p className='lg:hidden md:block sm:block'>Show more..</p>
+            <TooltipProvider  delayDuration={100}>
+                <Tooltip >
+                    <TooltipTrigger className='flex  lg:hidden'>
+                        <Badge
+                            onClick={() => {
+                                navigator.clipboard.writeText("9382020441")
+                                toast.success('Email copied to clipboard.');
+                            }}
+                            className='lg:hidden  bg-sky-400 rounded-full gap-1 m-0.5 cursor-pointer'>
+                            <Phone /> 9382020441
 
-                className='cursor-pointer flex my-1 gap-2 bg-gray-500 rounded-md p-1 text-sm mx-1'>
+                        </Badge>
+                        <MdCopyAll className='flex  justify-end hover:p-1 my-auto bg-gray-400 rounded-md  p-0.5 w-8 h-7' />
+                    </TooltipTrigger>
+                    <TooltipContent className='bg-black text-white'>
+                        <p>Click to copy</p>
+                    </TooltipContent>
+                </Tooltip>
+            </TooltipProvider>
+
+
+            {/* <div
+                className='cursor-pointer flex my-0.5 gap-1 bg-gray-500 rounded-full p-1 text-sm mx-1'>
                 <Phone /> 9382020441
                 <MdCopyAll
                     onClick={() => {
@@ -57,14 +90,14 @@ export const ContactInfo = () => {
                         toast.success('Mobile Number copied to clipboard.');
                     }}
                     className='hover:p-1 my-auto bg-white rounded-lg float-end p-0.5 w-8 h-5' />
-            </div>
-
+            </div> */}
+            {/*
             <div className='flex my-1 gap-2 bg-gray-500 rounded-md p-1 text-sm mx-1'>
                 <Linkedin /> linkedin.com/in/hri-gh
             </div>
             <div className='flex my-1 gap-2 bg-gray-500 rounded-md p-1 text-sm mx-1'>
                 <Github /> github.com/in/hri-gh
-            </div>
+            </div> */}
             {/* <Button variant="secondary" className='rounded-full m-1'>Send Message</Button> */}
         </>
     )

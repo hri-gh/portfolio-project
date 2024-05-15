@@ -2,8 +2,9 @@
 import { Separator } from "@/components/ui/separator"
 import { AboutMeCard } from "../about-me/about-me-card"
 import { LearningJourneyCard } from "../learning-journey/learning-journey-card"
-import { SkillsCard } from "../skills/skills-card"
+import { Skills } from "../skills/skills"
 import { PublicProfilesCarousel } from "../public-profiles/public-profiles-carousel"
+import { PublicProfiles } from "../public-profiles/public-profiles"
 
 export default function FirstGridLayout() {
     return (
@@ -15,10 +16,11 @@ export default function FirstGridLayout() {
             <LearningJourneyCard />
 
             {/* COMPONENT-3 */}
-            <SkillsCard />
+            <Skills />
 
             {/* COMPONENT-4 */}
-            <PublicProfilesCarousel />
+            {/* <PublicProfilesCarousel /> */}
+            <PublicProfiles/>
         </div>
     )
 }

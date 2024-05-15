@@ -1,3 +1,6 @@
+"use client"
+
+
 import * as React from "react"
 import AutoPlay from 'embla-carousel-autoplay'
 
@@ -10,8 +13,12 @@ import {
     CarouselPrevious,
     type CarouselApi,
 } from "@/components/ui/carousel"
+import Image from "next/image"
+import { useBadges } from "@/hooks/get-badges"
 
 export function BadgesCarousel() {
+    const [data, error, loading] = useBadges()
+
     const [api, setApi] = React.useState<CarouselApi>()
     const [current, setCurrent] = React.useState(0)
     const [count, setCount] = React.useState(0)
@@ -32,6 +39,7 @@ export function BadgesCarousel() {
     return (
         <div className="bg-gray-500 overflow-hidden rounded-lg">
             <div className=" flex-1 [grid-area:stack] bg-teal-500 group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
+                <h3 className="text-xl font-bold tracking-tight text-center">Badges</h3>
                 <Carousel
                     setApi={setApi}
                     opts={{
@@ -42,12 +50,18 @@ export function BadgesCarousel() {
                     ]}
                     className="w-full max-w-xs mx-auto ">
                     <CarouselContent>
-                        {Array.from({ length: 5 }).map((_, index) => (
+                        {data.map((item: any, index: number) => (
                             <CarouselItem key={index} >
                                 <Card>
-                                    <CardContent className="flex aspect-square items-center justify-center p-6">
-                                        <span className="text-4xl font-semibold">{index + 1}</span>
-                                    </CardContent>
+                                <Image
+                                        alt="In-flight shopping"
+                                        className="aspect-video object-fill overflow-hidden rounded-xl bg-gray-600 p-1 object-center"
+                                        height={200}
+                                        src={item.imageUrl}
+                                        width={400}
+                                        priority
+
+                                    />
                                 </Card>
                             </CarouselItem>
                         ))}

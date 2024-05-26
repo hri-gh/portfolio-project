@@ -3,7 +3,6 @@ import { Separator } from "@/components/ui/separator"
 import { AboutMeCard } from "../about-me/about-me-card"
 import { LearningJourneyCard } from "../learning-journey/learning-journey-card"
 import { Skills } from "../skills/skills"
-import { PublicProfilesCarousel } from "../public-profiles/public-profiles-carousel"
 import { PublicProfiles } from "../public-profiles/public-profiles"
 
 export default function FirstGridLayout() {

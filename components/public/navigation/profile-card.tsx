@@ -18,20 +18,9 @@ import { Badge } from '@/components/ui/badge';
 import { ContactModal } from '@/components/modals/contact-modal'
 import { useState } from 'react';
 
+import { MovingBorderButton } from '@/components/custom-ui/moving-border';
 
 export default function ProfileCard() {
-    // For hydration error
-    // const [isMounted, setIsMounted] = useState(false);
-
-    // const router = useRouter();
-
-    // useEffect(() => {
-    //     setIsMounted(true);
-    // }, []);
-
-    // if (!isMounted) {
-    //     return null;
-    // }
 
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -105,15 +94,17 @@ export default function ProfileCard() {
                 {/* <Badge className='text-sm  mt-1 cursor-pointer'>
                     Contact
                 </Badge> */}
+
                 <Button
                     variant={"secondary"}
                     size={"sm"}
                     onClick={onHandleContact}
-                    className='mt-1 rounded-full'>
+                    className='mt-1 rounded-full border-2 border-dashed  border-sky-500'>
                     <strong>
                         Contact
                     </strong>
                 </Button>
+
             </div>
         </div>
     );

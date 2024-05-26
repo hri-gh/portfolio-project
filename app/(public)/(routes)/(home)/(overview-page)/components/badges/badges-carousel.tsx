@@ -37,8 +37,8 @@ export function BadgesCarousel() {
     }, [api])
 
     return (
-        <div className="bg-gray-500 overflow-hidden rounded-lg">
-            <div className=" flex-1 [grid-area:stack] bg-teal-500 group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
+        <div className="bg-teal-500 overflow-hidden rounded-lg">
+            <div className=" flex-1 [grid-area:stack]  group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
                 <h3 className="text-xl font-bold tracking-tight text-center">Badges</h3>
                 <Carousel
                     setApi={setApi}
@@ -52,10 +52,10 @@ export function BadgesCarousel() {
                     <CarouselContent>
                         {data.map((item: any, index: number) => (
                             <CarouselItem key={index} >
-                                <Card>
+                                <Card className="">
                                 <Image
                                         alt="In-flight shopping"
-                                        className="aspect-video object-fill overflow-hidden rounded-xl bg-gray-600 p-1 object-center"
+                                        className="aspect-auto object-fill rounded-xl "
                                         height={200}
                                         src={item.imageUrl}
                                         width={400}
@@ -66,8 +66,8 @@ export function BadgesCarousel() {
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    {/* <CarouselPrevious />
+                    <CarouselNext /> */}
                 </Carousel>
                 <div className="py-2 text-white text-center text-sm text-muted-foreground">
                     Slide {current} of {count}

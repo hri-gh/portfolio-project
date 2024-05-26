@@ -1,8 +1,9 @@
 "use client"
-
+import styles from './test.module.css'
 import * as React from "react"
 import AutoPlay from 'embla-carousel-autoplay'
 import { Card, CardContent } from "@/components/ui/card"
+
 import {
     Carousel,
     CarouselContent,
@@ -39,8 +40,8 @@ export function ProjectsCarousel() {
     }, [api])
 
     return (
-        <div className="bg-gray-500 overflow-hidden rounded-lg">
-            <div className=" flex-1 [grid-area:stack] bg-teal-500 group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
+        <div className="bg-teal-500 overflow-hidden rounded-lg">
+            <div className=" flex-1 [grid-area:stack] group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
                 <h3 className="text-xl font-bold tracking-tight text-center">Projects</h3>
                 <Carousel
                     setApi={setApi}
@@ -50,29 +51,33 @@ export function ProjectsCarousel() {
                     plugins={[
                         AutoPlay({ delay: 2000 })
                     ]}
-                    className="w-full max-w-xs mx-auto">
+                    className="w-full mx-auto">
                     <CarouselContent>
                         {data.map((item: any, index: number) => (
                             <CarouselItem key={index} >
                                 {/* <ProjectCard key={item.id} item={item} /> */}
-                                <Card>
+                                <Card className="">
                                     <Image
                                         alt="In-flight shopping"
-                                        className="aspect-video object-fill overflow-hidden rounded-xl bg-gray-600 p-1 object-center"
-                                        height={200}
+                                        className="aspect-video object-fill  rounded-xl bg-gray-600 p-1 object-center"
+                                        height={400}
                                         src={item.images[0]?.url}
-                                        width={400}
-
+                                        width={1000}
                                         priority
 
                                     />
+                                    <CardContent className="">
+                                        <p className="hover:underline mt-4 cursor-pointer bg-gray-600 rounded-xl text-sky-400 text-xl font-bold tracking-tight text-center">{item.projectName}</p>
+
+                                    </CardContent>
 
                                 </Card>
                             </CarouselItem>
                         ))}
+
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    {/* <CarouselPrevious />
+                    <CarouselNext /> */}
                 </Carousel>
                 <div className="py-2 text-white text-center text-sm text-muted-foreground">
                     Slide {current} of {count}

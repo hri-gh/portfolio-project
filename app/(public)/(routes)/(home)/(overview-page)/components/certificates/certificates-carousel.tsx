@@ -62,14 +62,10 @@ export function CertificaatesCarousel() {
 
                                         <Image
                                             alt="Card Image"
-                                            className="w-full aspect-square rounded-lg"
+                                            className="aspect-auto object-fill rounded-xl p-1 bg-gray-600 "
                                             height="300"
                                             src={item.imageUrl}
-                                            style={{
-                                                aspectRatio: "500/300",
-                                                objectFit: "fill",
-                                            }}
-                                            width="500"
+                                            width="600"
 
                                         />
                                     {/* <CardContent className="flex aspect-square bg-blue-500 rounded-md items-center justify-center p-6">

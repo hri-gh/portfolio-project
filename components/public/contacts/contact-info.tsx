@@ -22,45 +22,52 @@ import {
 export const ContactInfo = () => {
     return (
         <>
-            <TooltipProvider delayDuration={100}>
-                <Tooltip>
-                    <TooltipTrigger className='flex '>
-                        <Badge
-                            onClick={() => {
-                                navigator.clipboard.writeText("hrithikgh.edu@gmail.com")
-                                toast.success('Email copied to clipboard.');
-                            }}
-                            className='bg-sky-400 rounded-md gap-1 m-0.5 cursor-pointer'>
-                            <Mail /> hrithikgh.edu@gmail.com
-                            {/* <Copy className='h-4 w-4' /> */}
-                        </Badge>
-                        <MdCopyAll className='hover:p-1 my-auto bg-gray-400 rounded-md float-end p-0.5 w-8 h-7' />
-                    </TooltipTrigger>
-                    <TooltipContent className='bg-black text-white'>
-                        <p>Click to copy</p>
-                    </TooltipContent>
-                </Tooltip>
-            </TooltipProvider>
+                  <div className='flex items-center gap-4 mx-auto my-1' >
+                            <Mail className="p-0.5 h-6 w-6 text-gray-500 dark:text-gray-400" />
+                            <div className="flex-1">
+                                <div className="flex items-center justify-between">
+                                    <div className="text-sm ">hrithikgh.edu@gmail.com</div>
+                                    <div
+                                        className="text-gray-500 hover:text-gray-900 mr-1 dark:text-gray-400 dark:hover:text-gray-900"
 
+                                    >
+                                        <Copy className="h-4 w-4"
+                                        onClick={() => {
+                                            navigator.clipboard.writeText("hrithikgh.edu@gmail.com")
+                                            toast.success('Email copied to clipboard.');
+                                        }}
+                                        />
+                                        <span className="sr-only">Copy email</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-            <div className='flex items-center gap-4'>
-                <Mail className="h-6 w-6 text-gray-500 dark:text-gray-400"/>
+            <div className='flex items-center gap-4 my-1'>
+                <Phone className="p-0.5 h-6 w-6 text-gray-500 dark:text-gray-400" />
                 <div className="flex-1">
                     <div className="flex items-center justify-between">
-                        <div className="text-gray-500 dark:text-gray-400">example@acme.com</div>
-                        <Button
-                            className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                            size="icon"
-                            variant="ghost"
+                        <div className=" text-sm ">9382020441</div>
+                        <div
+                            className="text-gray-500 mr-1 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-900"
+
                         >
-                            <Copy className="h-4 w-4" />
+                            <Copy className="h-4 w-4"
+                            onClick={() => {
+                                navigator.clipboard.writeText("9382020441")
+                                toast.success('Number copied to clipboard.');
+                            }}
+                            />
                             <span className="sr-only">Copy email</span>
-                        </Button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <p className='lg:hidden md:block sm:block'>Show more..</p>
-            <TooltipProvider  delayDuration={100}>
+
+
+            {/* <p className='lg:hidden md:block sm:block text-white'>Show more..</p>
+
+            <TooltipProvider delayDuration={100}>
                 <Tooltip >
                     <TooltipTrigger className='flex  lg:hidden'>
                         <Badge
@@ -78,7 +85,7 @@ export const ContactInfo = () => {
                         <p>Click to copy</p>
                     </TooltipContent>
                 </Tooltip>
-            </TooltipProvider>
+            </TooltipProvider> */}
 
 
             {/* <div

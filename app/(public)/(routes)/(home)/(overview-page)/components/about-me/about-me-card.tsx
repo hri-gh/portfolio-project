@@ -16,7 +16,7 @@ export const AboutMeCard = () => {
                     <h3 className="text-xl font-bold tracking-tight">{data[0]?.header}</h3>
                     <Separator />
                     <p className="leading-none font-medium">
-                       {data[0]?.description}
+                       {data[0]?.aboutMeDescription}
                     </p>
                     {/* <h4 className="font-semibold">$19.99</h4> */}
                 </div>

@@ -2,8 +2,8 @@
 import { format } from "date-fns";
 import React from 'react'
 
-import prismadb from '@/lib/prismadb'
-
+// import prismadb from '@/lib/prismadb'
+import { Image } from "@prisma/client";
 import { ProjectClient } from "./components/client";
 
 import { Project } from "@prisma/client";
@@ -18,16 +18,22 @@ export type ProjectCardData = {
   createdAt: string;
 }
 
-const ProjectsPage = async() => {
+const ProjectsPage = async () => {
+  const res = await fetch(`${process.env.BASE_URL}/projects`, { cache: 'no-cache' })
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+  const projects = await res.json()
 
-  const projects = await prismadb.project.findMany({
-    include:{
-      images:true
-    }
-  })
+  // const projects = await prismadb.project.findMany({
+  //   include: {
+  //     images: true
+  //   }
+  // })
 
 
-  const formattedProject: ProjectCardData[] = projects.map((item) => ({
+  const formattedProject: ProjectCardData[] = projects.map((item: any) => ({
     id: item.id,
     projectName: item.projectName,
     technologies: item.technologies,
@@ -38,6 +44,9 @@ const ProjectsPage = async() => {
     updatedAt: format(item.updatedAt, 'MMMM do, yyyy'),
     createdAt: format(item.createdAt, 'MMMM do, yyyy'),
   }))
+
+  console.log(formattedProject);
+
 
   return (
     <>

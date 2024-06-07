@@ -23,5 +23,5 @@ export const useLogout = () => {
 
         }
     }
-    return {handleLogout}
+    return { handleLogout }
 }

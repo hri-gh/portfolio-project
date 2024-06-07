@@ -59,7 +59,28 @@ export async function PATCH(
     { params }: { params: { aboutmeId: string } }
 ) {
     const reqBody = await request.json()
-    const { header, description, schools, collages } = reqBody
+    const {
+        name,
+        location,
+        bio,
+        aboutMeHeader,
+        aboutMeDescription,
+        schools,
+        collages,
+        overview,
+        overviewHeader,
+        learningJourney,
+        learningJourneyHeader,
+        linkedinUrl,
+        githubUrl,
+        whatsappUrl,
+        instagramUrl,
+        facebookUrl,
+        primaryGmail,
+        secondaryGmail,
+        mobileNumber,
+        anonymousMessageUrl,
+    } = reqBody
 
     try {
         const userId = await getDataFromToken(request)
@@ -78,10 +99,26 @@ export async function PATCH(
                 id: params.aboutmeId,
             },
             data: {
-                header,
-                description,
+                name,
+                location,
+                bio,
+                aboutMeHeader,
+                aboutMeDescription,
                 schools,
                 collages,
+                overview,
+                overviewHeader,
+                learningJourney,
+                learningJourneyHeader,
+                linkedinUrl,
+                githubUrl,
+                whatsappUrl,
+                instagramUrl,
+                facebookUrl,
+                primaryGmail,
+                secondaryGmail,
+                mobileNumber,
+                anonymousMessageUrl,
             }
         });
 

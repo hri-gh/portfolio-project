@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 import "./globals.css";
 
+import { CookiesProvider } from 'next-client-cookies/server'
+
 import { ThemeProvider } from "@/providers/theme-provider";
 import { ToastProvider } from '@/providers/toast-provider'
 import { ModalProvider } from '@/providers/modal-provider'
+
 // const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -29,7 +32,9 @@ export default function RootLayout({
 
           <ToastProvider />
           <ModalProvider />
-          {children}
+          <CookiesProvider>
+            {children}
+          </CookiesProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -17,15 +17,16 @@ import { Edit, Copy, Delete } from "lucide-react";
 
 
 // DATA TYPE
-import { LearningJourneyCardData } from "../page";
+import { AboutmeCardData } from "../page";
 
 
-interface LearningJourneyCardProps {
-    data: LearningJourneyCardData[]
+interface AboutmeCardProps {
+    data: AboutmeCardData[]
 }
 
 
-export const LearningJourneyCard: React.FC<LearningJourneyCardProps> = ({ data }) => {
+export const AboutmeCard: React.FC<AboutmeCardProps> = ({ data }) => {
+
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -48,7 +49,7 @@ export const LearningJourneyCard: React.FC<LearningJourneyCardProps> = ({ data }
                         onConfirm={async () => {
                             try {
                                 setLoading(true);
-                                await axios.delete(`/api/learning-journey/${item.id}`);
+                                await axios.delete(`/api/about-me/${item.id}`);
                                 toast.success('Content deleted.');
                                 router.refresh();
                             } catch (error) {
@@ -61,15 +62,16 @@ export const LearningJourneyCard: React.FC<LearningJourneyCardProps> = ({ data }
                         loading={loading}
                     />
                     <Card className="w-[350px] rounded-lg cursor-pointer bg-gray-700 hover:bg-gray-600"
-                    // onClick={() => router.push(`/admin/home-contents/learning-journey/${item.id}`)}
+                    // onClick={() => router.push(`/admin/overview/${item.id}`)}
                     >
                         <CardHeader>
-                            <CardTitle>{item?.header}</CardTitle>
-                            <CardDescription>{item?.description}</CardDescription>
+                            <CardTitle>{item?.aboutMeHeader}</CardTitle>
                         </CardHeader>
 
                         <CardContent>
-
+                            <CardTitle>{`Name`}: {item?.name}</CardTitle>
+                            <CardTitle>{`Location`}: {item?.location}</CardTitle>
+                            <CardTitle>{`Bio`}: {item?.bio}</CardTitle>
                         </CardContent>
 
                         <CardFooter className="m-1">
@@ -89,7 +91,7 @@ export const LearningJourneyCard: React.FC<LearningJourneyCardProps> = ({ data }
                                 className="hover:bg-gray-700 hover:rounded-sm hover:p-1"
                                 onClick={(e: React.MouseEvent) => {
                                     e.stopPropagation()
-                                    router.push(`/admin/home-contents/learning-journey/${item.id}`)
+                                    router.push(`/admin/about-me/${item.id}`)
                                 }} />
                             <Copy
                                 className="hover:bg-gray-700 hover:rounded-sm hover:p-1"
@@ -111,5 +113,3 @@ export const LearningJourneyCard: React.FC<LearningJourneyCardProps> = ({ data }
         </div>
     )
 }
-
-export default LearningJourneyCard

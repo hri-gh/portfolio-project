@@ -26,39 +26,39 @@ model User {
   @@map("users")
 }
 
-model Overview {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  header      String
-  description String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("overview")
-}
-
 model AboutMe {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  header      String
-  description String
-  schools     String
-  collages    String
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  location String
+  bio      String
+
+  aboutMeHeader      String
+  aboutMeDescription String
+
+  schools  String
+  collages String
+
+  overview       String
+  overviewHeader String
+
+  learningJourney       String
+  learningJourneyHeader String
+
+  linkedinUrl    String
+  githubUrl      String
+  whatsappUrl    String
+  instagramUrl   String
+  facebookUrl    String
+  primaryGmail   String
+  secondaryGmail String
+  mobileNumber   String
+
+  anonymousMessageUrl String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("about_me")
-}
-
-model LearningJourney {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  header      String
-  description String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("learning_journey")
 }
 
 model Project {
@@ -126,29 +126,6 @@ model Badge {
   updatedAt DateTime @updatedAt
 
   @@map("badges")
-}
-
-model SocialMedia {
-  id              String  @id @default(auto()) @map("_id") @db.ObjectId
-  link            String
-  platformName    String
-  platformLogoUrl String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("socialmedia_links")
-}
-
-model Color {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  colors      String
-  sectionName String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("colors")
 }
 
 model Image {

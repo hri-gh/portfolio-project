@@ -1,12 +1,12 @@
 "use client"
 
 import { Separator } from "@/components/ui/separator";
-import { useLearningJourney } from "@/hooks/get-learning-journey"
+import { useAboutMe } from "@/hooks/get-about-me";
 import { GridCardSkeleton } from "../grid-card-skeleton";
 
 
 export const LearningJourneyCard = () => {
-    const [data, error, loading] = useLearningJourney()
+    const [data, error, loading] = useAboutMe()
 
     return (
         <>
@@ -16,7 +16,7 @@ export const LearningJourneyCard = () => {
                     <h3 className="text-xl font-bold tracking-tight">{data[0]?.header}</h3>
                     <Separator />
                     <p className="leading-none font-medium">
-                        {data[0]?.description}
+                        {data[0]?.learningJourney}
                     </p>
 
                 </div>

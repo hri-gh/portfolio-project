@@ -2,10 +2,9 @@
 import { format } from "date-fns";
 import React from 'react'
 
-import prismadb from '@/lib/prismadb'
+// import prismadb from '@/lib/prismadb'
 
 import { SkillClient } from "./components/client";
-import { useSkills } from "@/hooks/get-skills";
 import { Skill } from "@prisma/client";
 
 export type SkillCardData = {
@@ -17,10 +16,16 @@ export type SkillCardData = {
 }
 
 const SkillsPage = async () => {
+  const res = await fetch(`${process.env.BASE_URL}/skills`, { cache: 'no-cache' })
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+  const skills = await res.json();
 
-  const skills = await prismadb.skill.findMany()
+  // const skills = await prismadb.skill.findMany()
 
-  const formattedSkills: SkillCardData[] = skills.map((item:Skill) => ({
+  const formattedSkills: SkillCardData[] = skills.map((item: Skill) => ({
     id: item.id,
     name: item.name,
     image: item.imageUrl,

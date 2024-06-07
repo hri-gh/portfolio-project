@@ -19,9 +19,9 @@ function MainNav({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
             active: pathname === `/${hrefString}`,
         },
         {
-            href: `/${hrefString}/home-contents`,
-            label: 'HomeContents',
-            active: pathname === `/${hrefString}/home-contents`,
+            href: `/${hrefString}/about-me`,
+            label: 'AboutMe',
+            active: pathname === `/${hrefString}/about-me`,
         },
         {
             href: `/${hrefString}/projects`,
@@ -48,16 +48,6 @@ function MainNav({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
             label: 'PublicProfiles',
             active: pathname === `/${hrefString}/public-profiles`,
         },
-        // {
-        //     href: `/${hrefString}/element-colors`,
-        //     label: 'Colors',
-        //     active: pathname === `/${hrefString}/element-colors`,
-        // },
-        // {
-        //     href: `/${hrefString}/social-medias`,
-        //     label: 'Socials',
-        //     active: pathname === `/${hrefString}/social-medias`,
-        // },
     ]
 
     return (

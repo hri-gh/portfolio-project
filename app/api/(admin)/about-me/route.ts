@@ -6,7 +6,28 @@ import { getDataFromToken } from "@/helpers/get-data-from-token";
 
 export async function POST(request: NextRequest) {
     const reqBody = await request.json()
-    const { header, description, schools, collages } = reqBody
+    const {
+        name,
+        location,
+        bio,
+        aboutMeHeader,
+        aboutMeDescription,
+        schools,
+        collages,
+        overview,
+        overviewHeader,
+        learningJourney,
+        learningJourneyHeader,
+        linkedinUrl,
+        githubUrl,
+        whatsappUrl,
+        instagramUrl,
+        facebookUrl,
+        primaryGmail,
+        secondaryGmail,
+        mobileNumber,
+        anonymousMessageUrl,
+    } = reqBody
 
     try {
         const userId = await getDataFromToken(request)
@@ -18,10 +39,26 @@ export async function POST(request: NextRequest) {
 
         const aboutMe = await prismadb.aboutMe.create({
             data: {
-                header,
-                description,
+                name,
+                location,
+                bio,
+                aboutMeHeader,
+                aboutMeDescription,
                 schools,
                 collages,
+                overview,
+                overviewHeader,
+                learningJourney,
+                learningJourneyHeader,
+                linkedinUrl,
+                githubUrl,
+                whatsappUrl,
+                instagramUrl,
+                facebookUrl,
+                primaryGmail,
+                secondaryGmail,
+                mobileNumber,
+                anonymousMessageUrl,
 
             }
         })

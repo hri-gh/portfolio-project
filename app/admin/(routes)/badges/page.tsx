@@ -1,10 +1,8 @@
 import { format } from "date-fns";
 import React, { cache } from 'react'
 
-import prismadb from '@/lib/prismadb'
-
 import { BadgeClient } from "./components/client";
-
+import { Badge } from "@prisma/client";
 
 export type BadgeCardData = {
   id: string;
@@ -16,17 +14,16 @@ export type BadgeCardData = {
 }
 
 const BadgesPage = async () => {
-  const res = await fetch(`${process.env.BASE_URL}/badges`, {cache:'no-cache'})
+  const res = await fetch(`${process.env.BASE_URL}/badges`, { cache: 'no-cache' })
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data')
   }
-  const badgess = await prismadb.badge.findMany()
   const badges = await res.json();
-  console.log("Database::",badgess)
+  // const badges = await prismadb.badge.findMany()
 
 
-  const formattedBadges: BadgeCardData[] = badges.map((item:any) => ({
+  const formattedBadges: BadgeCardData[] = badges.map((item: Badge) => ({
     id: item.id,
     image: item.imageUrl,
     platformName: item.platformName,
@@ -35,7 +32,7 @@ const BadgesPage = async () => {
     createdAt: format(item.createdAt, 'MMMM do, yyyy'),
   }))
 
-  console.log('badges:',formattedBadges);
+  console.log('badges:', formattedBadges);
 
 
   return (

@@ -18,7 +18,13 @@ export type CertificateCardData = {
 }
 
 const CertificatesPage = async () => {
-  const certificates = await prismadb.certificate.findMany()
+  const res = await fetch(`${process.env.BASE_URL}/certificates`, { cache: 'no-cache' })
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+  const certificates = await res.json();
+  // const certificates = await prismadb.certificate.findMany()
 
   const formattedCertificates: CertificateCardData[] = certificates.map((item: Certificate) => ({
     id: item.id,

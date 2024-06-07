@@ -7,18 +7,18 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator"
 import { Heading } from "@/components/ui/heading";
 
-import LearningJourneyCard from "./cards";
+import { AboutmeCard } from "./cards";
 
-import { LearningJourneyCardData } from "../page";
+import { AboutmeCardData } from "../page";
 import Link from "next/link";
 
 
-interface LearningJourneyClientProps {
-    data: LearningJourneyCardData[]
+interface AboutmeClientProps {
+    data: AboutmeCardData[]
 }
 
 
-export const LearningJourneyClient: React.FC<LearningJourneyClientProps> = ({
+export const AboutmeClient: React.FC<AboutmeClientProps> = ({
     data
 }) => {
     const router = useRouter()
@@ -27,19 +27,17 @@ export const LearningJourneyClient: React.FC<LearningJourneyClientProps> = ({
 
         <>
             <div className="flex items-center justify-between">
-                <Link href={"/admin/home-contents/learning-journey"}>
                 <Heading
-                    title={`Learning Journey (${data.length})`}
-                    description="Manage Learning Journey of default page"
+                    title={`About Me (${data.length})`}
+                    description="Manage AboutMe of default page"
                 />
-                </Link>
                 <Button
-                    onClick={() => router.push(`/admin/home-contents/learning-journey/new`)}>
+                    onClick={() => router.push(`/admin/about-me/new`)}>
                     <PlusIcon className="mr-2 h-4 w-4" /> Add New
                 </Button>
             </div>
             <Separator />
-            <LearningJourneyCard data={data}/>
+            <AboutmeCard data={data}/>
         </>
     )
 }

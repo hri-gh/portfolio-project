@@ -57,7 +57,7 @@ export const SkillForm: React.FC<ISkillFormProps> = ({ initialData }) => {
     });
 
     const onSubmit = async (data: SkillFormValues) => {
-
+        console.log(data)
         try {
             setLoading(true);
             if (initialData) {

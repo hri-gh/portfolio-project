@@ -8,7 +8,7 @@ import { Separator } from '@/components/ui/separator'
 import CertificateCardSkeleton from '@/components/public/certificates/certificate-card-skeleton'
 //import PublicProfileSkeleton from '@/components/public/public-profiles/public-profile-skeleton'
 import { PublicProfileSkeleton } from '../(public)/(routes)/(home)/(overview-page)/components/public-profiles/public-profile-skeleton'
-
+import CertificateSkeleton from '../(public)/(routes)/(home)/(overview-page)/components/certificates/certificate-skeleton'
 const TestPage = () => {
   const arr = [1, 2, 3, 4, 5, 6]
   return (
@@ -18,15 +18,15 @@ const TestPage = () => {
       <SkillSkeleton />
       <Skeleton className="w-[100px] h-[20px] rounded-full" />
       <Separator/> */}
-{/*
+      {/*
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4'>
         {arr.map((item: any) => (
           <ProjectCardSkeleton key={item} />
         ))}
       </div> */}
 
-      <PublicProfileSkeleton/>
-
+      {/* <PublicProfileSkeleton/> */}
+      <CertificateSkeleton />
       {/* <CertificateCardSkeleton /> */}
       {/* <PublicProfileSkeleton /> */}
     </>

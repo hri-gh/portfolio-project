@@ -28,6 +28,7 @@ import { TriangleAlert } from 'lucide-react'
 
 import useAuthStore from '@/store/auth-store'
 
+
 const LoginForm = () => {
     const router = useRouter();
     const login = useAuthStore((state) => state.login)
@@ -51,7 +52,7 @@ const LoginForm = () => {
             const response = await axios.post("/api/user/login", values);
             const data = response.data
             toast.success("Login success")
-            login(data.userInitials); // Update the useAuthstate with user initials and isLoggedIn true
+            login(); // Update isLoggedIn state to true
             router.push("/admin")
         } catch (err: any) {
             // toast.error("Something went wrong");
@@ -73,7 +74,7 @@ const LoginForm = () => {
                                     {...field}
                                     placeholder="john.doe@example.com"
                                     type="email"
-                                    // className='bg-gray-600'
+                                // className='bg-gray-600'
                                 />
                             </FormControl>
                             <FormMessage />
@@ -92,7 +93,7 @@ const LoginForm = () => {
                                     {...field}
                                     placeholder="*****"
                                     type='password'
-                                    // className='bg-gray-600'
+                                // className='bg-gray-600'
                                 />
                             </FormControl>
                             <FormMessage />
@@ -101,9 +102,9 @@ const LoginForm = () => {
                 />
                 <div>
                     {error && (
-                    <span className='bg-red-400 p-1 rounded-md flex justify-center text-red-700'>
-                        <TriangleAlert className='p-1'/>
-                        {error}
+                        <span className='bg-red-400 p-1 rounded-md flex justify-center text-red-700'>
+                            <TriangleAlert className='p-1' />
+                            {error}
                         </span>
                     )}
                     {/* {errors.email && <span>{errors.email.message}</span>}

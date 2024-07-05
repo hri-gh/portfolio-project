@@ -17,6 +17,8 @@ import {
 import { useCertificates } from '@/hooks/get-certificates';
 import { Certificate } from "@/components/public/certificates/certificate"
 import Image from "next/image"
+import { Separator } from "@/components/ui/separator"
+import CertificateSkeleton from "./certificate-skeleton"
 
 export function CertificaatesCarousel() {
 
@@ -45,6 +47,8 @@ export function CertificaatesCarousel() {
         // remove from below div :: [grid-area:stack]
         <div className="bg-gray-500 mt-2 overflow-hidden rounded-lg">
             <div className=" flex-1 [grid-area:stack] bg-gray-900 group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
+                <h3 className="text-3xl font-bold tracking-tight text-center">Certificates</h3>
+                <Separator className="my-2" />
                 <Carousel
                     setApi={setApi}
                     opts={{
@@ -53,21 +57,24 @@ export function CertificaatesCarousel() {
                     plugins={[
                         AutoPlay({ delay: 1000 })
                     ]}
-                    className="w-full mx-auto ">
+                    className="w-full mx-auto "
+                >
+                    {loading && <CertificateSkeleton />}
                     <CarouselContent >
-                        {data.map((item: any, index:number) => (
+                        {data.map((item: any, index: number) => (
                             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                                 {/* <Certificate key={item.id} item={item} /> */}
-                                <Card >
+                                <Card className="">
+                                    {loading && <CertificateSkeleton />}
+                                    <Image
+                                        alt="Card Image"
+                                        className="aspect-auto object-fill rounded-xl p-1 bg-gray-600 "
+                                        height="300"
+                                        src={item.imageUrl}
+                                        width="600"
+                                        priority
 
-                                        <Image
-                                            alt="Card Image"
-                                            className="aspect-auto object-fill rounded-xl p-1 bg-gray-600 "
-                                            height="300"
-                                            src={item.imageUrl}
-                                            width="600"
-
-                                        />
+                                    />
                                     {/* <CardContent className="flex aspect-square bg-blue-500 rounded-md items-center justify-center p-6">
                                         <span className="text-4xl font-semibold">{index + 1}</span>
                                     </CardContent> */}

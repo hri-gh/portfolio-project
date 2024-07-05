@@ -17,6 +17,7 @@ import Image from "next/image"
 
 import { useProjects } from '@/hooks/get-projects';
 import ProjectCard from "@/components/public/projects/project-card";
+import { Separator } from '@/components/ui/separator'
 
 export function ProjectsCarousel() {
 
@@ -40,9 +41,10 @@ export function ProjectsCarousel() {
     }, [api])
 
     return (
-        <div className="bg-teal-500 overflow-hidden rounded-lg">
+        <div className=" overflow-hidden rounded-lg">
             <div className=" flex-1 [grid-area:stack] group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
-                <h3 className="text-xl font-bold tracking-tight text-center">Projects</h3>
+                <h3 className="text-3xl font-bold tracking-tight text-center">Projects</h3>
+                <Separator className="my-2"/>
                 <Carousel
                     setApi={setApi}
                     opts={{
@@ -79,9 +81,9 @@ export function ProjectsCarousel() {
                     {/* <CarouselPrevious />
                     <CarouselNext /> */}
                 </Carousel>
-                <div className="py-2 text-white text-center text-sm text-muted-foreground">
+                {/* <div className="py-2 text-white text-center text-sm text-muted-foreground">
                     Slide {current} of {count}
-                </div>
+                </div> */}
             </div>
         </div>
     )

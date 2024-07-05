@@ -7,15 +7,16 @@ import {
     AvatarImage,
 } from "@/components/ui/avatar"
 
-export const UserButton = () => {
-    const { isLoggedIn, userInitials } = useAuthStore((state: any) => state.auth)
+import { User } from 'lucide-react'
 
+export const UserButton = () => {
+    const { isLoggedIn } = useAuthStore((state: any) => state.auth)
 
     if (isLoggedIn) {
         return (
             <Avatar className='p-1'>
                 {/* <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" /> */}
-                <AvatarFallback  className='cursor-pointer bg-gray-500'>{userInitials}</AvatarFallback>
+                <AvatarFallback className='cursor-pointer bg-gray-500'><User /></AvatarFallback>
             </Avatar>
         )
     }

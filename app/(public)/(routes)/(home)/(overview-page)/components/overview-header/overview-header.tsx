@@ -7,9 +7,6 @@ import OverviewSkeleton from "./overview-skeleton"
 
 export const OverviewHeader = () => {
     const [data, error, loading] = useAboutMe()
-    console.log(data);
-
-
 
     return (
         <>

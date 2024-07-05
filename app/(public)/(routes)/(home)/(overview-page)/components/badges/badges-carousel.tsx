@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/carousel"
 import Image from "next/image"
 import { useBadges } from "@/hooks/get-badges"
+import { Separator } from "@/components/ui/separator"
 
 export function BadgesCarousel() {
     const [data, error, loading] = useBadges()
@@ -37,9 +38,10 @@ export function BadgesCarousel() {
     }, [api])
 
     return (
-        <div className="bg-teal-500 overflow-hidden rounded-lg">
+        <div className=" overflow-hidden rounded-lg">
             <div className=" flex-1 [grid-area:stack]  group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
-                <h3 className="text-xl font-bold tracking-tight text-center">Badges</h3>
+                <h3 className="text-3xl font-bold tracking-tight text-center">Badges</h3>
+                <Separator className="my-2"/>
                 <Carousel
                     setApi={setApi}
                     opts={{
@@ -69,9 +71,9 @@ export function BadgesCarousel() {
                     {/* <CarouselPrevious />
                     <CarouselNext /> */}
                 </Carousel>
-                <div className="py-2 text-white text-center text-sm text-muted-foreground">
-                    Slide {current} of {count}
-                </div>
+                {/* <div className="py-2 text-white text-center text-sm text-muted-foreground">
+                    Slide {current} of {data.imageUrl.length}
+                </div> */}
             </div>
         </div>
     )

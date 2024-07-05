@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 
 import { Resume } from '@/components/public/resume/resume'
-
+// import { ReactPdfResume } from '@/components/public/resume/react-pdf-resume'
 const ResumePage = () => {
   return (
     <>

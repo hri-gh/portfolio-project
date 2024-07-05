@@ -1,28 +1,22 @@
 "use client"
 
 import { Separator } from "@/components/ui/separator";
-import { useAboutMe } from "@/hooks/get-about-me"
-import { GridCardSkeleton } from "../grid-card-skeleton";
 import { SkillList } from '@/components/public/skills/skill-list'
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const Skills = () => {
-    // const [data, error, loading] = useAboutMe()
 
     return (
         <>
-            <ScrollArea className="bg-teal-500 rounded-lg h-80">
-                <div className=" flex-1 [grid-area:stack]   group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
-                    {/* {loading && (<GridCardSkeleton />)} */}
-                    <h3 className="text-xl font-bold tracking-tight text-center">Skills</h3>
+            <div className="border-2 overflow-hidden border-dashed border-pink-500 rounded-lg h-80">
+                <div className=" flex-1 [grid-area:stack] group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
+                    <h3 className="text-3xl font-bold tracking-tight text-center">Skills</h3>
                     <Separator />
-                    <SkillList />
-
-                    {/* <p className="leading-none font-medium">
-                       {data[0]?.description}
-                    </p> */}
+                    <ScrollArea className="rounded-lg h-60">
+                        <SkillList />
+                    </ScrollArea>
                 </div>
-            </ScrollArea>
+            </div>
         </>
     )
 }

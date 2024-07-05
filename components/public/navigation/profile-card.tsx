@@ -69,26 +69,29 @@ export default function ProfileCard() {
             {/* <p className='text-sm'><strong>Mail:</strong>hrithikgh.edu@gmail.com</p>
       <p className='text-sm'><strong>Phone:</strong>9382020441</p> */}
             <div className='p-1 flex justify-center gap-2'>
-                <Button size={'sm'}>
-                    <Link href={'https://github.com/hri-gh'} target='_blank'>
+                <Link href={'https://github.com/hri-gh'} target='_blank'>
+                    <Button size={'sm'}>
                         <FaGithubSquare />
-                    </Link>
-                </Button>
-                <Button size="sm">
-                    <Link href="https://www.linkedin.com/in/hri-gh" target='_blank'>
+                    </Button>
+                </Link>
+
+                <Link href="https://www.linkedin.com/in/hri-gh" target='_blank'>
+                    <Button size="sm">
                         <FaLinkedin />
-                    </Link>
-                </Button>
-                <Button size="sm">
-                    <Link href='mailto:hrithikgh.edu@gmail.com'>
+                    </Button>
+                </Link>
+
+                <Link href='mailto:hrithikgh.edu@gmail.com'>
+                    <Button size="sm">
                         <MdMail />
-                    </Link>
-                </Button>
-                <Button size="sm">
-                    <Link href="tel:+919382020441">
+                    </Button>
+                </Link>
+
+                <Link href="tel:+919382020441">
+                    <Button size="sm">
                         <FaPhone />
-                    </Link>
-                </Button>
+                    </Button>
+                </Link>
             </div>
             <div className='flex justify-center'>
                 {/* <Badge className='text-sm  mt-1 cursor-pointer'>

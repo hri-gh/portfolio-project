@@ -4,16 +4,14 @@ import { devtools, persist } from 'zustand/middleware'
 
 const authStore = (set: any) => ({
     auth: {
-        userInitials: '',
         isLoggedIn: false,
     },
 
 
-    login: (initials: string) => {
+    login: () => {
         set((state: any) => ({
             auth: {
                 ...state.auth,
-                userInitials: initials,
                 isLoggedIn: true,
             }
         }));
@@ -24,7 +22,6 @@ const authStore = (set: any) => ({
     logout: () => {
         set({
             auth: {
-                userInitials: '',
                 isLoggedIn: false,
             }
         });
@@ -34,13 +31,18 @@ const authStore = (set: any) => ({
 })
 
 
+// const useAuthStore = create(
+//     devtools(
+//         persist(authStore, {
+//             name: "auth",
+//         })
+//     )
+// )
+
 const useAuthStore = create(
-    devtools(
-        persist(authStore, {
-            name: "auth",
-        })
-    )
+    devtools(authStore, { name: "auth", })
 )
+
 
 
 export default useAuthStore;

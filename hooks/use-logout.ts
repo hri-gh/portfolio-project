@@ -4,16 +4,15 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useRouter } from "next/navigation";
 
-
 export const useLogout = () => {
+
     const router = useRouter()
     const logout = useAuthStore((state) => state.logout)
-    const { isLoggedIn, userInitials } = useAuthStore((state: any) => state.auth)
 
     const handleLogout = async () => {
-        if (window.confirm('Are you sure?')) {
+        // if (window.confirm('Are you sure?')) {
             try {
-                await axios.get("api/user/logout")
+                await axios.get("/api/user/logout")
                 logout()
                 toast.success("Logout successful")
                 router.push('admin/login')
@@ -21,7 +20,10 @@ export const useLogout = () => {
                 toast.error(error.message)
             }
 
-        }
+        // }
     }
-    return { handleLogout }
+    return {
+        handleLogout
+    }
+
 }

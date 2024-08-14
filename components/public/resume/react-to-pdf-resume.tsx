@@ -1,16 +1,10 @@
 "use client"
 import { Button } from '@/components/ui/button'
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/4yFj3YHrvp7
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-
 import { usePDF } from 'react-to-pdf'
 import Image from 'next/image'
 
 
-export const Resume = () => {
+export const ReactToPdfResume = () => {
     const { toPDF, targetRef } = usePDF({ filename: 'page.pdf' })
     return (
         <>
@@ -19,18 +13,18 @@ export const Resume = () => {
                 <header className=" rounded-lg bg-gray-100 py-12 dark:bg-gray-800">
                     <div className="container mx-auto px-4 md:px-6">
                         <div className="flex flex-col items-center space-y-4 text-center md:flex-row md:text-left md:space-y-0 md:space-x-8">
-                        <Image
-                            alt="Profile Picture"
-                            className="rounded-full mx-auto object-cover"
-                            height="96"
-                            src="/pp-pic.jpeg"
-                            style={{
-                                aspectRatio: "96/96",
-                                objectFit: "cover",
-                            }}
-                            priority
-                            width="96"
-                        />
+                            <Image
+                                alt="Profile Picture"
+                                className="rounded-full mx-auto object-cover"
+                                height="96"
+                                src="/pp-pic.jpeg"
+                                style={{
+                                    aspectRatio: "96/96",
+                                    objectFit: "cover",
+                                }}
+                                priority
+                                width="96"
+                            />
                             <div className="flex-1 space-y-2">
                                 <h1 className="text-3xl font-bold">John Doe</h1>
                                 <p className="text-gray-500 dark:text-gray-400">Software Engineer</p>

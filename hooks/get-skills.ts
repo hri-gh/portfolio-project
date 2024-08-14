@@ -8,3 +8,4 @@ export const useSkills = () => {
 
   return [data, error, loading]
 }
+

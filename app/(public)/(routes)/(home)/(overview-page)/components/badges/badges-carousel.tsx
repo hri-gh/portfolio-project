@@ -16,6 +16,7 @@ import {
 import Image from "next/image"
 import { useBadges } from "@/hooks/get-badges"
 import { Separator } from "@/components/ui/separator"
+import BadgesCarouselSkeleton from "./badge-carousel-skeleton"
 
 export function BadgesCarousel() {
     const [data, error, loading] = useBadges()
@@ -39,9 +40,14 @@ export function BadgesCarousel() {
 
     return (
         <div className=" overflow-hidden rounded-lg">
-            <div className=" flex-1 [grid-area:stack]  group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
-                <h3 className="text-3xl font-bold tracking-tight text-center">Badges</h3>
-                <Separator className="my-2"/>
+            <div className=" flex-1 [grid-area:stack]  group-hover:opacity-90 transition-opacity p-4 lg:p-8 justify-end flex flex-col gap-2">
+                <h3 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Badges</h3>
+                <Separator className="my-2" />
+                {loading &&
+                    <div className="mx-auto">
+                        <BadgesCarouselSkeleton />
+                    </div>
+                }
                 <Carousel
                     setApi={setApi}
                     opts={{
@@ -55,7 +61,7 @@ export function BadgesCarousel() {
                         {data.map((item: any, index: number) => (
                             <CarouselItem key={index} >
                                 <Card className="">
-                                <Image
+                                    <Image
                                         alt="In-flight shopping"
                                         className="aspect-auto object-fill rounded-xl "
                                         height={200}

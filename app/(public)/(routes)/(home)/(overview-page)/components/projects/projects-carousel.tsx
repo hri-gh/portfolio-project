@@ -18,6 +18,7 @@ import Image from "next/image"
 import { useProjects } from '@/hooks/get-projects';
 import ProjectCard from "@/components/public/projects/project-card";
 import { Separator } from '@/components/ui/separator'
+import ProjectsCarouselSkeleton from './projects-carousel-skeleton'
 
 export function ProjectsCarousel() {
 
@@ -43,8 +44,13 @@ export function ProjectsCarousel() {
     return (
         <div className=" overflow-hidden rounded-lg">
             <div className=" flex-1 [grid-area:stack] group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
-                <h3 className="text-3xl font-bold tracking-tight text-center">Projects</h3>
-                <Separator className="my-2"/>
+                <h3 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Projects</h3>
+                <Separator className="my-2" />
+                {loading &&
+                    <div className='mx-auto'>
+                        <ProjectsCarouselSkeleton />
+                    </div>
+                }
                 <Carousel
                     setApi={setApi}
                     opts={{
@@ -53,12 +59,13 @@ export function ProjectsCarousel() {
                     plugins={[
                         AutoPlay({ delay: 2000 })
                     ]}
-                    className="w-full mx-auto">
+                    className="w-full mx-auto"
+                >
                     <CarouselContent>
                         {data.map((item: any, index: number) => (
                             <CarouselItem key={index} >
                                 {/* <ProjectCard key={item.id} item={item} /> */}
-                                <Card className="">
+                                <Card className="p-1">
                                     <Image
                                         alt="In-flight shopping"
                                         className="aspect-video object-fill  rounded-xl bg-gray-600 p-1 object-center"

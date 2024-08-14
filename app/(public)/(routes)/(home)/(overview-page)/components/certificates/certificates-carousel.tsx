@@ -15,10 +15,10 @@ import {
 
 
 import { useCertificates } from '@/hooks/get-certificates';
-import { Certificate } from "@/components/public/certificates/certificate"
+// import { Certificate } from "@/components/public/certificates/certificate"
 import Image from "next/image"
 import { Separator } from "@/components/ui/separator"
-import CertificateSkeleton from "./certificate-skeleton"
+import CertificateSkeleton from "./certificate-carousel-skeleton"
 
 export function CertificaatesCarousel() {
 
@@ -45,9 +45,9 @@ export function CertificaatesCarousel() {
 
     return (
         // remove from below div :: [grid-area:stack]
-        <div className="bg-gray-500 mt-2 overflow-hidden rounded-lg">
-            <div className=" flex-1 [grid-area:stack] bg-gray-900 group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
-                <h3 className="text-3xl font-bold tracking-tight text-center">Certificates</h3>
+        <div className="bg-gray-200 mt-2 overflow-hidden rounded-lg">
+            <div className=" flex-1 [grid-area:stack] dark:bg-gray-900  group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
+                <h3 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Certificates</h3>
                 <Separator className="my-2" />
                 <Carousel
                     setApi={setApi}
@@ -85,6 +85,9 @@ export function CertificaatesCarousel() {
                     {/* <CarouselPrevious />
                     <CarouselNext /> */}
                 </Carousel>
+                    <div className="">
+                        <p className="text-center text-blue-500 cursor-pointer hover:underline">View more...</p>
+                    </div>
                 {/* <div className="py-2 text-white text-center text-sm text-muted-foreground">
                     Slide {current} of {count}
                 </div> */}

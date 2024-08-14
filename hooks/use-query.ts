@@ -15,6 +15,7 @@ const useQuery = (urlPath: any) => {
       try {
         setLoading(true)
         setError(null)
+        // await new Promise(resolve => setTimeout(resolve, 5000000));
         const response = await axios.get(urlPath, { cancelToken: cancelToken.token })
         setData(response.data)
 

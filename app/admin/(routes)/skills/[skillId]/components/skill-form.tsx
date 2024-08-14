@@ -51,6 +51,7 @@ export const SkillForm: React.FC<ISkillFormProps> = ({ initialData }) => {
     const form = useForm<SkillFormValues>({
         resolver: zodResolver(SkillFormSchema),
         defaultValues: initialData || {
+            header: '',
             name: '',
             imageUrl: '',
         },

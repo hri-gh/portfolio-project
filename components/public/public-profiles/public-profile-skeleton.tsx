@@ -9,9 +9,9 @@ const PublicProfileSkeleton = () => {
         <>
 
             {/* Remove this from below div : flex flex-wrap justify-center */}
-            <div className=" grid grid-cols-3 gap-4">
-                {numSKill.map((numitem) => (
-                    <div key={numitem} className=" flex flex-col space-y-3">
+            {/* <div className=" grid grid-cols-3 gap-4"> */}
+                {/* {numSKill.map((numitem) => ( */}
+                    <div className=" flex flex-col space-y-3">
                         <Skeleton className="h-[125px] w-[250px] rounded-xl" />
                         <div className="space-y-2">
                             <Skeleton className="h-5 w-[250px]" />
@@ -20,8 +20,8 @@ const PublicProfileSkeleton = () => {
 
                     </div>
 
-                ))}
-            </div>
+                {/* ))} */}
+            {/* </div> */}
         </>
     )
 }

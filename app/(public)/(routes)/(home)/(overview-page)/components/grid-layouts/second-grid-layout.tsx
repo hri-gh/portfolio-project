@@ -6,7 +6,7 @@ import { ProjectsCarousel } from "../projects/projects-carousel"
 
 export default function SecondGridLayout() {
     return (
-        <div className="grid p-4 mt-2 bg-black rounded-xl md:grid-cols-2 gap-4 lg:gap-6 xl:gap-8 items-start">
+        <div className="grid p-4 mt-2 bg-gray-200 dark:bg-black rounded-xl md:grid-cols-2 gap-4 lg:gap-6 xl:gap-8 items-start">
             {/* COMPONENT-1 */}
             <BadgesCarousel />
 

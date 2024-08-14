@@ -12,7 +12,8 @@ export const useLogout = () => {
     const handleLogout = async () => {
         // if (window.confirm('Are you sure?')) {
             try {
-                await axios.get("/api/user/logout")
+                const res = await axios.get("/api/user/logout")
+                console.log(res)
                 logout()
                 toast.success("Logout successful")
                 router.push('admin/login')

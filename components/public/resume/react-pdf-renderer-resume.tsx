@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export const ReactPdfResume = () => {
+export const ReactPdfRendererResume = () => {
     const resume = (
         <Document>
             <Page size="A4" style={styles.page}>

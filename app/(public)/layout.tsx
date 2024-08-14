@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import SideNav from "@/components/public/navigation/side-nav";
-
+import { ThemeToggle } from '@/components/theme-toggle';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

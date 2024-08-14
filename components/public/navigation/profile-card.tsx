@@ -19,11 +19,18 @@ import { ContactModal } from '@/components/modals/contact-modal'
 import { useState } from 'react';
 
 import { MovingBorderButton } from '@/components/custom-ui/moving-border';
+// import { useAboutMe } from '@/hooks/local-data/useAboutMe';
+import { getAboutMe } from '@/utils/getAboutMe'
 
 export default function ProfileCard() {
+    // const { aboutMe:data, loading:fetchLoading, error } = useAboutMe();
+    const data = getAboutMe();
+
 
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+
+
 
     const onHandleContact = (e: React.MouseEvent) => {
         e.stopPropagation()
@@ -55,15 +62,15 @@ export default function ProfileCard() {
             />
 
             <div className='text-center'>
-                <p className="text-center text-xl font-medium">Hrithik Ghosh</p>
+                <p className="text-center text-xl font-medium">{data?.name}</p>
                 {/* <p className="text-center text-[15px]">I am a Developer</p> */}
                 <p className="text-sm">
                     <strong>Location: </strong>
-                    WB, India
+                    {data?.location}
                 </p>
                 <p className="text-sm m-0">
                     <strong>Bio: </strong>
-                    Software Engineer
+                    {data?.bio}
                 </p>
             </div>
             {/* <p className='text-sm'><strong>Mail:</strong>hrithikgh.edu@gmail.com</p>
@@ -81,7 +88,7 @@ export default function ProfileCard() {
                     </Button>
                 </Link>
 
-                <Link href='mailto:hrithikgh.edu@gmail.com'>
+                <Link href='mailto:hri.gh@outlook.com'>
                     <Button size="sm">
                         <MdMail />
                     </Button>

@@ -22,28 +22,28 @@ import {
 export const ContactInfo = () => {
     return (
         <>
-                  <div className='flex items-center gap-4 mx-auto my-1' >
-                            <Mail className="p-0.5 h-6 w-6 text-gray-500 dark:text-gray-400" />
-                            <div className="flex-1">
-                                <div className="flex items-center justify-between">
-                                    <div className="text-sm ">hrithikgh.edu@gmail.com</div>
-                                    <div
-                                        className="text-gray-500 hover:text-gray-900 mr-1 dark:text-gray-400 dark:hover:text-gray-900"
+            <div className='flex items-center gap-4 mx-auto my-1 px-1' >
+                <Mail className="p-0.5 h-6 w-6 text-gray-500 dark:text-gray-400" />
+                <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                        <div className="text-sm ">hrithikgh.edu@gmail.com</div>
+                        <div
+                            className="text-gray-500 hover:text-gray-900 mr-1 dark:text-gray-400 dark:hover:text-gray-900"
 
-                                    >
-                                        <Copy className="h-4 w-4"
-                                        onClick={() => {
-                                            navigator.clipboard.writeText("hrithikgh.edu@gmail.com")
-                                            toast.success('Email copied to clipboard.');
-                                        }}
-                                        />
-                                        <span className="sr-only">Copy email</span>
-                                    </div>
-                                </div>
-                            </div>
+                        >
+                            <Copy className="h-4 w-4 cursor-pointer"
+                                onClick={() => {
+                                    navigator.clipboard.writeText("hrithikgh.edu@gmail.com")
+                                    toast.success('Email copied to clipboard.');
+                                }}
+                            />
+                            <span className="sr-only">Copy email</span>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-            <div className='flex items-center gap-4 my-1'>
+            <div className='flex items-center gap-4 my-1 px-1'>
                 <Phone className="p-0.5 h-6 w-6 text-gray-500 dark:text-gray-400" />
                 <div className="flex-1">
                     <div className="flex items-center justify-between">
@@ -52,11 +52,11 @@ export const ContactInfo = () => {
                             className="text-gray-500 mr-1 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-900"
 
                         >
-                            <Copy className="h-4 w-4"
-                            onClick={() => {
-                                navigator.clipboard.writeText("9382020441")
-                                toast.success('Number copied to clipboard.');
-                            }}
+                            <Copy className="h-4 w-4 cursor-pointer"
+                                onClick={() => {
+                                    navigator.clipboard.writeText("9382020441")
+                                    toast.success('Number copied to clipboard.');
+                                }}
                             />
                             <span className="sr-only">Copy email</span>
                         </div>

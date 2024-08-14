@@ -19,7 +19,7 @@ function Navbar() {
     else{
         console.log("UNAUTHORIZED :: SIGN IN WITH YOUR CREDENTIALS")
     }
-    }, [])
+    }, [login])
 
 
 

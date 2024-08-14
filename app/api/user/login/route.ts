@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
         const user = await prismadb.user.findFirst({ where: {email} }) // This user saved in the database
 
         if (!user) {
-            return NextResponse.json({ error: "gInvalid Credentials" }, { status: 400 })
+            return NextResponse.json({ error: "Invalid Credentials" }, { status: 400 })
         }
 
         // Check if password is correct

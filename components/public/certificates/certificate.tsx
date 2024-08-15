@@ -25,6 +25,9 @@ export function Certificate({ item }: any) {
                 onClose={() => setOpen(false)}
                 images={[item.imageUrl]}
                 loading={loading}
+                imageCarouselClasses=""
+                imgHeight={1000}
+                imgWidth={1000}
             />
             <BentoGridItem
                 key={item.id}

@@ -1,24 +1,24 @@
-import React from 'react'
-import OverviewSkeleton from '../(public)/(routes)/(home)/(overview-page)/components/overview-header/overview-skeleton'
-import { GridCardSkeleton } from '../(public)/(routes)/(home)/(overview-page)/components/card-skeleton'
-import SkillSkeleton from '@/components/public/skills/skill-skeleton'
-import { Skeleton } from '@/components/ui/skeleton'
-import ProjectCardSkeleton from '@/components/public/projects/project-card-skeleton'
-import { Separator } from '@/components/ui/separator'
-import CertificateCardSkeleton from '@/components/public/certificates/certificate-card-skeleton'
+// import React from 'react'
+// import OverviewSkeleton from '../(public)/(routes)/(home)/(overview-page)/components/overview-header/overview-skeleton'
+// import { GridCardSkeleton } from '../(public)/(routes)/(home)/(overview-page)/components/card-skeleton'
+// import SkillSkeleton from '@/components/public/skills/skill-skeleton'
+// import { Skeleton } from '@/components/ui/skeleton'
+// import ProjectCardSkeleton from '@/components/public/projects/project-card-skeleton'
+// import { Separator } from '@/components/ui/separator'
+// import CertificateCardSkeleton from '@/components/public/certificates/certificate-card-skeleton'
 //import PublicProfileSkeleton from '@/components/public/public-profiles/public-profile-skeleton'
-import { PublicProfileSkeleton } from '../(public)/(routes)/(home)/(overview-page)/components/public-profiles/public-profile-skeleton'
-import CertificateSkeleton from '../(public)/(routes)/(home)/(overview-page)/components/certificates/certificate-carousel-skeleton'
-import { AboutMeCard } from '../(public)/(routes)/(home)/(overview-page)/components/about-me/about-me-card'
+// import { PublicProfileSkeleton } from '../(public)/(routes)/(home)/(overview-page)/components/public-profiles/public-profile-skeleton'
+// import CertificateSkeleton from '../(public)/(routes)/(home)/(overview-page)/components/certificates/certificate-carousel-skeleton'
+// import { AboutMeCard } from '../(public)/(routes)/(home)/(overview-page)/components/about-me/about-me-card'
 // import { CertificaatesCarousel } from '../(public)/(routes)/(home)/(overview-page)/components/certificates/certificates-carousel'
-import { BadgesCarousel } from '../(public)/(routes)/(home)/(overview-page)/components/badges/badges-carousel'
-import BadgesCarouselSkeleton from '../(public)/(routes)/(home)/(overview-page)/components/badges/badge-carousel-skeleton'
-import { ProjectsCarousel } from '../(public)/(routes)/(home)/(overview-page)/components/projects/projects-carousel'
-import ProjectsCarouselSkeleton from '../(public)/(routes)/(home)/(overview-page)/components/projects/projects-carousel-skeleton'
+// import { BadgesCarousel } from '../(public)/(routes)/(home)/(overview-page)/components/badges/badges-carousel'
+// import BadgesCarouselSkeleton from '../(public)/(routes)/(home)/(overview-page)/components/badges/badge-carousel-skeleton'
+// import { ProjectsCarousel } from '../(public)/(routes)/(home)/(overview-page)/components/projects/projects-carousel'
+// import ProjectsCarouselSkeleton from '../(public)/(routes)/(home)/(overview-page)/components/projects/projects-carousel-skeleton'
 
 const TestPage = () => {
 
-  const arr = [1, 2, 3, 4, 5, 6]
+  // const arr = [1, 2, 3, 4, 5, 6]
   return (
     <>
       {/* <OverviewSkeleton />

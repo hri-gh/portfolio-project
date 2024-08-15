@@ -32,9 +32,6 @@ export const BadgeCard: React.FC<BadgeCardProps> = ({ data }) => {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    console.log(data);
-
-
     const router = useRouter()
     const params = useParams()
 

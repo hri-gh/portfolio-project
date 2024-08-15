@@ -1,4 +1,4 @@
-import * as z from "zod";
+import { z } from "zod"
 
 export const RegisterSchema = z.object({
     email: z.string().email({
@@ -57,14 +57,8 @@ export const AboutmeFormSchema = z.object({
 
 })
 
-export const LearningJourneyFormSchema = z.object({
-    header: z.string().min(1),
-    description: z.string().min(1),
-})
-
 
 export const ProjectFormSchema = z.object({
-    header: z.string().min(1),
     images: z.object({ url: z.string() }).array().min(1),
     projectName: z.string().min(1),
     technologies: z.string().min(1),
@@ -79,13 +73,11 @@ export const ProjectFormSchema = z.object({
 
 
 export const SkillFormSchema = z.object({
-    header: z.string().min(1),
     name: z.string().min(1),
     imageUrl: z.string().min(1),
 })
 
 export const CertificateFormSchema = z.object({
-    header: z.string().min(1),
     provider: z.string().min(1),
     title: z.string().min(1),
     imageUrl: z.string().min(1),
@@ -93,7 +85,6 @@ export const CertificateFormSchema = z.object({
 })
 
 export const PublicProfileFormSchema = z.object({
-    header: z.string().min(1),
     imageUrl: z.string().min(1),
     publicProfileName: z.string().min(1),
     publicProfileLink: z.string().min(1),
@@ -101,7 +92,6 @@ export const PublicProfileFormSchema = z.object({
 })
 
 export const BadgeFormSchema = z.object({
-    header: z.string().min(1),
     imageUrl: z.string().min(1),
     platformName: z.string().min(1),
     platformLink: z.string().min(1),

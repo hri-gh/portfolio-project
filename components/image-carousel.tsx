@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/carousel"
 
 
-export function ImageCarousel({ images, className, onImageView, isCarouselButton=false}: any) {
+export function ImageCarousel({ images, className, onImageView, isCarouselButton = false, imgWidth, imgHeight }: any) {
     const [api, setApi] = useState<CarouselApi>()
     const [current, setCurrent] = useState(0)
     const [count, setCount] = useState(0)
@@ -42,12 +42,12 @@ export function ImageCarousel({ images, className, onImageView, isCarouselButton
                         <CarouselItem key={image}>
                             <div className="p-1">
                                 <Image
-                                    width={1920}
-                                    height={1080}
+                                    width={imgWidth}
+                                    height={imgHeight}
                                     src={image}
                                     alt={"image"}
                                     onClick={onImageView}
-                                    className={className}
+                                    className={`${className}`}
                                     priority
                                 />
                             </div>
@@ -56,8 +56,10 @@ export function ImageCarousel({ images, className, onImageView, isCarouselButton
                 </CarouselContent>
                 {isCarouselButton && (
                     <>
-                        <CarouselPrevious />
-                        <CarouselNext />
+                        {
+                            images.length > 1 && <><CarouselPrevious /><CarouselNext /></>
+                        }
+
                     </>
                 )}
 

@@ -34,12 +34,17 @@ export default function ProjectCard({ item }: any) {
                 onClose={() => setOpen(false)}
                 images={allImages}
                 loading={loading}
+                imgWidth={1920}
+                imgHeight={1080}
+                imageCarouselClasses=""
             />
 
             <ImageCarousel
                 className={"aspect-video object-fill overflow-hidden rounded-xl bg-gray-600 p-1 object-center"}
                 onImageView={onImageView}
                 images={allImages}
+                imgHeight={500}
+                imgWidth={500}
             />
 
             {/* Single image */}

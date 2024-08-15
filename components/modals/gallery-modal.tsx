@@ -7,19 +7,24 @@ import { Modal } from "@/components/ui/modal";
 import { ImageCarousel } from '@/components/image-carousel';
 
 
-
 interface IGalleryModalProps {
     isOpen: boolean;
     onClose: () => void;
     loading: boolean;
     images: any;
+    imgWidth: number;
+    imgHeight: number;
+    imageCarouselClasses: string;
 }
 
 export const GalleryModal: React.FC<IGalleryModalProps> = ({
     images,
     isOpen,
     onClose,
-    loading
+    loading,
+    imgWidth,
+    imgHeight,
+    imageCarouselClasses
 }) => {
     const [isMounted, setIsMounted] = useState(false);
     // console.log('GALLERY-Modal', images);
@@ -44,7 +49,7 @@ export const GalleryModal: React.FC<IGalleryModalProps> = ({
             {loading && (
                 <h1>Loading...</h1>
             )}
-            <ImageCarousel isCarouselButton={true} images={images} />
+            <ImageCarousel isCarouselButton={true} images={images} imgWidth={imgWidth} imgHeight={imgHeight} className={imageCarouselClasses} />
         </Modal>
     )
 }

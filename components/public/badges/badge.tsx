@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 export function Badge({ item }: any) {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-    // console.log(item);
 
     const onImageView = (e: React.MouseEvent) => {
         e.stopPropagation()
@@ -26,6 +25,9 @@ export function Badge({ item }: any) {
                 onClose={() => setOpen(false)}
                 images={[item.imageUrl]}
                 loading={loading}
+                imgHeight={500}
+                imgWidth={500}
+                imageCarouselClasses="mx-auto"
             />
             <BentoGridItem
                 key={item.id}
@@ -37,8 +39,8 @@ export function Badge({ item }: any) {
                             alt=""
                             src={item.imageUrl}
                             height={400}
-                            width={1000}
-                            className="cursor-pointer"
+                            width={400}
+                            className="cursor-pointer mx-auto object-contain p-1"
                             onClick={onImageView}
                         />
                     </div>}

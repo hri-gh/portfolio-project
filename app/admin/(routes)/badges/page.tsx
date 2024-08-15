@@ -32,8 +32,6 @@ const BadgesPage = async () => {
     createdAt: format(item.createdAt, 'MMMM do, yyyy'),
   }))
 
-  console.log('badges:', formattedBadges);
-
 
   return (
     <>

@@ -79,6 +79,12 @@ export default function ProjectCard({ item }: any) {
                     <Link href={item.liveDemoLink} target="_blank">Browse</Link>
                 </Button>
                 <Button >
+                    <Link href={`/projects/${item.projectId}`} target="_blank">
+                        {/* <GitHubLogoIcon /> */}
+                        Details
+                    </Link>
+                </Button>
+                <Button >
                     <Link href={item.githubLink} target="_blank">
                         <GitHubLogoIcon />
                     </Link>

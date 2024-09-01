@@ -74,10 +74,29 @@ model Project {
   bitbucketLink String
   projectType   String
 
+  features ProjectFeature[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("projects")
+}
+
+model ProjectFeature {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId String  @db.ObjectId
+
+  featureTitle       String
+  featureDescription String
+  featureImage       String
+  featureVideo       String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("project_features")
 }
 
 model Skill {

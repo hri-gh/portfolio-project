@@ -22,6 +22,7 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 // DATA TYPE
 import { ProjectCardData } from "../page";
+import { Button } from '@/components/ui/button';
 
 interface ProjectCardProps {
     data: ProjectCardData[];
@@ -107,25 +108,35 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ data }) => {
                                 {item.updatedAt}
                             </div>
                         </div>
-                        <div className="flex gap-3 m-1 p-2 bg-gray-800 rounded-md">
-                            <Edit
-                                className="hover:bg-gray-700 hover:rounded-sm hover:p-1"
-                                onClick={(e: React.MouseEvent) => {
-                                    e.stopPropagation()
-                                    router.push(`/admin/projects/${item.id}`)
-                                }} />
-                            <Copy
-                                className="hover:bg-gray-700 hover:rounded-sm hover:p-1"
-                                onClick={(e: React.MouseEvent) => {
-                                    e.stopPropagation();
-                                    onCopy(item.id)
-                                }} />
-                            <Delete
-                                className="hover:bg-gray-700 hover:rounded-sm hover:p-1"
-                                onClick={(e: React.MouseEvent) => {
-                                    e.stopPropagation()
-                                    setOpen(true)
-                                }} />
+                        <div className="flex justify-between m-1 p-2 bg-gray-800 rounded-md">
+                            <div className='flex gap-3 my-auto p-2 bg-gray-600 rounded-md'>
+                                <Edit
+                                    className="hover:bg-gray-700 hover:rounded-sm hover:p-1"
+                                    onClick={(e: React.MouseEvent) => {
+                                        e.stopPropagation()
+                                        router.push(`/admin/projects/${item.id}`)
+                                    }} />
+                                <Copy
+                                    className="hover:bg-gray-700 hover:rounded-sm hover:p-1"
+                                    onClick={(e: React.MouseEvent) => {
+                                        e.stopPropagation();
+                                        onCopy(item.id)
+                                    }} />
+                                <Delete
+                                    className="hover:bg-gray-700 hover:rounded-sm hover:p-1"
+                                    onClick={(e: React.MouseEvent) => {
+                                        e.stopPropagation()
+                                        setOpen(true)
+                                    }} />
+                            </div>
+
+                            <div className='my-auto '>
+                                <Link href={`/admin/projects/${item.id}/features`}>
+                                {/* <p className=' bg-gray-600 rounded-md p-2'>Features</p> */}
+                                    <Button variant={'outline'}
+                                    >Manage Features</Button>
+                                </Link>
+                            </div>
                         </div>
                     </Card>
                 </div>

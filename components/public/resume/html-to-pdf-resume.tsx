@@ -16,6 +16,7 @@ const HtmlToPdfResume = () => {
   const { aboutMe: data, loading: fetchLoading, error } = useAboutMe();
 
   const aboutMe = getAboutMe();
+
   const downloadPDF = () => {
     const element = document.getElementById('resume-content');
     if (element) {
@@ -25,6 +26,7 @@ const HtmlToPdfResume = () => {
 
   const resumeContent = document.getElementById('resume-content');
   const [isHovered, setIsHovered] = useState(false);
+
   // if (resumeContent) {
   //   document.getElementById('print-resume')?.addEventListener('click', () => {
   //     setTimeout(() => {

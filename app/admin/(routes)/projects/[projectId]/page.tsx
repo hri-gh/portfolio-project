@@ -18,8 +18,6 @@ const ProjectPage = async ({
         }
     })
 
-    console.log('PROJECT_ID::', params.projectId);
-
 
     return (
         <div className="flex-col">

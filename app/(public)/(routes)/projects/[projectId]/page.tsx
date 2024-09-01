@@ -1,8 +1,14 @@
 import React from 'react'
+import ProjectDetailsPage from './components/project-details'
+import ProjectDetailsTwo from './components/project-details-two'
 
-const Project = () => {
+const Project = ({ params }: { params: { projectId: string } }) => {
   return (
-    <div>Project</div>
+    <>
+      Project : {params.projectId}
+      {/* <ProjectDetailsPage/> */}
+      <ProjectDetailsTwo/>
+    </>
   )
 }
 

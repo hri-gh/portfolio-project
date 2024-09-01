@@ -71,6 +71,13 @@ export const ProjectFormSchema = z.object({
     projectType: z.string().min(1),
 })
 
+export const ProjectFeatureSchema = z.object({
+    featureTitle: z.string().min(1),
+    featureDescription: z.string().min(1),
+    featureImage: z.string().min(1),
+    featureVideo:z.string().optional(),
+})
+
 
 export const SkillFormSchema = z.object({
     name: z.string().min(1),

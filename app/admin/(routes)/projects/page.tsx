@@ -45,8 +45,6 @@ const ProjectsPage = async () => {
     createdAt: format(item.createdAt, 'MMMM do, yyyy'),
   }))
 
-  console.log(formattedProject);
-
 
   return (
     <>

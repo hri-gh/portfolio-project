@@ -21,10 +21,11 @@ import { useState } from 'react';
 import { MovingBorderButton } from '@/components/custom-ui/moving-border';
 // import { useAboutMe } from '@/hooks/local-data/useAboutMe';
 import { getAboutMe } from '@/utils/getAboutMe'
+import { AboutMe } from '@prisma/client';
 
-export default function ProfileCard() {
+export default function ProfileCard({ data }: { data: AboutMe[] }) {
     // const { aboutMe:data, loading:fetchLoading, error } = useAboutMe();
-    const data = getAboutMe();
+    // const data = getAboutMe();
 
 
     const [open, setOpen] = useState(false);
@@ -62,39 +63,39 @@ export default function ProfileCard() {
             />
 
             <div className='text-center'>
-                <p className="text-center text-xl font-medium">{data?.name}</p>
+                <p className="text-center text-xl font-medium">{data[0]?.name}</p>
                 {/* <p className="text-center text-[15px]">I am a Developer</p> */}
                 <p className="text-sm">
                     <strong>Location: </strong>
-                    {data?.location}
+                    {data[0]?.location}
                 </p>
                 <p className="text-sm m-0">
                     <strong>Bio: </strong>
-                    {data?.bio}
+                    {data[0]?.bio}
                 </p>
             </div>
             {/* <p className='text-sm'><strong>Mail:</strong>hrithikgh.edu@gmail.com</p>
       <p className='text-sm'><strong>Phone:</strong>9382020441</p> */}
             <div className='p-1 flex justify-center gap-2'>
-                <Link href={'https://github.com/hri-gh'} target='_blank'>
+                <Link href={data[0].githubUrl} target='_blank'>
                     <Button size={'sm'}>
                         <FaGithubSquare />
                     </Button>
                 </Link>
 
-                <Link href="https://www.linkedin.com/in/hri-gh" target='_blank'>
+                <Link href={data[0].linkedinUrl} target='_blank'>
                     <Button size="sm">
                         <FaLinkedin />
                     </Button>
                 </Link>
 
-                <Link href='mailto:hri.gh@outlook.com'>
+                <Link href={`mailto:${data[0].primaryGmail}`}>
                     <Button size="sm">
                         <MdMail />
                     </Button>
                 </Link>
 
-                <Link href="tel:+919382020441">
+                <Link href={`tel:${data[0].mobileNumber}`}>
                     <Button size="sm">
                         <FaPhone />
                     </Button>

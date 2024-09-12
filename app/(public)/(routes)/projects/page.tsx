@@ -1,10 +1,12 @@
 import { ProjectsList } from "@/components/public/projects/project-list"
+import { fetchProjects } from "@/lib/services/fetch-projects"
 
-const ProjectsPage = () => {
+const ProjectsPage = async () => {
+  const projects = await fetchProjects()
 
   return (
     <>
-      <ProjectsList />
+      <ProjectsList data={projects} />
     </>
   )
 }

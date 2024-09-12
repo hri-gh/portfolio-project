@@ -1,5 +1,5 @@
 
-"use client"
+// "use client"
 import Link from 'next/link';
 import NavLinks from './nav-links';
 
@@ -9,8 +9,13 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import { MobileSideNav } from './mobile-side-nav';
 import { Button } from '@/components/ui/button';
 import { ContactInfo } from '../contacts/contact-info';
+import { fetchABoutMe } from '@/lib/services/fetch-aboutme';
 
-export default function SideNav() {
+export default async function SideNav() {
+  const data = await fetchABoutMe()
+  const mobile = data[0].mobileNumber
+  const email = data[0].primaryGmail
+
 
   const blue500 = "bg-blue-400"
 
@@ -29,7 +34,7 @@ export default function SideNav() {
 
         >
           <div className="w-32 text-white md:w-40">
-            <ProfileCard />
+            <ProfileCard data={data}/>
           </div>
         </div>
 
@@ -37,7 +42,7 @@ export default function SideNav() {
           <NavLinks />
           <div className="hidden h-auto w-full grow rounded-md bg-gray-100 text-black md:block">
             {/* <header className='text-center'>Contact</header> */}
-            <ContactInfo />
+            <ContactInfo mobile={mobile} email={email}/>
           </div>
 
           <div className='cursor-pointer hidden md:flex h-[48px] items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3'>

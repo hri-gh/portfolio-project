@@ -16,7 +16,7 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { Textarea } from "@/components/ui/textarea";
-
+import TinymceTextEditor from "@/components/tinymce-text-editor";
 
 // ICONS
 import { Trash } from "lucide-react";
@@ -268,7 +268,7 @@ export const AboutmeForm: React.FC<IAboutmeFormProps> = ({ initialData }) => {
                         />
 
                         {/* OVERVIEW FILED  */}
-                        <FormField
+                        {/* <FormField
                             control={form.control}
                             name="overview"
                             render={({ field }) => (
@@ -276,6 +276,20 @@ export const AboutmeForm: React.FC<IAboutmeFormProps> = ({ initialData }) => {
                                     <FormLabel>Overview</FormLabel>
                                     <FormControl>
                                         <Input disabled={loading} placeholder="" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        /> */}
+                        <FormField
+                            control={form.control}
+                            name="overview"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Overview</FormLabel>
+                                    <FormControl>
+                                        {/* <Input disabled={loading} placeholder="" {...field} /> */}
+                                        <TinymceTextEditor initialValue={field.value} onEditorChange={field.onChange} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

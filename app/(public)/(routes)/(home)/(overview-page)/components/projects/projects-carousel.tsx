@@ -19,10 +19,11 @@ import { useProjects } from '@/hooks/get-projects';
 import ProjectCard from "@/components/public/projects/project-card";
 import { Separator } from '@/components/ui/separator'
 import ProjectsCarouselSkeleton from './projects-carousel-skeleton'
+import { Project } from '@prisma/client'
 
-export function ProjectsCarousel() {
+export function ProjectsCarousel({ data }: { data: Project[] }) {
 
-    const [data, error, loading] = useProjects()
+    // const [data, error, loading] = useProjects()
 
     const [api, setApi] = React.useState<CarouselApi>()
     const [current, setCurrent] = React.useState(0)
@@ -46,11 +47,11 @@ export function ProjectsCarousel() {
             <div className=" flex-1 [grid-area:stack] group-hover:opacity-90 transition-opacity text-white p-4 lg:p-8 justify-end flex flex-col gap-2">
                 <h3 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Projects</h3>
                 <Separator className="my-2" />
-                {loading &&
+                {/* {loading &&
                     <div className='mx-auto'>
                         <ProjectsCarouselSkeleton />
                     </div>
-                }
+                } */}
                 <Carousel
                     setApi={setApi}
                     opts={{

@@ -8,10 +8,10 @@ import BadgeSkeleton from './badge-skeleton';
 import { Badge as BadgeData } from '@prisma/client';
 import { Button } from '@/components/ui/button';
 
-export const BadgeList = () => {
+export const BadgeList = ({data}:{data: BadgeData[]}) => {
     const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null);
 
-    const [data, error, loading] = useBadges()
+    // const [data, error, loading] = useBadges()
 
     // Extract unique platform names from badges
     // const platforms = Array.from(new Set(data.map((badge: any) => badge.platformName)));
@@ -48,7 +48,7 @@ export const BadgeList = () => {
                 </select>
             </div>
 
-            {loading && (
+            {/* {loading && (
                 // grid lg:grid-cols-3 md:grid-cols-1  gap-4
                 <div className="lg:flex lg:flex-wrap lg:justify-between mx-auto max-w-4xl ">
                     {skeletons.map((skeleton: any) => (
@@ -56,7 +56,7 @@ export const BadgeList = () => {
 
                     ))}
                 </div>
-            )}
+            )} */}
             <BentoGrid className='max-w-4xl mx-auto'>
                 {filteredBadges.map((item: any) => (
                     <Badge key={item.id} item={item} />

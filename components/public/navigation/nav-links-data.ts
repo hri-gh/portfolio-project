@@ -15,6 +15,6 @@ export const links = [
     { id: 0, name: 'Home', href: '/', icon: HiHome, },
     { id: 1, name: 'Projects', href: '/projects', icon: CgWebsite, },
     { id: 2, name: 'Skills & Certificates', href: '/skills&certificates', icon: PiCertificateFill },
-    { id: 3, name: 'Public Profiles & Badges', href: '/public-profiles', icon: FaRegAddressCard },
+    { id: 3, name: 'Public Profiles & Badges', href: '/public-profiles&badges', icon: FaRegAddressCard },
     // { name: 'Contact', href: 'contact', icon: FaRegAddressCard },
 ];

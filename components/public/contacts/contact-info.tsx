@@ -19,14 +19,19 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-export const ContactInfo = () => {
+interface Props {
+    email: string
+    mobile: string
+}
+
+export const ContactInfo: React.FC<Props> = ({email, mobile}) => {
     return (
         <>
             <div className='flex items-center gap-4 mx-auto my-1 px-1' >
                 <Mail className="p-0.5 h-6 w-6 text-gray-500 dark:text-gray-400" />
                 <div className="flex-1">
                     <div className="flex items-center justify-between">
-                        <div className="text-sm ">hrithikgh.edu@gmail.com</div>
+                        <div className="text-sm ">{email}</div>
                         <div
                             className="text-gray-500 hover:text-gray-900 mr-1 dark:text-gray-400 dark:hover:text-gray-900"
 
@@ -47,7 +52,7 @@ export const ContactInfo = () => {
                 <Phone className="p-0.5 h-6 w-6 text-gray-500 dark:text-gray-400" />
                 <div className="flex-1">
                     <div className="flex items-center justify-between">
-                        <div className=" text-sm ">9382020441</div>
+                        <div className=" text-sm ">{mobile}</div>
                         <div
                             className="text-gray-500 mr-1 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-900"
 

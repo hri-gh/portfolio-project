@@ -14,15 +14,16 @@ import {
 } from "@/components/ui/carousel"
 
 
-import { useCertificates } from '@/hooks/get-certificates';
+// import { useCertificates } from '@/hooks/get-certificates';
 // import { Certificate } from "@/components/public/certificates/certificate"
 import Image from "next/image"
 import { Separator } from "@/components/ui/separator"
-import CertificateSkeleton from "./certificate-carousel-skeleton"
+// import CertificateSkeleton from "./certificate-carousel-skeleton"
+import { Certificate } from "@prisma/client"
 
-export function CertificaatesCarousel() {
+export function CertificaatesCarousel({ data }: { data: Certificate[] }) {
 
-    const [data, error, loading] = useCertificates()
+    // const [data, error, loading] = useCertificates()
 
     const [api, setApi] = React.useState<CarouselApi>()
     const [current, setCurrent] = React.useState(0)
@@ -59,13 +60,13 @@ export function CertificaatesCarousel() {
                     ]}
                     className="w-full mx-auto "
                 >
-                    {loading && <CertificateSkeleton />}
+                    {/* {loading && <CertificateSkeleton />} */}
                     <CarouselContent >
                         {data.map((item: any, index: number) => (
                             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                                 {/* <Certificate key={item.id} item={item} /> */}
                                 <Card className="">
-                                    {loading && <CertificateSkeleton />}
+                                    {/* {loading && <CertificateSkeleton />} */}
                                     <Image
                                         alt="Card Image"
                                         className="aspect-auto object-fill rounded-xl p-1 bg-gray-600 "
@@ -85,9 +86,9 @@ export function CertificaatesCarousel() {
                     {/* <CarouselPrevious />
                     <CarouselNext /> */}
                 </Carousel>
-                    <div className="">
-                        <p className="text-center text-blue-500 cursor-pointer hover:underline">View more...</p>
-                    </div>
+                <div className="">
+                    <p className="text-center text-blue-500 cursor-pointer hover:underline">View more...</p>
+                </div>
                 {/* <div className="py-2 text-white text-center text-sm text-muted-foreground">
                     Slide {current} of {count}
                 </div> */}

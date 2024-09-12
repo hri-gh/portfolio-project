@@ -1,10 +1,13 @@
 import React from 'react'
 import { CertificateList } from '@/components/public/certificates/certificate-list'
+import { fetchCertificates } from '@/lib/services/fetch-certificates'
 
-const CertificatesPage = () => {
+const CertificatesPage = async () => {
+  const certificates = await fetchCertificates()
+
   return (
     <>
-      <CertificateList />
+      <CertificateList data={certificates}/>
     </>
   )
 }

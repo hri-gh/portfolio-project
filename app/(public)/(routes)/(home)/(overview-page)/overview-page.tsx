@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 import React from 'react'
 import { ScrollArea } from "@/components/ui/scroll-area"
 
@@ -12,21 +12,29 @@ import SecondGridLayout from './components/grid-layouts/second-grid-layout'
 import { OverviewHeader } from './components/overview-header/overview-header'
 
 import { CertificaatesCarousel } from './components/certificates/certificates-carousel'
+import { fetchABoutMe } from '@/lib/services/fetch-aboutme'
+import { fetchCertificates } from '@/lib/services/fetch-certificates'
 
+const OverviewPage = async () => {
+  const data = await fetchABoutMe()
 
-const OverviewPage = () => {
+  const overview = data[0]?.overview
+  const aboutMe = data[0]?.aboutMeDescription
+  const learningJourney = data[0]?.learningJourney
+
+  const certificates = await fetchCertificates()
 
   return (
     <>
       <div className=''>
         {/* Section One */}
-        <OverviewHeader />
+        <OverviewHeader data={overview}/>
 
         {/* Section Two */}
-        <FirstGridLayout />
+        <FirstGridLayout aboutMe={aboutMe} learningJourney={learningJourney}/>
 
         {/* Section Three */}
-        <CertificaatesCarousel />
+        <CertificaatesCarousel data = {certificates}/>
 
         {/* Section Four */}
         <SecondGridLayout />

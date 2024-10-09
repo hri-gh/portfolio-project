@@ -1,4 +1,3 @@
-"use client"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -17,16 +16,18 @@ import {
 } from "@/components/ui/dropdown-menu"
 import toast from "react-hot-toast";
 
-import { UserButton } from "../user-button"
-import { useLogout } from '@/hooks/use-logout'
-import { useState } from "react"
+// import { UserButton } from "../user-button"
+// import { useLogout } from '@/hooks/use-logout'
+// import { useState } from "react"
+import { SignOut } from "../auth/signout-button";
+import UserAvatar from "../auth/user-avatar";
 
-import { AlertModal } from "@/components/modals/alert-modal";
+// import { AlertModal } from "@/components/modals/alert-modal";s
 
 export function UserButtonMenu() {
-    const [open, setOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const { handleLogout } = useLogout()
+    // const [open, setOpen] = useState(false);
+    // const [loading, setLoading] = useState(false);
+    // const { handleLogout } = useLogout()
 
     // const onLogout = () => {
     //     handleLogout()
@@ -34,7 +35,7 @@ export function UserButtonMenu() {
 
     return (
         <>
-            <AlertModal
+            {/* <AlertModal
                 isOpen={open}
                 onClose={() => setOpen(false)}
                 onConfirm={async () => {
@@ -49,10 +50,12 @@ export function UserButtonMenu() {
                     }
                 }}
                 loading={loading}
-            />
+            /> */}
             <DropdownMenu>
                 <DropdownMenuTrigger asChild className="">
-                    <Button size={"icon"} className="rounded-full p-4"><UserButton /></Button>
+                    <Button size={"icon"} className="rounded-full">
+                        <UserAvatar />
+                    </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -72,7 +75,14 @@ export function UserButtonMenu() {
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
 
+
                     <DropdownMenuItem
+                    >
+                        <SignOut />
+                        <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                    </DropdownMenuItem>
+
+                    {/* <DropdownMenuItem
                         onClick={(e: React.MouseEvent) => {
                             setOpen(true)
                         }}
@@ -80,7 +90,7 @@ export function UserButtonMenu() {
                     >
                         Log out
                         <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-                    </DropdownMenuItem>
+                    </DropdownMenuItem> */}
 
                 </DropdownMenuContent>
             </DropdownMenu>

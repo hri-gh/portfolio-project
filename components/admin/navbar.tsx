@@ -1,4 +1,4 @@
-"use client"
+
 import useAuthStore from '@/store/auth-store'
 import { useEffect } from 'react'
 import MainNav from "@/components/admin/main-nav"
@@ -9,17 +9,17 @@ import { UserButtonMenu } from "./user-button-menu"
 import Cookies from 'js-cookie';
 
 function Navbar() {
-    const login = useAuthStore((state) => state.login)
+    // const login = useAuthStore((state) => state.login)
 
-    useEffect(() => {
-      const token = Cookies.get('token');
-    if(token){
-        login()
-    }
-    else{
-        console.log("UNAUTHORIZED :: SIGN IN WITH YOUR CREDENTIALS")
-    }
-    }, [login])
+    // useEffect(() => {
+    //   const token = Cookies.get('token');
+    // if(token){
+    //     login()
+    // }
+    // else{
+    //     console.log("UNAUTHORIZED :: SIGN IN WITH YOUR CREDENTIALS")
+    // }
+    // }, [login])
 
 
 

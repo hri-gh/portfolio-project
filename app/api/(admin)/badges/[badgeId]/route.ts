@@ -1,4 +1,4 @@
-import { getDataFromToken } from "@/helpers/get-data-from-token";
+import { auth } from "@/auth";
 import prismadb from "@/lib/prismadb";
 import { NextRequest, NextResponse } from "next/server"
 
@@ -27,66 +27,70 @@ export async function GET(
 
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { badgeId: string } }
+    context: { params: { badgeId: string } }
 ) {
-    try {
-        const userId = await getDataFromToken(request)
-        const user = await prismadb.user.findFirst({ where: { id: userId } })
-
-        if (!user) {
-            return new NextResponse("Unauthorized", { status: 405 })
+    return auth(async (req) => {
+        if (!req.auth) {
+            return new NextResponse("Not authenticated", { status: 401 });
         }
 
-        if (!params.badgeId) {
+        const { badgeId } = context.params
+
+        if (!badgeId) {
             return new NextResponse("Badge id is required", { status: 400 });
         }
 
-        const badge = await prismadb.badge.delete({
-            where: {
-                id: params.badgeId,
-            }
-        });
+        try {
 
-        return NextResponse.json(badge);
-    } catch (error) {
-        console.log('[BADGE_DELETE]', error);
-        return new NextResponse("Internal error", { status: 500 });
-    }
+            const badge = await prismadb.badge.delete({
+                where: {
+                    id: badgeId,
+                }
+            });
+
+            return NextResponse.json(badge);
+        } catch (error) {
+            console.log('[BADGE_DELETE]', error);
+            return new NextResponse("Internal error", { status: 500 });
+        }
+    })(request, context) as any;
 }
 
 export async function PATCH(
     request: NextRequest,
-    { params }: { params: { badgeId: string } }
+    context: { params: { badgeId: string } }
 ) {
-    const reqBody = await request.json()
-    const { imageUrl, platformName, platformLink} = reqBody
-
-    try {
-        const userId = await getDataFromToken(request)
-        const user = await prismadb.user.findFirst({ where: { id: userId } })
-
-        if (!user) {
-            return new NextResponse("Unauthorized", { status: 405 })
+    return auth(async (req) => {
+        if (!req.auth) {
+            return new NextResponse("Not authenticated", { status: 401 });
         }
 
-        if (!params.badgeId) {
+        const { badgeId } = context.params
+
+        if (!badgeId) {
             return new NextResponse("Badge id is required", { status: 400 });
         }
 
-        const badge = await prismadb.badge.update({
-            where: {
-                id: params.badgeId,
-            },
-            data: {
-                imageUrl,
-                platformName,
-                platformLink,
-            }
-        });
+        const reqBody = await request.json()
+        const { imageUrl, platformName, platformLink } = reqBody
 
-        return NextResponse.json(badge);
-    } catch (error) {
-        console.log('[BADGE_PATCH]', error);
-        return new NextResponse("Internal error", { status: 500 });
-    }
+        try {
+            const badge = await prismadb.badge.update({
+                where: {
+                    id: badgeId,
+                },
+                data: {
+                    imageUrl,
+                    platformName,
+                    platformLink,
+                }
+            });
+
+            return NextResponse.json(badge);
+        } catch (error) {
+            console.log('[BADGE_PATCH]', error);
+            return new NextResponse("Internal error", { status: 500 });
+        }
+    })(request, context) as any;
+
 }

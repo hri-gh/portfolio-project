@@ -1,36 +1,34 @@
 import { NextRequest, NextResponse } from "next/server"
+import { auth } from "@/auth";
 
 import prismadb from "@/lib/prismadb";
 
 import { getDataFromToken } from "@/helpers/get-data-from-token";
 
-export async function POST(request: NextRequest) {
-    const reqBody = await request.json()
-    const { imageUrl, publicProfileLink, publicProfileName} = reqBody
+export const POST = auth(async function POST(req) {
+    const reqBody = await req.json()
+    const { imageUrl, publicProfileLink, publicProfileName } = reqBody
 
-    try {
-        const userId = await getDataFromToken(request)
-        const user = await prismadb.user.findFirst({ where: { id: userId } })
+    if (req.auth) {
+        try {
+            const publicProfile = await prismadb.publicProfile.create({
+                data: {
+                    imageUrl,
+                    publicProfileName,
+                    publicProfileLink
+                }
+            })
 
-        if (!user) {
-            return new NextResponse("Unauthorized", { status: 405 })
+            return NextResponse.json(publicProfile)
+        } catch (error) {
+            console.log('[PUBLIC_PROFILE_POST]', error);
+            return new NextResponse("Internal error", { status: 500 })
         }
-
-        const publicProfile = await prismadb.publicProfile.create({
-            data: {
-                imageUrl,
-                publicProfileName,
-                publicProfileLink
-            }
-        })
-
-        return NextResponse.json(publicProfile)
-    } catch (error) {
-        console.log('[PUBLIC_PROFILE_POST]', error);
-        return new NextResponse("Internal error", { status: 500 })
+    } else {
+        return NextResponse.json({ message: "Not authenticated" }, { status: 401 })
     }
 
-}
+})
 
 
 export async function GET(

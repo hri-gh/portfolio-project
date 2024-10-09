@@ -1,6 +1,7 @@
 import { getDataFromToken } from "@/helpers/get-data-from-token";
 import prismadb from "@/lib/prismadb";
 import { NextRequest, NextResponse } from "next/server"
+import { auth } from "@/auth";
 
 export async function GET(
     request: Request,
@@ -27,65 +28,66 @@ export async function GET(
 
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { skillId: string } }
+    context: { params: { skillId: string } }
 ) {
-    try {
-        const userId = await getDataFromToken(request)
-        const user = await prismadb.user.findFirst({ where: { id: userId } })
-
-        if (!user) {
-            return new NextResponse("Unauthorized", { status: 405 })
+    return auth(async (req) => {
+        if (!req.auth) {
+            return new NextResponse("Not authenticated", { status: 401 });
         }
 
-        if (!params.skillId) {
+        const { skillId } = context.params;
+
+        if (!skillId) {
             return new NextResponse("Skill id is required", { status: 400 });
         }
 
-        const skill = await prismadb.skill.delete({
-            where: {
-                id: params.skillId,
-            }
-        });
+        try {
+            const skill = await prismadb.skill.delete({
+                where: {
+                    id: skillId,
+                }
+            });
 
-        return NextResponse.json(skill);
-    } catch (error) {
-        console.log('[SKILL_DELETE]', error);
-        return new NextResponse("Internal error", { status: 500 });
-    }
+            return NextResponse.json(skill);
+        } catch (error) {
+            console.error("[SKILL_DELETE]", error);
+            return new NextResponse("Internal error", { status: 500 });
+        }
+    })(request, context) as any;
 }
 
 export async function PATCH(
     request: NextRequest,
-    { params }: { params: { skillId: string } }
+    context: { params: { skillId: string } }
 ) {
-    const reqBody = await request.json()
-    const { name, imageUrl } = reqBody
-
-    try {
-        const userId = await getDataFromToken(request)
-        const user = await prismadb.user.findFirst({ where: { id: userId } })
-
-        if (!user) {
-            return new NextResponse("Unauthorized", { status: 405 })
+    return auth(async (req) => {
+        if (!req.auth) {
+            return new NextResponse("Not authenticated", { status: 401 });
         }
 
-        if (!params.skillId) {
+        const { skillId } = context.params
+        const reqBody = await request.json()
+        const { name, imageUrl } = reqBody
+
+        if (!skillId) {
             return new NextResponse("Skill id is required", { status: 400 });
         }
 
-        const skill = await prismadb.skill.update({
-            where: {
-                id: params.skillId,
-            },
-            data: {
-                name,
-                imageUrl
-            }
-        });
+        try {
+            const skill = await prismadb.skill.update({
+                where: {
+                    id: skillId,
+                },
+                data: {
+                    name,
+                    imageUrl
+                }
+            });
 
-        return NextResponse.json(skill);
-    } catch (error) {
-        console.log('[SKILL_PATCH]', error);
-        return new NextResponse("Internal error", { status: 500 });
-    }
+            return NextResponse.json(skill);
+        } catch (error) {
+            console.log('[SKILL_PATCH]', error);
+            return new NextResponse("Internal error", { status: 500 });
+        }
+    })(request, context) as any
 }

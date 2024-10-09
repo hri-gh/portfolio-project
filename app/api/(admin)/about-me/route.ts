@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from "next/server"
 
 import prismadb from "@/lib/prismadb";
 
-import { getDataFromToken } from "@/helpers/get-data-from-token";
+import { auth } from "@/auth";
 
-export async function POST(request: NextRequest) {
-    const reqBody = await request.json()
+export const POST = auth(async function POST(req) {
+    const reqBody = await req.json()
     const {
         name,
         location,
@@ -29,47 +29,43 @@ export async function POST(request: NextRequest) {
         anonymousMessageUrl,
     } = reqBody
 
-    try {
-        const userId = await getDataFromToken(request)
-        const user = await prismadb.user.findFirst({ where: { id: userId } })
+    if (req.auth) {
+        try {
+            const aboutMe = await prismadb.aboutMe.create({
+                data: {
+                    name,
+                    location,
+                    bio,
+                    aboutMeHeader,
+                    aboutMeDescription,
+                    schools,
+                    collages,
+                    overview,
+                    overviewHeader,
+                    learningJourney,
+                    learningJourneyHeader,
+                    linkedinUrl,
+                    githubUrl,
+                    whatsappUrl,
+                    instagramUrl,
+                    facebookUrl,
+                    primaryGmail,
+                    secondaryGmail,
+                    mobileNumber,
+                    anonymousMessageUrl,
 
-        if (!user) {
-            return new NextResponse("Unauthorized", { status: 405 })
+                }
+            })
+
+            return NextResponse.json(aboutMe)
+        } catch (error) {
+            console.log('[ABOUTME_POST]', error);
+            return new NextResponse("Internal error", { status: 500 })
         }
-
-        const aboutMe = await prismadb.aboutMe.create({
-            data: {
-                name,
-                location,
-                bio,
-                aboutMeHeader,
-                aboutMeDescription,
-                schools,
-                collages,
-                overview,
-                overviewHeader,
-                learningJourney,
-                learningJourneyHeader,
-                linkedinUrl,
-                githubUrl,
-                whatsappUrl,
-                instagramUrl,
-                facebookUrl,
-                primaryGmail,
-                secondaryGmail,
-                mobileNumber,
-                anonymousMessageUrl,
-
-            }
-        })
-
-        return NextResponse.json(aboutMe)
-    } catch (error) {
-        console.log('[ABOUTME_POST]', error);
-        return new NextResponse("Internal error", { status: 500 })
     }
 
-}
+
+})
 
 
 export async function GET(

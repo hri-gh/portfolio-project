@@ -2,35 +2,33 @@ import { NextRequest, NextResponse } from "next/server"
 
 import prismadb from "@/lib/prismadb";
 
-import { getDataFromToken } from "@/helpers/get-data-from-token";
+import { auth } from "@/auth";
 
-export async function POST(request: NextRequest) {
-    const reqBody = await request.json()
-    const { imageUrl, platformName, platformLink} = reqBody
+export const POST = auth(async function POST(req) {
+    const reqBody = await req.json()
+    const { imageUrl, platformName, platformLink } = reqBody
 
-    try {
-        const userId = await getDataFromToken(request)
-        const user = await prismadb.user.findFirst({ where: { id: userId } })
+    if (req.auth) {
+        try {
+            const badge = await prismadb.badge.create({
+                data: {
+                    imageUrl,
+                    platformName,
+                    platformLink,
+                }
+            })
 
-        if (!user) {
-            return new NextResponse("Unauthorized", { status: 405 })
+            return NextResponse.json(badge)
+        } catch (error) {
+            console.log('[BADGE_POST]', error);
+            return new NextResponse("Internal error", { status: 500 })
         }
-
-        const badge = await prismadb.badge.create({
-            data: {
-                imageUrl,
-                platformName,
-                platformLink,
-            }
-        })
-
-        return NextResponse.json(badge)
-    } catch (error) {
-        console.log('[BADGE_POST]', error);
-        return new NextResponse("Internal error", { status: 500 })
+    } else {
+        return NextResponse.json({ message: "Not authenticated" }, { status: 401 })
     }
 
-}
+
+})
 
 
 export async function GET(

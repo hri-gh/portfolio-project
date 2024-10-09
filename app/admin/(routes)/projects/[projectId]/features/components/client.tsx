@@ -1,4 +1,5 @@
 "use client"
+"use client"
 
 import React, { useEffect } from 'react'
 import { useParams, useRouter } from "next/navigation"
@@ -25,7 +26,7 @@ const FeatureClient: React.FC<Props> = ({ data }) => {
 
   useEffect(() => {
     setFeatures(data)
-  }, [setFeatures])
+  }, [data, setFeatures])
 
   const formattedFeatures: Feature[] = features.map((item: Feature) => ({
     id: item.id,

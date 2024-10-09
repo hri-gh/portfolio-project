@@ -1,6 +1,7 @@
-import { getDataFromToken } from "@/helpers/get-data-from-token";
+
 import prismadb from "@/lib/prismadb";
 import { NextRequest, NextResponse } from "next/server"
+import { auth } from "@/auth";
 
 export async function GET(
     request: Request,
@@ -27,104 +28,106 @@ export async function GET(
 
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { aboutmeId: string } }
+    context: { params: { aboutmeId: string } }
 ) {
-    try {
-        const userId = await getDataFromToken(request)
-        const user = await prismadb.user.findFirst({ where: { id: userId } })
-
-        if (!user) {
-            return new NextResponse("Unauthorized", { status: 405 })
+    return auth(async (req) => {
+        if (!req.auth) {
+            return new NextResponse("Not authenticated", { status: 401 });
         }
 
-        if (!params.aboutmeId) {
+        const { aboutmeId } = context.params
+
+        if (!aboutmeId) {
             return new NextResponse("AboutMe id is required", { status: 400 });
         }
 
-        const aboutMe = await prismadb.aboutMe.delete({
-            where: {
-                id: params.aboutmeId,
-            }
-        });
+        try {
+            const aboutMe = await prismadb.aboutMe.delete({
+                where: {
+                    id: aboutmeId,
+                }
+            });
 
-        return NextResponse.json(aboutMe);
-    } catch (error) {
-        console.log('[ABOUTME_DELETE]', error);
-        return new NextResponse("Internal error", { status: 500 });
-    }
+            return NextResponse.json(aboutMe);
+        } catch (error) {
+            console.log('[ABOUTME_DELETE]', error);
+            return new NextResponse("Internal error", { status: 500 });
+        }
+    })(request, context) as any;
 }
 
 export async function PATCH(
     request: NextRequest,
-    { params }: { params: { aboutmeId: string } }
+    context: { params: { aboutmeId: string } }
 ) {
-    const reqBody = await request.json()
-    const {
-        name,
-        location,
-        bio,
-        aboutMeHeader,
-        aboutMeDescription,
-        schools,
-        collages,
-        overview,
-        overviewHeader,
-        learningJourney,
-        learningJourneyHeader,
-        linkedinUrl,
-        githubUrl,
-        whatsappUrl,
-        instagramUrl,
-        facebookUrl,
-        primaryGmail,
-        secondaryGmail,
-        mobileNumber,
-        anonymousMessageUrl,
-    } = reqBody
-
-    try {
-        const userId = await getDataFromToken(request)
-        const user = await prismadb.user.findFirst({ where: { id: userId } })
-
-        if (!user) {
-            return new NextResponse("Unauthorized", { status: 405 })
+    return auth(async (req) => {
+        if (!req.auth) {
+            return new NextResponse("Not authenticated", { status: 401 });
         }
 
-        if (!params.aboutmeId) {
+        const { aboutmeId } = context.params
+
+        if (!aboutmeId) {
             return new NextResponse("AboutMe id is required", { status: 400 });
         }
 
-        const aboutMe = await prismadb.aboutMe.update({
-            where: {
-                id: params.aboutmeId,
-            },
-            data: {
-                name,
-                location,
-                bio,
-                aboutMeHeader,
-                aboutMeDescription,
-                schools,
-                collages,
-                overview,
-                overviewHeader,
-                learningJourney,
-                learningJourneyHeader,
-                linkedinUrl,
-                githubUrl,
-                whatsappUrl,
-                instagramUrl,
-                facebookUrl,
-                primaryGmail,
-                secondaryGmail,
-                mobileNumber,
-                anonymousMessageUrl,
-            }
-        });
+        const reqBody = await request.json()
+        const {
+            name,
+            location,
+            bio,
+            aboutMeHeader,
+            aboutMeDescription,
+            schools,
+            collages,
+            overview,
+            overviewHeader,
+            learningJourney,
+            learningJourneyHeader,
+            linkedinUrl,
+            githubUrl,
+            whatsappUrl,
+            instagramUrl,
+            facebookUrl,
+            primaryGmail,
+            secondaryGmail,
+            mobileNumber,
+            anonymousMessageUrl,
+        } = reqBody
 
-        return NextResponse.json(aboutMe);
-    } catch (error) {
-        console.log('[ABOUTME_PATCH]', error);
-        return new NextResponse("Internal error", { status: 500 });
-    }
+        try {
+            const aboutMe = await prismadb.aboutMe.update({
+                where: {
+                    id: aboutmeId,
+                },
+                data: {
+                    name,
+                    location,
+                    bio,
+                    aboutMeHeader,
+                    aboutMeDescription,
+                    schools,
+                    collages,
+                    overview,
+                    overviewHeader,
+                    learningJourney,
+                    learningJourneyHeader,
+                    linkedinUrl,
+                    githubUrl,
+                    whatsappUrl,
+                    instagramUrl,
+                    facebookUrl,
+                    primaryGmail,
+                    secondaryGmail,
+                    mobileNumber,
+                    anonymousMessageUrl,
+                }
+            });
+
+            return NextResponse.json(aboutMe);
+        } catch (error) {
+            console.log('[ABOUTME_PATCH]', error);
+            return new NextResponse("Internal error", { status: 500 });
+        }
+    })(request, context) as any;
 }
